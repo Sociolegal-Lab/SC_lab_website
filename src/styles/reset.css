@@ -1,0 +1,33 @@
+/* reset.css - minimal */
+/* 目的：不同瀏覽器（Chrome、Safari、Firefox、Edge）對 HTML 元素有預設樣式（例如 h1、p、ul、button 的 margin、padding、line-height、font-size 等），reset.css 的工作就是將這些預設值「歸零或統一」，讓你從一致的基準開始設計。
+
+舉例差異：在某些瀏覽器 body 會有預設 margin: 8px，沒 reset 會造成頁面左右出現空白。button 在不同瀏覽器預設 appearance 不同，reset 可以先把外觀清掉再自己設計。 */
+
+
+
+/* *, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img, picture, video, canvas {
+  max-width: 100%;
+  display: block;
+}
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+ul { list-style: none; margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; } */
