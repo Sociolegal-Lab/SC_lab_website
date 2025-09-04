@@ -1,33 +1,51 @@
 /* reset.css - minimal */
-/* 目的：不同瀏覽器（Chrome、Safari、Firefox、Edge）對 HTML 元素有預設樣式（例如 h1、p、ul、button 的 margin、padding、line-height、font-size 等），reset.css 的工作就是將這些預設值「歸零或統一」，讓你從一致的基準開始設計。
-
-舉例差異：在某些瀏覽器 body 會有預設 margin: 8px，沒 reset 會造成頁面左右出現空白。button 在不同瀏覽器預設 appearance 不同，reset 可以先把外觀清掉再自己設計。 */
-
+/* 目的：不同瀏覽器（Chrome、Safari、Firefox、Edge）對 HTML 元素有預設樣式（例如 h1、p、ul、button 的 margin、padding、line-height、font-size 等），reset.css 的工作就是將這些預設值「歸零或統一」，讓你從一致的基準開始設計。*/
+/* 參見：https://g.co/gemini/share/ecf3578774ef */
 
 
-/* *, *::before, *::after {
+*, *::before, *::after {
+  /* 這個設定改變了瀏覽器計算元素寬度（width）和高度（height）的方式。
+預設值 content-box：width 只包含內容區塊，而 padding 和 border 會額外加在 width 之外。這常常導致實際寬度超出你的預期。
+設定為 border-box：width 會包含內容區塊、padding 和 border。這使得你在設定元素的寬度時，能更直觀地預測其最終大小。 */
   box-sizing: border-box;
 }
 html, body, #root {
+  /* height: 100%：確保你的網頁從根部開始就填滿整個可視視窗的高度，這對於製作全屏布局或高度動態的應用程式（如 React、Vue 等）非常重要。
+margin: 0 和 padding: 0：瀏覽器通常會為 body 元素預設 8px 的 margin，這個設定將其歸零，避免網頁四邊出現不必要的空白，讓你從一個「乾淨」的畫布開始設計。 */
   height: 100%;
   margin: 0;
   padding: 0;
 }
 body {
+  /* 行高統一，若要調整可討論 */
   line-height: 1.5;
+  /* 針對不同瀏覽器引擎（Webkit 和 Mozilla）的字體平滑化設定。它們能讓螢幕上的字體邊緣看起來更平滑、更清晰，提升閱讀體驗。 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 img, picture, video, canvas {
+  /* 這段程式碼將圖片、影片等多媒體元素設定為響應式（responsive）。
+  max-width: 100%：確保這些元素的最大寬度不會超過它們的父容器。當父容器寬度縮小時，元素會等比例縮小，防止內容溢出。
+  display: block：將這些元素設定為區塊層級，可以消除圖片下方可能存在的預設空白，讓排版更為精準。 */
   max-width: 100%;
   display: block;
 }
 button {
+  /* 清除瀏覽器對 button 元素的預設樣式 */
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   font: inherit;
 }
+
 ul { list-style: none; margin: 0; padding: 0; }
-a { text-decoration: none; color: inherit; } */
+
+/* 為了方便排版時辨識超連結位置，暫時加上底線，之後再拿掉 */
+a { text-decoration: underline orange; color: inherit; }
+
+
+/* a:hover{
+  text-decoration:underline solid #cdd3fe 8%;
+  text-underline-offset: 20%;
+}  */
