@@ -1,0 +1,54 @@
+:root {
+    --element-space: 1.6rem;
+    --font-size: 1.4em;
+}
+
+/* First layer */
+.header {
+    height: auto;
+    width: 100vw;
+    background-color: #1F296F;
+    display:flex;
+    justify-content: space-between;
+    padding: var(--element-space) 0px;
+}
+
+/* second layer */
+/* Left side */
+.nav_bar{
+    width: 100vw;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    color:white;
+}
+
+/* third layer */
+
+/* Take effect include image */
+.nav_bar a{
+    margin-left: var(--element-space);
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size);
+
+    /* Animate the color */
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.9s; 
+}
+
+.nav_bar a:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+    text-decoration-thickness: 2.5px;   
+    text-underline-offset: 6px;
+}
+
+.nav_bar img{
+    width: auto;
+    height: 3rem;     /* rem or px */
+}
+
+
+
+  
