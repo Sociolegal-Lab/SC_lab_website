@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import "./MembersRoll.css";
+import "./ProjectsRoll.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 
-export default function MembersRoll({
+export default function ProjectsRoll({
   items: itemsProp,
   interval = 4000,
   pauseAfterInteractMs = 5000,
@@ -16,27 +16,27 @@ const defaultItems = useMemo(
   () => [
     
     {
-      name: "Shao-Man Lee",
+      name: "001",
       bio: "A first-year student at NCKU Miin Wu School of Computing, specializing in the integration of large language models (LLMs) with system and cloud architecture. Focused on developing scalable, efficient AI-driven solutions that bridge cutting-edge technology with practical applications.",
       photo: "/src/assets/shaoman.jpg", // 這裡放你真實的圖片檔
     },
     {
-      name: "Yi-Ting Chen",
+      name: "002",
       bio: "Second-year undergraduate focusing on computer vision and deep learning. Interested in applying AI to healthcare and medical imaging.",
       photo: "/src/assets/yiting.jpg",
     },
     {
-      name: "Kai-Hsiang Wang",
+      name: "003",
       bio: "Graduate student in information engineering, researching distributed systems and scalable cloud infrastructures. Enthusiastic about open-source contributions.",
       photo: "/src/assets/kaihsian.jpg",
     },
     {
-      name: "Mei-Ling Huang",
+      name: "004",
       bio: "Specializes in human-computer interaction (HCI) and UX design. Passionate about bridging the gap between AI technology and everyday user experiences.",
       photo: null, // 沒圖片就會顯示灰色方塊
     },
     {
-      name: "Jun-Hao Lin",
+      name: "005",
       bio: "Research assistant focusing on reinforcement learning and robotics. Loves building autonomous systems and exploring AI-driven control methods.",
       photo: "/src/assets/junhao.png",
     },

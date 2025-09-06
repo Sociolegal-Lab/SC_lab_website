@@ -1,5 +1,5 @@
 /* 版面維持深色主題 */
-.mr-root { min-height: 100px; background: oklab(28.823999999999998% -0.00124 -0.00608); color: #fff; }
+.mr-root { height: 680px; background: #1F296F; color: #fff; }
 .mr-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
 
 /* 橫向滑動容器與每頁 */
