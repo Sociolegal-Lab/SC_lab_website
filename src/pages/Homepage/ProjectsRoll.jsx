@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import "./ProjectsRoll.css";
+import "./Homepage.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 

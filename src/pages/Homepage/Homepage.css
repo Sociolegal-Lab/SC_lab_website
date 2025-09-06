@@ -1,10 +1,33 @@
 /* 版面維持深色主題 */
-.mr-root { min-height: 100px; background: oklab(28.823999999999998% -0.00124 -0.00608); color: #fff; }
-.mr-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+.mr-root { 
+  height: 680px; 
+  background: #2A2C2F; 
+  color: #fff; 
+}
+.mr-root-projects { 
+  height: 680px; 
+  background: #1F296F; 
+  color: #fff; 
+}
+.mr-container { 
+  position: relative; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 2rem 1rem; 
+}
 
 /* 橫向滑動容器與每頁 */
-.mr-scroller { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
-.mr-section { scroll-snap-align: start; flex: 0 0 100%; }
+.mr-scroller { 
+  display: flex; 
+  gap: 1.5rem; 
+  overflow-x: auto; 
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth; 
+}
+.mr-section { 
+  scroll-snap-align: start; 
+  flex: 0 0 100%; 
+}
 
 /* 內容卡：左右兩欄（左圖／右文） */
 .mr-profile {
@@ -17,7 +40,11 @@
   background: transparent;
 }
 @media (max-width: 1024px) {
-  .mr-profile { grid-template-columns: 1fr; gap: 1.75rem; padding: 1.5rem; }
+  .mr-profile { 
+    grid-template-columns: 1fr; 
+    gap: 1.75rem; 
+    padding: 1.5rem; 
+  }
 }
 
 .mr-photo-wrap { display: flex; justify-content: center; }

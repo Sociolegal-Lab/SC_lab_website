@@ -1,5 +1,5 @@
 import MembersRoll from "./MembersRoll";
-import ProjectsRoll from "./ProjectsRoll";
+import ProjectsRoll from "./ProjectsRoll"
 
 export default function HomePage(){
    return (
@@ -7,6 +7,7 @@ export default function HomePage(){
         <div className="landing">landing</div>
         <div className="aboutus">about us</div>
         <ProjectsRoll />
+        <MembersRoll />
         <div className="upcomingevents">upcomingevents</div>
         
     </div>
