@@ -1,9 +1,14 @@
-import styles from './Homepage.module.css';
+import MembersRoll from "./MembersRoll";
 
-function Homepage() {
-    return(
-        <div className={styles.placeholder} >Homepage Placeholder</div>
-    )
-}
-
-export default Homepage;
+export default function HomePage(){
+   return (
+    <div className="body">
+        <div className="landing">landing</div>
+        <div className="aboutus">about us</div>
+        <MembersRoll />
+        <MembersRoll />
+        <MembersRoll />
+        <div className="upcomingevents">upcomingevents</div>
+    </div>
+        );
+ }

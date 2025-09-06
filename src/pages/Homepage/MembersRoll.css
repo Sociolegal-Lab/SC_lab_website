@@ -1,0 +1,179 @@
+/* Root layout */
+.mr-root {
+  min-height: 100vh;
+  background-color: #0a0a0a; /* neutral-950 */
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mr-header {
+  max-width: 72rem; /* ~max-w-6xl */
+  margin: 0 auto;
+  padding: 2.5rem 1rem 1.5rem; /* pt-10 pb-6 px-4 */
+}
+
+.mr-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.25rem, 2vw + 1rem, 1.875rem); /* 2xl -> 3xl */
+  margin: 0;
+}
+
+.mr-subtitle {
+  margin-top: 0.5rem;
+  color: rgba(229, 229, 229, 0.85); /* ~neutral-300 */
+}
+
+.mr-container {
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem; /* px-4 */
+}
+
+/* Buttons */
+.mr-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem; /* px-3 py-3 */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  color: #fff;
+  cursor: pointer;
+}
+.mr-btn:hover { background: rgba(255, 255, 255, 0.2); }
+.mr-btn-prev { left: 0.5rem; }
+.mr-btn-next { right: 0.5rem; }
+
+/* Scroller */
+.mr-scroller {
+  display: flex;
+  gap: 1.5rem; /* gap-6 */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  touch-action: pan-x;
+  border-radius: 1rem; /* rounded-2xl approx */
+  padding: 0.5rem; /* p-2 */
+  cursor: grab;
+}
+.mr-cursor-grabbing { cursor: grabbing !important; }
+
+/* Hide scrollbars cross-browser */
+.mr-no-scrollbar::-webkit-scrollbar { display: none; }
+.mr-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Sections (slides) */
+.mr-section {
+  scroll-snap-align: start;
+  flex: 0 0 auto; /* shrink-0 */
+  width: 85%;
+}
+@media (min-width: 640px) { /* sm */
+  .mr-section { width: 70%; }
+}
+@media (min-width: 768px) { /* md */
+  .mr-section { width: 42rem; }
+}
+
+/* Card */
+.mr-card {
+  position: relative;
+  height: 18rem; /* h-72 */
+  border-radius: 1rem; /* rounded-2xl approx */
+  overflow: hidden;
+  box-shadow:
+    0 10px 15px -3px rgba(0,0,0,0.3),
+    0 4px 6px -4px rgba(0,0,0,0.25);
+}
+@media (min-width: 640px) { /* sm */
+  .mr-card { height: 20rem; /* h-80 */ }
+}
+
+/* Card content */
+.mr-card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem; /* p-6 */
+}
+
+.mr-card-title {
+  font-size: clamp(1.5rem, 1.5vw + 1rem, 1.875rem); /* 2xl ~ 3xl */
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  margin: 0;
+}
+
+.mr-card-desc {
+  margin-top: 0.25rem; /* mt-1 */
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.35);
+}
+
+/* Decorative radial glow overlay */
+.mr-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), transparent 50%);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* Gradient themes (approximate Tailwind colors) */
+/* indigo-500 #6366F1, blue-500 #3B82F6 */
+.mr-gradient-indigo-blue {
+  background-image: linear-gradient(135deg, #6366F1, #3B82F6);
+}
+/* fuchsia-500 #D946EF, rose-500 #F43F5E */
+.mr-gradient-fuchsia-rose {
+  background-image: linear-gradient(135deg, #D946EF, #F43F5E);
+}
+/* emerald-500 #10B981, lime-500 #84CC16 */
+.mr-gradient-emerald-lime {
+  background-image: linear-gradient(135deg, #10B981, #84CC16);
+}
+/* amber-500 #F59E0B, orange-500 #F97316 */
+.mr-gradient-amber-orange {
+  background-image: linear-gradient(135deg, #F59E0B, #F97316);
+}
+/* sky-500 #0EA5E9, cyan-500 #06B6D4 */
+.mr-gradient-sky-cyan {
+  background-image: linear-gradient(135deg, #0EA5E9, #06B6D4);
+}
+
+/* Dots */
+.mr-dots {
+  margin-top: 1rem; /* mt-4 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.mr-dot {
+  height: 0.625rem; /* 2.5 */
+  width: 0.625rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 180ms ease;
+  border: none;
+  cursor: pointer;
+}
+.mr-dot:hover { background: rgba(255, 255, 255, 0.7); }
+.mr-dot.is-active { width: 1.5rem; background: #fff; }
+
+.landing { background-color: #6366F1;height: 1000px;text-align: center;color: #fff;font-size: 80px;}
+
+.aboutus { background-color: #10B981;height: 1200px;text-align: center;font-size: 80px;}
+
+.upcomingevents { background-color: #F43F5E;height: 850px;font-size: 80px;text-align: center;color: #fff; }
