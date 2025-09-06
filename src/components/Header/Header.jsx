@@ -5,7 +5,8 @@ import Contact from "../gadgets/Contact";
 
 function Header() {
   return (<>
-  <div className={style.header} >
+  <header className={style.header}>
+    {/* TODO 2ed: RWD*/}
 
     {/* Left side */}
     <div className={style.nav_bar}>
@@ -28,11 +29,12 @@ function Header() {
     </div>
 
     {/* Right side */}
+    {/* TODO 1th: Activating email app when user click the contact button */}
     <div>
       <Contact/>
     </div>
 
-  </div>
+  </header>
   </>);
 }
 

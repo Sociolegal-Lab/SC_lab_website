@@ -1,3 +1,36 @@
-.placeholder{
-    font-style: italic;
+footer {
+    background-color: #17181A;
+    padding: 3rem 3.5rem;
+}
+
+p {
+    color: #D5D5D5;
+}
+
+.heading {
+    font-size: 1.5rem;
+    color: #CDA514;
+    margin: 0.2rem 0px;
+}
+
+/* Section 1 */
+
+hr {
+    display: block;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px;
+    height:2.5px;
+    background-color: #7D7B5B;
+}
+
+li {
+    font-size: 1.5em;
+    color: #B7B7B7;
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+    margin: 0.6rem 0px;
+    
 }
