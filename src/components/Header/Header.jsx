@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./Header.module.css";
-import short_logo from "../../assets/short_logo.png";
+import scl_logo_white from "../../assets/logo/3_scl_logo_white.png";
 import Contact from "../gadgets/Contact";
 
 function Header() {
@@ -11,7 +11,7 @@ function Header() {
     {/* Left side */}
     <div className={style.nav_bar}>
       <Link to="/" >
-        <img src={short_logo} alt= "short_logo"/>
+        <img src={scl_logo_white} alt= "scl_logo_white"/>
       </Link>
       <Link to="/Projects" >
         <div className="inter-bold">Projects</div>

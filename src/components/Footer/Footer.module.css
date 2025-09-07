@@ -1,19 +1,17 @@
-footer {
-    background-color: #17181A;
-    padding: 3rem 3.5rem;
+:root {
+    --margin-between-two-info-columns: 10%;
 }
 
-p {
-    color: #D5D5D5;
+footer {
+    background-color: #17181A;
+    padding: 5rem 10rem;
 }
 
 .heading {
     font-size: 1.5rem;
     color: #CDA514;
-    margin: 0.2rem 0px;
+    margin-bottom: 0.2rem;
 }
-
-/* Section 1 */
 
 hr {
     display: block;
@@ -26,6 +24,21 @@ hr {
     background-color: #7D7B5B;
 }
 
+/* Section 1 */ 
+.logo{
+    width: 29rem;
+    height:auto;
+}
+
+p {
+    color: #D5D5D5;
+    width:29rem;
+    height: auto;
+    font-size: 1.5em;
+    
+}
+
+/* link */
 li {
     font-size: 1.5em;
     color: #B7B7B7;
@@ -34,3 +47,53 @@ li {
     margin: 0.6rem 0px;
     
 }
+
+/* Section 2 */
+.info_mother{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    color: #9D821D;
+}
+
+.info {
+    display:flex;
+    justify-content: space-between;
+    background-color: transparent;
+    width: 50%;
+    margin: 1.2rem 0px;
+    font-size: 1.1rem;
+}
+/* Overwrite .info */
+#first_and_third{
+    width: calc(50% - var(--margin-between-two-info-columns)); 
+    margin-right: var(--margin-between-two-info-columns);
+}
+
+/* On mobile */
+@media (max-width: 500px){
+    .info{
+        width:100%;
+    }
+    #first_and_third{
+        margin-right: 0px;
+    }
+    
+}
+
+.icon{
+    width: auto;
+    height: 3rem;
+}
+
+/* Section 3 */
+.fine{
+    font-size: 0.8rem;
+    color: #BABABA;
+    display:flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+}
+
+
+

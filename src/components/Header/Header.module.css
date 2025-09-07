@@ -26,6 +26,8 @@
 /* third layer */
 
 /* Take effect include image */
+
+
 .nav_bar a{
     margin-left: var(--element-space);
     display: flex;
@@ -34,7 +36,7 @@
 
     /* Animate the color */
     text-decoration-color: transparent;
-    transition: text-decoration-color 0.9s; 
+    transition: text-decoration-color 0.6s; 
 }
 
 .nav_bar a:hover{
@@ -46,7 +48,7 @@
 
 .nav_bar img{
     width: auto;
-    height: 3rem;     /* rem or px */
+    height: 4rem;     /* rem or px */
 }
 
 
