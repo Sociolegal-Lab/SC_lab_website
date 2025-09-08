@@ -1,5 +1,7 @@
 import MembersRoll from "./MembersRoll";
-import ProjectsRoll from "./ProjectsRoll"
+import NewsRoll from "./NewsRoll";
+import ProjectsRoll from "./ProjectsRoll";
+
 
 export default function HomePage(){
    return (
@@ -8,6 +10,7 @@ export default function HomePage(){
         <div className="aboutus">about us</div>
         <ProjectsRoll />
         <MembersRoll />
+        <NewsRoll />
         <div className="upcomingevents">upcomingevents</div>
         
     </div>

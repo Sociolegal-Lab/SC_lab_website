@@ -3,26 +3,37 @@ import "./Homepage.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 
-export default function ProjectsRoll({
+export default function NewsRoll({
   items: itemsProp,
-  interval = 4000,
+  interval = 5000,
   pauseAfterInteractMs = 5000,
   className = "",
   loop = true,
 }) {
-
+  // 預設資料（可被 props 覆寫）
   const defaultItems = useMemo(
     () => [
-      { name: "001", bio: "A first-year student at NCKU Miin Wu School of Computing, specializing in the integration of large language models (LLMs) with system and cloud architecture. Focused on developing scalable, efficient AI-driven solutions that bridge cutting-edge technology with practical applications.", photo: "/src/assets/shaoman.jpg" },
-      { name: "002", bio: "Second-year undergraduate focusing on computer vision and deep learning. Interested in applying AI to healthcare and medical imaging.", photo: "/src/assets/yiting.jpg" },
-      { name: "003", bio: "Graduate student in information engineering, researching distributed systems and scalable cloud infrastructures. Enthusiastic about open-source contributions.", photo: "/src/assets/kaihsian.jpg" },
-      { name: "004", bio: "Specializes in human-computer interaction (HCI) and UX design. Passionate about bridging the gap between AI technology and everyday user experiences.", photo: null },
-      { name: "005", bio: "Research assistant focusing on reinforcement learning and robotics. Loves building autonomous systems and exploring AI-driven control methods.", photo: "/src/assets/junhao.png" },
+      {
+        title: "Undergrad and High School Poster Session",
+        subtitle:
+          "Hiring 4 postdocs — organismal biophysics, soft robotics, frugal Raman diagnostics, or your own bold idea",
+        date: "July 23, 2025",
+      },
+      {
+        title: "Call for Undergraduate Researchers",
+        subtitle:
+          "Hands-on projects in soft robotics and diagnostics. Prior experience is a plus, curiosity is a must.",
+        date: "June 2, 2025",
+      },
     ],
     []
   );
 
-  const items = itemsProp && itemsProp.length ? itemsProp : defaultItems;
+  const items = (itemsProp?.length ? itemsProp : defaultItems).map((it) => ({
+    title: it.title ?? it.name ?? "",
+    subtitle: it.subtitle ?? it.bio ?? "",
+    date: it.date ?? "",
+  }));
 
   const scrollerRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -30,6 +41,7 @@ export default function ProjectsRoll({
   const autoplayRef = useRef(null);
   const resumeTimerRef = useRef(null);
 
+  // 依中心位置判斷目前卡片
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -58,23 +70,20 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
+  // 拖曳滑動
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
 
-    let isDown = false;
-    let startX = 0;
-    let scrollStart = 0;
+    let isDown = false, startX = 0, scrollStart = 0;
 
     const onDown = (e) => {
       isDown = true;
       startX = e.pageX - el.offsetLeft;
       scrollStart = el.scrollLeft;
       el.setPointerCapture?.(e.pointerId);
-      el.classList.add("mr-cursor-grabbing");
       pauseAutoplay();
     };
-
     const onMove = (e) => {
       if (!isDown) return;
       const x = e.pageX - el.offsetLeft;
@@ -82,11 +91,9 @@ export default function ProjectsRoll({
       el.scrollLeft = scrollStart - walk;
       e.preventDefault();
     };
-
     const onUp = (e) => {
       isDown = false;
       try { el.releasePointerCapture?.(e.pointerId); } catch {}
-      el.classList.remove("mr-cursor-grabbing");
     };
 
     el.addEventListener("pointerdown", onDown);
@@ -102,6 +109,7 @@ export default function ProjectsRoll({
     };
   }, []);
 
+  // 輔助
   const scrollToIndex = (i) => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -129,16 +137,17 @@ export default function ProjectsRoll({
       scrollToIndex(next);
     }, interval);
   };
-
   const stopAutoplay = () => {
     if (autoplayRef.current) window.clearInterval(autoplayRef.current);
     autoplayRef.current = null;
   };
-
   const pauseAutoplay = () => {
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(() => startAutoplay(), pauseAfterInteractMs);
+    resumeTimerRef.current = window.setTimeout(
+      () => startAutoplay(),
+      pauseAfterInteractMs
+    );
   };
 
   useEffect(() => {
@@ -147,58 +156,52 @@ export default function ProjectsRoll({
       stopAutoplay();
       if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length, interval]);
 
   return (
-    <div className={`mr-root-projects mr-root-projects-news ${className}`}>
-      <div className="mr-container mr-container-news">
+    <div className={`mr-root ${className}`}>
+      {/* 標題獨立 div */}
+      <div className="mr-title">
+        <h1 className="news-title">Latest News from our Lab</h1>
+      </div>
 
-        {/* 左右圓形箭頭 */}
-        <button
-          aria-label="上一張"
-          className="mr-nav mr-nav-news mr-nav-left"
-          onClick={() => { go(-1); pauseAutoplay(); }}
-        >
-          <img src={left_arrow} alt="" height={50} />
-        </button>
-        <button
-          aria-label="下一張"
-          className="mr-nav mr-nav-news mr-nav-right"
-          onClick={() => { go(1); pauseAutoplay(); }}
-        >
-          <img src={right_arrow} alt="" height={50} />
-        </button>
+      {/* 箭頭＋框框（卡片）為另一個 div，內部垂直置中 */}
+      <div className="mr-stage-wrap">
+        <div className="mr-stage">
+          <button
+            aria-label="Previous"
+            className="mr-nav mr-nav-left"
+            onClick={() => { go(-1); pauseAutoplay(); }}
+          >
+            <img src={left_arrow} alt="" />
+          </button>
 
-        {/* 橫向滑動區（每頁 1 張） */}
-        <div ref={scrollerRef} className="mr-scroller mr-no-scrollbar">
-          {items.map((m, i) => (
-            <section key={i} className="mr-section mr-section-news">
-              <article className="mr-profile mr-profile-news">
-                {/* 左：大圖（或灰色方塊） */}
-                <div className="mr-photo-wrap">
-                  {m.photo ? (
-                    <img className="mr-photo mr-photo-news" src={m.photo} alt={m.name} />
-                  ) : (
-                    <div className="mr-photo mr-photo-news placeholder" />
-                  )}
-                </div>
-                {/* 右：標題＋內文 */}
-                <div className="mr-text">
-                  <h2 className="mr-name">{m.name}</h2>
-                  <p className="mr-bio">{m.bio}</p>
-                </div>
-              </article>
-            </section>
-          ))}
+          <div ref={scrollerRef} className="mr-scroller mr-no-scrollbar">
+            {items.map((m, i) => (
+              <section key={i} className="mr-section">
+                <article className="mr-card" role="article" aria-roledescription="news item">
+                  <h3 className="mr-card-title">{m.title}</h3>
+                  <p className="mr-card-subtitle">{m.subtitle}</p>
+                  {m.date ? <div className="mr-card-date">{m.date}</div> : null}
+                </article>
+              </section>
+            ))}
+          </div>
+
+          <button
+            aria-label="Next"
+            className="mr-nav mr-nav-right"
+            onClick={() => { go(1); pauseAutoplay(); }}
+          >
+            <img src={right_arrow} alt="" />
+          </button>
         </div>
 
-        {/* 點點導航 */}
-        <div className="mr-dots">
+        {/* 指示點（需要時可顯示） */}
+        <div className="mr-dots" aria-hidden="true">
           {items.map((_, i) => (
             <button
               key={i}
-              aria-label={`跳到第 ${i + 1} 張`}
               className={`mr-dot ${active === i ? "is-active" : ""}`}
               onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
             />
