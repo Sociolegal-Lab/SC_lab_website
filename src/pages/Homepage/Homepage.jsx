@@ -2,13 +2,15 @@ import MembersRoll from "./MembersRoll";
 import NewsRoll from "./NewsRoll";
 import ProjectsRoll from "./ProjectsRoll";
 import UpcomingEvents from "./UpcomingEvents";
+import Landing from "./Landing";
+import AboutUs from "./AboutUs";
 
 
 export default function HomePage(){
    return (
     <div className="body">
-        <div className="landing">landing</div>
-        <div className="aboutus">about us</div>
+        <Landing />
+        <AboutUs />
         <ProjectsRoll />
         <MembersRoll />
         <NewsRoll />
