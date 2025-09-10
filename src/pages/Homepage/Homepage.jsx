@@ -1,6 +1,7 @@
 import MembersRoll from "./MembersRoll";
 import NewsRoll from "./NewsRoll";
 import ProjectsRoll from "./ProjectsRoll";
+import UpcomingEvents from "./UpcomingEvents";
 
 
 export default function HomePage(){
@@ -11,7 +12,7 @@ export default function HomePage(){
         <ProjectsRoll />
         <MembersRoll />
         <NewsRoll />
-        <div className="upcomingevents">upcomingevents</div>
+        <UpcomingEvents/>
         
     </div>
         );

@@ -152,6 +152,7 @@ export default function ProjectsRoll({
 
   return (
     <div className={`mr-root-projects mr-root-projects-news ${className}`}>
+      <br></br>
       <div className="mr-container mr-container-news">
 
         {/* 左右圓形箭頭 */}
@@ -204,6 +205,7 @@ export default function ProjectsRoll({
             />
           ))}
         </div>
+        <br></br>
       </div>
     </div>
   );

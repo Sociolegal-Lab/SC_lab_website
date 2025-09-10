@@ -161,6 +161,7 @@ export default function NewsRoll({
   return (
     <div className={`mr-root ${className}`}>
       {/* 標題獨立 div */}
+      <br></br>
       <div className="mr-title">
         <h1 className="news-title">Latest News from our Lab</h1>
       </div>
@@ -207,6 +208,7 @@ export default function NewsRoll({
             />
           ))}
         </div>
+        <br></br>
       </div>
     </div>
   );
