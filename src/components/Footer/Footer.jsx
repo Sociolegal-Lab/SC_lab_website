@@ -4,16 +4,17 @@ import scl_logo_full_white from "../../assets/logo/4_scl_logo_full_white.png"
 function Footer(){
     return (
     <footer>
-        <section style={{display:'flex'}}>
+        <section className={style.parent}>
             {/* Left side */}
 
             {/* Width of this block depends on the width of long logo */}
-            <div>
+            <div style={{marginRight: '14%',}}>
                 <img src={scl_logo_full_white} alt="scl_logo" className={style.logo}/>
                 <p className={`inter-medium ${style.slogan}`}>Our interdisciplinary research leverages natural language processing to critically assess the impacts of AI on legal and societal frameworks.</p>
             </div>
 
             {/* Right side */}
+            {/* TODO: Add Links */}
             <div style={{flex: 'auto'}} className="inter-bold">
                 <div className={`${style.heading}`}>QUICK LINKS</div>
                 <hr/>
@@ -31,6 +32,7 @@ function Footer(){
             <div className={`${style.heading}`}>CONTACT US</div>
             <hr/>
 
+            {/* TODO: Add Links to each icon */}
             <div className={style.info_mother}>
                 {/* add right margin and let the two elements space-between (when > 500px, two column)*/}
                 {/* take out margin and let the two elements space-between (when < 500px, one column) */}
@@ -43,7 +45,7 @@ function Footer(){
                 </div>
                 
                 {/* two element space-beteen */}
-                <div  className={style.info}>
+                <div  className={style.info} id={style.second_and_fourth}>
                     <div >PHONE<br/>+886 2757575 &nbsp;&nbsp;&nbsp; #80980</div>
                     <svg className={`${style.icon} icon bi bi-telephone-fill`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
@@ -60,7 +62,7 @@ function Footer(){
                 </div>
 
                 {/* two element space-beteen */}
-                <div  className={style.info}>
+                <div  className={style.info} id={style.second_and_fourth}>
                     <div >ADDRESS<br/>Miin Wu School of Computing<br/>No.1, University Road, Tainan City 701, Taiwan</div>    
                     <svg className={`${style.icon} icon bi bi-geo-alt-fill`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>

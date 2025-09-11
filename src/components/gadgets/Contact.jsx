@@ -1,9 +1,19 @@
-import styled from 'styled-components';
+// Contact.jsx
+import styled from "styled-components";
 
-const Contact = () => {
+// Todo: Alter the Contact component
+const Contact = ({ email = "someone@example.com", subject = "", body = "", cc = "", bcc = "" }) => {
+  const params = new URLSearchParams();
+  if (subject) params.set("subject", subject);
+  if (body) params.set("body", body);
+  if (cc) params.set("cc", cc);
+  if (bcc) params.set("bcc", bcc);
+
+  const href = `mailto:${email}?${params.toString()}`;
+
   return (
-    <StyledWrapper>
-      <button>
+    <StyledWrapper as="a" href={href} aria-label="Contact via email" title="Contact">
+      <button type="button" onClick={(e)=>{ /* 防止 double-submit 或額外效果 */ }}>
         <span className="inter-bold">Contact</span>
       </button>
     </StyledWrapper>
@@ -11,6 +21,7 @@ const Contact = () => {
 }
 
 const StyledWrapper = styled.div`
+  text-decoration: none; /* 確保 a 不會出現底線 */
   button {
     align-items: center;
     background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
@@ -33,8 +44,6 @@ const StyledWrapper = styled.div`
     white-space: nowrap;
     cursor: pointer;
     transition: all 0.3s;
-
-    // 
     margin-right:1.6rem;
   }
 
@@ -58,6 +67,7 @@ const StyledWrapper = styled.div`
 
   button:active {
     transform: scale(0.9);
-  }`;
+  }
+`;
 
 export default Contact;
