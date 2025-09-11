@@ -1,16 +1,16 @@
-:root {
-    --element-space: 1.6rem;
-    --font-size: 1.4em;
-}
-
 /* First layer */
 .header {
+
+    --element-space: 1.6rem;
+    --font-size: 1.4em;
+
     height: auto;
     width: 100vw;
     background-color: #1F296F;
     display:flex;
     justify-content: space-between;
     padding: var(--element-space) 0px;
+
 }
 
 /* second layer */

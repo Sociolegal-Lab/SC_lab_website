@@ -1,9 +1,7 @@
-:root {
+.footer {
     --margin-between-two-info-columns-L: 10%;
     --margin-between-two-info-columns-R: 5%;
-}
 
-footer {
     background-color: #17181A;
     padding: 5rem 10rem;
 }
@@ -14,7 +12,7 @@ footer {
     margin-bottom: 0.2rem;
 }
 
-hr {
+.hr {
     display: block;
     margin-top: 0rem;
     margin-bottom: 0rem;
@@ -41,7 +39,7 @@ hr {
 }
 
 
-p {
+.p {
     color: #D5D5D5;
     width:auto;
     height: auto;
@@ -50,7 +48,7 @@ p {
 }
 
 /* link */
-li {
+.li {
     font-size: 1.5em;
     color: #B7B7B7;
     text-decoration-line: underline;
@@ -79,12 +77,12 @@ li {
 }
 
 /* Overwrite .info */
-#first_and_third{
+.first_and_third{
     width: calc(50% - var(--margin-between-two-info-columns-L)); 
     margin-right: var(--margin-between-two-info-columns-L);
 } 
 
-#second_and_fourth{
+.second_and_fourth{
     width: calc(50% - var(--margin-between-two-info-columns-R));
     margin-left: var(--margin-between-two-info-columns-R)
 }
@@ -92,7 +90,7 @@ li {
 
 /* On mobile */
 @media (max-width: 950px){
-    footer {
+    .footer {
         padding-left: 4rem;
         padding-right: 4rem;
     }
@@ -102,11 +100,11 @@ li {
     .info{
         width: 100%;
     }
-    #first_and_third{
+    .first_and_third{
         margin-right: 0px;
         width: auto;
     }
-    #second_and_fourth{
+    .second_and_fourth{
         margin-left: 0px;
         width: auto;
     }
