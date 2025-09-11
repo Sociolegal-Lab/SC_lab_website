@@ -1,9 +1,21 @@
-import styles from './Homepage.module.css';
+import MembersRoll from "./MembersRoll";
+import NewsRoll from "./NewsRoll";
+import ProjectsRoll from "./ProjectsRoll";
+import UpcomingEvents from "./UpcomingEvents";
+import Landing from "./Landing";
+import AboutUs from "./AboutUs";
 
-function Homepage() {
-    return(
-        <div className={styles.placeholder} >Homepage Placeholder</div>
-    )
-}
 
-export default Homepage;
+export default function HomePage(){
+   return (
+    <div className="body">
+        <Landing />
+        <AboutUs />
+        <ProjectsRoll />
+        <MembersRoll />
+        <NewsRoll />
+        <UpcomingEvents/>
+        
+    </div>
+        );
+ }
