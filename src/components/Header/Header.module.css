@@ -67,7 +67,7 @@
     border: none;
     cursor: pointer;
     align-items: center;
-    margin-left: var(--element-space);
+    margin-left: calc(var(--element-space)/3);
     color: white;
     width: 48px;
     height: 48px;

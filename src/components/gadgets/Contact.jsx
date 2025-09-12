@@ -9,7 +9,9 @@ const Contact = ({ email = "someone@example.com", subject = "", body = "", cc = 
   if (cc) params.set("cc", cc);
   if (bcc) params.set("bcc", bcc);
 
-  const href = `mailto:${email}?${params.toString()}`;
+  // 把 + 改成 %20，確保空格顯示正確
+  const queryString = params.toString().replace(/\+/g, "%20");
+  const href = `mailto:${email}?${queryString}`;
 
   return (
     <StyledWrapper as="a" href={href} aria-label="Contact via email" title="Contact">

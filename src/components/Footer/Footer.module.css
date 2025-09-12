@@ -1,9 +1,22 @@
 .footer {
-    --margin-between-two-info-columns-L: 10%;
-    --margin-between-two-info-columns-R: 5%;
-
     background-color: #17181A;
     padding: 5rem 10rem;
+
+    --margin-between-two-info-columns-L: 10%;
+    --margin-between-two-info-columns-R: 5%;
+}
+
+@media (max-width: 950px){
+    .footer{
+        padding: 5rem 7rem;
+    }
+}
+
+@media (max-width: 720px){
+    .footer{
+        padding: 5rem 3rem;
+    }
+    
 }
 
 .heading {
@@ -26,11 +39,21 @@
 /* Section 1 */ 
 .parent{
     display: flex;
+    margin-bottom: 10px;
 }
+.sec1_L{
+    margin-right: 14%;
+}
+
 @media (max-width: 800px){
+
     .parent{
         flex-direction: column;
     }
+    .sec1_L{
+        margin-right: 0px;
+    }
+
 }
 
 .logo{
@@ -44,7 +67,13 @@
     width:auto;
     height: auto;
     font-size: 1.5em;
-    
+}
+
+@media (max-width: 720px)
+{
+    .p{
+        font-size: 1em;
+    }
 }
 
 /* link */
@@ -54,7 +83,12 @@
     text-decoration-line: underline;
     text-underline-offset: 4px;
     margin: 0.6rem 0px;
-    
+}
+
+@media (max-width: 720px){
+    .li{
+        font-size: 1.5rem;
+    }
 }
 
 /* Section 2 */
@@ -76,6 +110,7 @@
     align-items: center;
 }
 
+
 /* Overwrite .info */
 .first_and_third{
     width: calc(50% - var(--margin-between-two-info-columns-L)); 
@@ -90,10 +125,6 @@
 
 /* On mobile */
 @media (max-width: 950px){
-    .footer {
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
     .info_mother{
         flex-direction: column;
     }
@@ -110,6 +141,17 @@
     }
 }
 
+@media(max-width: 400px){
+    .info{
+        flex-wrap: wrap;
+    }
+    .info div{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+
 .icon{
     width: 2.5rem;
     min-width: 2.5rem;
@@ -119,13 +161,16 @@
     max-height: 2.5rem;
 }
 
+
 /* Section 3 */
 .fine{
     font-size: 0.8rem;
     color: #BABABA;
     display:flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 5rem;
+    
 }
 
 .slogan{

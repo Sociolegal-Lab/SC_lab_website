@@ -9,7 +9,6 @@ function Header() {
   return (<>
   <header className={style.header}>
 
-
     {/* Left side */}
     <div className={style.nav_bar}>
       <Link to="/" >
@@ -60,12 +59,12 @@ function Header() {
         email="Amy@example.edu"
         subject="Inquiry About Lab Information and Scheduling a Meeting / Request for a Meeting with Professor / (Other request...)"
         body="Hi there —
-              Please briefly describe your request below.
-              If you are asking to schedule an appointment, please provide at least three time slots when you are available (include date, start time, and time zone).
-              Please sign your full name — anonymous messages will not be answered.
-              Optional contact info (if different from this email): [phone / alternative email]
-              Thanks,
-              [Your full name]"
+Please briefly describe your request below.
+If you are asking to schedule an appointment, please provide at least three time slots when you are available (include date, start time, and time zone).
+Please sign your full name — anonymous messages will not be answered.
+Optional contact info (if different from this email): [phone / alternative email]
+Thanks,
+[Your full name]"
         cc="shaomanlee@gs.ncku.edu.tw"
       />
     </div>
