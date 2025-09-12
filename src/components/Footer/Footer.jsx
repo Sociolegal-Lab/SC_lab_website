@@ -22,7 +22,6 @@ function Footer(){
                     <li className={style.li}>Home</li>
                     <li className={style.li}>Projects</li>
                     <li className={style.li}>Members</li>
-                    <li className={style.li}>Leader</li>
                     <li className={style.li}>News</li>
                 </ul>
             </div>

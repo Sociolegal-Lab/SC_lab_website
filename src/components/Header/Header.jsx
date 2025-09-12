@@ -21,9 +21,6 @@ function Header() {
         <Link to="/Members" >
           <div className="inter-bold">Members</div>
         </Link>      
-        <Link to="/Leader" >
-          <div className="inter-bold">Leader</div>
-        </Link>
         <Link to="/News" >
           <div className="inter-bold">News</div>
         </Link>
@@ -41,9 +38,6 @@ function Header() {
           </Link>
           <Link to="/Members" onClick={()=>setMenuOpen(false)}>
             <div className="inter-bold">Members</div>
-          </Link>
-          <Link to="/Leader" onClick={()=>setMenuOpen(false)}>
-            <div className="inter-bold">Leader</div>
           </Link>
           <Link to="/News" onClick={()=>setMenuOpen(false)}>
             <div className="inter-bold">News</div>
