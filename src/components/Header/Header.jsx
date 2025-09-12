@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import style from "./Header.module.css";
 import scl_logo_white from "../../assets/logo/3_scl_logo_white_trim.png";
-import Contact from "../gadgets/Contact";
+import Contact from "./Contact";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,18 +49,7 @@ function Header() {
     {/* Right side */}
     {/* TODO: Alter Contact component */}
     <div className={style.right_side}>
-      <Contact
-        email="Amy@example.edu"
-        subject="Inquiry About Lab Information and Scheduling a Meeting / Request for a Meeting with Professor / (Other request...)"
-        body="Hi there —
-Please briefly describe your request below.
-If you are asking to schedule an appointment, please provide at least three time slots when you are available (include date, start time, and time zone).
-Please sign your full name — anonymous messages will not be answered.
-Optional contact info (if different from this email): [phone / alternative email]
-Thanks,
-[Your full name]"
-        cc="shaomanlee@gs.ncku.edu.tw"
-      />
+      <Contact/>
     </div>
 
   </header>

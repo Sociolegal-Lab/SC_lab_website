@@ -1,17 +1,15 @@
 // Contact.jsx
 import styled from "styled-components";
+import buildMailto from "../../utils/buildMailto";
 
 // Todo: Alter the Contact component
-const Contact = ({ email = "someone@example.com", subject = "", body = "", cc = "", bcc = "" }) => {
-  const params = new URLSearchParams();
-  if (subject) params.set("subject", subject);
-  if (body) params.set("body", body);
-  if (cc) params.set("cc", cc);
-  if (bcc) params.set("bcc", bcc);
+const Contact = () => {
+  const email="Amy@example.edu"
+  const subject="Inquiry About Lab Information and Scheduling a Meeting / Request for a Meeting with Professor / (Other request...)"
+  const body="Hi there \nPlease briefly describe your request below. \nIf you are asking to schedule an appointment, please provide at least three time slots when you are available (include date, start time, and time zone). \nPlease sign your full name — anonymous messages will not be answered. \nOptional contact info (if different from this email): [phone / alternative email] \nThanks, \n[Your full name]"
+  const cc="shaomanlee@gs.ncku.edu.tw"
 
-  // 把 + 改成 %20，確保空格顯示正確
-  const queryString = params.toString().replace(/\+/g, "%20");
-  const href = `mailto:${email}?${queryString}`;
+  const href = buildMailto(email, { subject, body, cc });
 
   return (
     <StyledWrapper as="a" href={href} aria-label="Contact via email" title="Contact">

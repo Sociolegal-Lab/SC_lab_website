@@ -96,6 +96,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    /* color of text */
     color: #9D821D;
     flex-direction: row;
 }
@@ -159,6 +160,8 @@
     height: 2.5rem;
     min-height: 2.5rem;
     max-height: 2.5rem;
+    /* color of icon (otherwise they inherite from <button>) */
+    color: #9D821D;
 }
 
 
