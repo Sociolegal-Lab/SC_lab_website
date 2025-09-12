@@ -57,10 +57,16 @@ function Header() {
     {/* TODO: Alter Contact component */}
     <div className={style.right_side}>
       <Contact
-        email="lab@example.edu"
-        subject="諮詢：加入實驗室"
-        body="您好，我對您實驗室的研究很有興趣，想了解加入流程，方便的話請回信。謝謝!（姓名 / 學校 / 聯絡方式）"
-        cc="advisor@example.edu"
+        email="Amy@example.edu"
+        subject="Inquiry About Lab Information and Scheduling a Meeting / Request for a Meeting with Professor / (Other request...)"
+        body="Hi there —
+              Please briefly describe your request below.
+              If you are asking to schedule an appointment, please provide at least three time slots when you are available (include date, start time, and time zone).
+              Please sign your full name — anonymous messages will not be answered.
+              Optional contact info (if different from this email): [phone / alternative email]
+              Thanks,
+              [Your full name]"
+        cc="shaomanlee@gs.ncku.edu.tw"
       />
     </div>
 
