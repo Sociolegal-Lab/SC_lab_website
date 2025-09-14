@@ -10,7 +10,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync:once": "node scripts/sync.js",
+    "sync:watch": "chokidar \"public/data/**/*\" -c \"node scripts/sync.js\"",
+    "validate-json": "node scripts/validate-json.js",
+    "lint:md": "npx markdownlint 'public/data/**/*.md' --config .markdownlint.json",
+    "check-images": "node scripts/check-images.js"
   },
   "dependencies": {
     "bootstrap-icons": "^1.13.1",
@@ -27,13 +32,20 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
+    "ajv": "^8.17.1",
+    "chokidar-cli": "^3.0.0",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.1",
     "globals": "^16.3.0",
+    "gray-matter": "^4.0.3",
+    "image-size": "^2.0.2",
+    "markdownlint-cli": "^0.32.0",
     "prettier": "^3.6.2",
     "vite": "^7.1.2"
   }

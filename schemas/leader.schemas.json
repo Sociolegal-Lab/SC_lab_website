@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Leader",
+  "type": "object",
+  "properties": {
+    "motto": { "type": ["string", "null"] },
+    "research_interests": { "type": "string" },
+    "bio": { "type": ["string", "null"] },
+    "education": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "fellowships_and_awards": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "publication": {
+      "type": "array",
+      "items": { "type": ["string", "null"] }
+    },
+    "international_conference": {
+      "type": "array",
+      "items": { "type": ["string", "null"] }
+    }
+  },
+  "required": ["research_interests", "education", "fellowships_and_awards", "publication", "international_conference"]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Member",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "string" },
+      "Chinese_name": { "type": "string" },
+      "English_name": { "type": "string" },
+      "title": { "type": "string" },
+      "research_interests": { "type": "string" },
+      "academic_background": { "type": "string" },
+      "email": { "type": "string" },
+      "links": {
+        "type": "array",
+        "items": { "type": ["string", "null"] }
+      },
+      "short_bio": { "type": "string" }
+    },
+    "required": ["id", "Chinese_name", "English_name", "title", "research_interests", "academic_background", "email", "links", "short_bio"]
+  }
+}
