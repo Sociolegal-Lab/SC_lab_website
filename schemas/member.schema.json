@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Member",
+  "title": "Members",
   "type": "array",
   "items": {
     "type": "object",
@@ -11,12 +11,12 @@
       "title": { "type": "string" },
       "research_interests": { "type": "string" },
       "academic_background": { "type": "string" },
-      "email": { "type": "string" },
+      "email": { "type": ["string", "null"] },
       "links": {
         "type": "array",
         "items": { "type": ["string", "null"] }
       },
-      "short_bio": { "type": "string" }
+      "short_bio": { "type": ["string", "null"]}
     },
     "required": ["id", "Chinese_name", "English_name", "title", "research_interests", "academic_background", "email", "links", "short_bio"]
   }

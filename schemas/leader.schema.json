@@ -4,15 +4,15 @@
   "type": "object",
   "properties": {
     "motto": { "type": ["string", "null"] },
-    "research_interests": { "type": "string" },
+    "research_interests": { "type": ["string", "null"] },
     "bio": { "type": ["string", "null"] },
     "education": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": { "type": ["string","null"]}
     },
     "fellowships_and_awards": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": { "type": ["string", "null"] }
     },
     "publication": {
       "type": "array",
@@ -23,5 +23,5 @@
       "items": { "type": ["string", "null"] }
     }
   },
-  "required": ["research_interests", "education", "fellowships_and_awards", "publication", "international_conference"]
+  "required": ["bio", "motto", "research_interests", "education", "fellowships_and_awards", "publication", "international_conference"]
 }

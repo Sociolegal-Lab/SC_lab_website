@@ -7,7 +7,7 @@
     "properties": {
       "id": { "type": "string" },
       "headline": { "type": "string" },
-      "content": { "type": "string" }
+      "content": { "type": ["string", "null"]}
     },
     "required": ["id", "headline", "content"]
   }
