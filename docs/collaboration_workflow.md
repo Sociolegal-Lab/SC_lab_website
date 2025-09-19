@@ -2,6 +2,7 @@
 為了讓使用者未來能直接修改data，data已搬移到public/，src/的data則透過
 npm run sync:once 一次性同步，或是 npm run sync:watch 持續監聽同步，src裡的data作為前端呈現的fallback
 
+## Fetch 檔案的方式
 可參考News.jsx的fetch寫法
 
 # Github 協作流程指引（按右上角進入MarkDown預覽模式，會比較好閱讀）

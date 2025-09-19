@@ -17,6 +17,9 @@
     "lint:md": "npx markdownlint 'public/data/**/*.md' --config .markdownlint.json",
     "update_content_version": "node scripts/update_content_version.js"
   },
+  "engines": {
+  "node": "22.x"
+  },
   "dependencies": {
     "bootstrap-icons": "^1.13.1",
     "react": "^19.1.1",

@@ -1,0 +1,26 @@
+# .github/workflows/content-pr-check.yml
+name: Content PR checks
+
+on:
+  pull_request:
+    paths:
+      - 'public/data/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - '.markdownlint.json'
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install deps
+        run: npm ci
+      - name: Validate JSON schemas
+        run: npm run validate-json
+      - name: Markdown lint
+        run: npm run lint:md
