@@ -25,8 +25,8 @@ async function main() {
   const ajv = new Ajv({ allErrors: true, strict: false });
   let failed = false;
 
-  // find json under public/data (top-level)
-  const files = await glob('public/data/**/*.json', { dot: true });
+  // find json under public/data
+  const files = await glob('public/data/**/*.json', { dot: false });
 
   for (const file of files) {
     const name = path.basename(file);

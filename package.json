@@ -13,9 +13,9 @@
     "preview": "vite preview",
     "sync:once": "node scripts/sync.js",
     "sync:watch": "chokidar \"public/data/**/*\" -c \"node scripts/sync.js\"",
-    "validate-json": "node scripts/validate-json.js",
+    "validate-json": "node scripts/validate_json.js",
     "lint:md": "npx markdownlint 'public/data/**/*.md' --config .markdownlint.json",
-    "check-images": "node scripts/check-images.js"
+    "update_content_version": "node scripts/update_content_version.js"
   },
   "dependencies": {
     "bootstrap-icons": "^1.13.1",
