@@ -3,7 +3,7 @@
 npm run sync:once 一次性同步，或是 npm run sync:watch 持續監聽同步，src裡的data作為前端呈現的fallback
 
 ## Fetch 檔案的方式
-可參考News.jsx的fetch寫法
+請參考News.jsx的fetch寫法取用檔案
 
 # Github 協作流程指引（按右上角進入MarkDown預覽模式，會比較好閱讀）
 

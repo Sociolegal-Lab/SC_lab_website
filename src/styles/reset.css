@@ -39,7 +39,7 @@ button {
   font: inherit;
 }
 
-ul { list-style: none; margin: 0; padding: 0; }
+ul { list-style: none; margin: 0; padding: 0;}
 
 /* 為了方便排版時辨識超連結位置，暫時加上底線，之後再拿掉 */
 a { text-decoration:none; color: inherit; }
