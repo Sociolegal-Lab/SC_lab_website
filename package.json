@@ -15,15 +15,18 @@
     "sync:watch": "chokidar \"public/data/**/*\" -c \"node scripts/sync.js\"",
     "validate-json": "node scripts/validate_json.js",
     "lint:md": "npx markdownlint 'public/data/**/*.md' --config .markdownlint.json",
-    "update_content_version": "node scripts/update_content_version.js"
+    "update_content_version": "node scripts/update_content_version.js",
+    "verify_project_data_filename": "node scripts/generate_projects_index.js"
   },
   "engines": {
-  "node": "22.x"
+    "node": "22.x"
   },
   "dependencies": {
     "bootstrap-icons": "^1.13.1",
+    "fuse.js": "^7.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.8.2",
     "styled-components": "^6.1.19"
   },

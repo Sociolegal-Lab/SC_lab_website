@@ -1,5 +1,6 @@
 import { useParams } from "react-router"
 import style from "./ProjectColumn.module.css"
+import ReactMarkdown from "react-markdown";
 
 function ProjectColumn(){
     // Get id from path

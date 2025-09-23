@@ -1,16 +1,54 @@
-import React from 'react';
-import styled from 'styled-components';
+// TODO: Bug cannot solve. Considering remove search function
 
-const Search = () => {
+import React, {useState, useEffect}from 'react';
+import styled from 'styled-components';
+import Fuse from 'fuse.js';
+
+const Search = ({ news, onSearchResult }) => {
+  const [query, setQuery] = useState("");
+  const [fuse, setFuse] = useState(null);
+
+  // 初始化 Fuse.js
+  useEffect(() => {
+    if (news && news.length > 0) {
+      const fuseInstance = new Fuse(news, {
+        keys: ["headline", "content"], // 要搜尋的欄位
+        threshold: 0.3, // 模糊程度 0-1，越低越精確
+      });
+      setFuse(fuseInstance);
+    }
+  }, [news]);
+
+  // 當 query 改變時進行搜尋
+  useEffect(() => {
+    if (!fuse) return;
+
+    if (!query) {
+      // query 空，回傳全部新聞
+      console.log
+      const results = news
+      // onSearchResult(results);
+    } else {
+      const results = fuse.search(query).map(r => r.item);
+      onSearchResult(results);
+    }
+  }, [query, fuse, news, onSearchResult]);
+
   return (
     <StyledWrapper>
       <div className="form">
-        <input className="input" placeholder="Search..." required type="text" />
+        <input
+          className="input"
+          placeholder="Search..."
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <span className="input-border" />
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .form {

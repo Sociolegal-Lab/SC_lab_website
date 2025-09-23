@@ -24,3 +24,5 @@ jobs:
         run: npm run validate-json
       - name: Markdown lint
         run: npm run lint:md
+      - name: Validate filename of .json and .md in public/data/projects/
+        run: npm run verify_project_data_filename
