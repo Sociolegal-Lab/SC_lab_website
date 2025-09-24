@@ -1,4 +1,4 @@
 Collaborator: 
     Please read docs/collaboration_workflow.md.
 
-    This Project is base on React and JavaScript, and deployed with gh-pages.
+    This Project is based on React and JavaScript, and deployed with gh-pages.
