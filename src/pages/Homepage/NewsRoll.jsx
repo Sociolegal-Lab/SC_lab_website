@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Homepage.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
+import rawNews from "../../data/news/news.json"; // ← 直接用你貼的 JSON
 
 export default function NewsRoll({
   items: itemsProp,
@@ -9,31 +10,43 @@ export default function NewsRoll({
   pauseAfterInteractMs = 5000,
   className = "",
   loop = true,
+  maxChars = 250,            // ← 可調：subtitle 最多顯示幾個字（0 表示不截斷）
+  hideBefore = null,         // ← 可選：只顯示此日期(YYYY-MM-DD)之後的新聞，例如 "2022-01-01"
 }) {
-  // 預設資料（可被 props 覆寫）
-  const defaultItems = useMemo(
-    () => [
-      {
-        title: "Undergrad and High School Poster Session",
-        subtitle:
-          "Hiring 4 postdocs — organismal biophysics, soft robotics, frugal Raman diagnostics, or your own bold idea",
-        date: "July 23, 2025",
-      },
-      {
-        title: "Call for Undergraduate Researchers",
-        subtitle:
-          "Hands-on projects in soft robotics and diagnostics. Prior experience is a plus, curiosity is a must.",
-        date: "June 2, 2025",
-      },
-    ],
-    []
-  );
-
-  const items = (itemsProp?.length ? itemsProp : defaultItems).map((it) => ({
-    title: it.title ?? it.name ?? "",
-    subtitle: it.subtitle ?? it.bio ?? "",
+  // 將不同來源的欄位對齊為 {title, subtitle, date}
+  const normalize = (it) => ({
+    title: it.title ?? it.headline ?? it.name ?? "",
+    subtitle: it.subtitle ?? it.content ?? it.bio ?? "",
     date: it.date ?? "",
-  }));
+  });
+
+  // 安全地把 date 轉成可比較的數值（無日期放 -Infinity）
+  const ts = (d) => {
+    if (!d) return -Infinity;
+    const t = Date.parse(d);
+    return Number.isNaN(t) ? -Infinity : t;
+  };
+
+  // 可選：截斷長文字
+  const clamp = (s, n) => (n > 0 && s && s.length > n ? s.slice(0, n) + "…" : s);
+
+  // 來源：props 優先，否則用 JSON
+  let items = (itemsProp?.length ? itemsProp : rawNews)
+    .map(normalize);
+
+  // 可選：過濾舊新聞
+  if (hideBefore) {
+    const cutoff = ts(hideBefore);
+    items = items.filter((x) => ts(x.date) >= cutoff);
+  }
+
+  // 依日期新→舊排序（無日期的排後面）
+  items.sort((a, b) => ts(b.date) - ts(a.date));
+
+  // 可選：截斷內容避免超長
+  if (maxChars > 0) {
+    items = items.map((x) => ({ ...x, subtitle: clamp(x.subtitle, maxChars) }));
+  }
 
   const scrollerRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -45,14 +58,12 @@ export default function NewsRoll({
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
       window.requestAnimationFrame(() => {
         const center = el.scrollLeft + el.clientWidth / 2;
-        let nearest = 0;
-        let minDist = Infinity;
+        let nearest = 0, minDist = Infinity;
         Array.from(el.children).forEach((child, i) => {
           const c = child.offsetLeft + child.offsetWidth / 2;
           const d = Math.abs(c - center);
@@ -64,7 +75,6 @@ export default function NewsRoll({
       });
       ticking = true;
     };
-
     el.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => el.removeEventListener("scroll", onScroll);
@@ -74,9 +84,7 @@ export default function NewsRoll({
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-
     let isDown = false, startX = 0, scrollStart = 0;
-
     const onDown = (e) => {
       isDown = true;
       startX = e.pageX - el.offsetLeft;
@@ -95,12 +103,10 @@ export default function NewsRoll({
       isDown = false;
       try { el.releasePointerCapture?.(e.pointerId); } catch {}
     };
-
     el.addEventListener("pointerdown", onDown);
     el.addEventListener("pointermove", onMove);
     el.addEventListener("pointerup", onUp);
     el.addEventListener("pointerleave", onUp);
-
     return () => {
       el.removeEventListener("pointerdown", onDown);
       el.removeEventListener("pointermove", onMove);
@@ -132,6 +138,7 @@ export default function NewsRoll({
 
   const startAutoplay = () => {
     stopAutoplay();
+    if (!items?.length) return;
     autoplayRef.current = window.setInterval(() => {
       const next = (activeRef.current + 1) % items.length;
       scrollToIndex(next);
@@ -156,17 +163,16 @@ export default function NewsRoll({
       stopAutoplay();
       if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length, interval]);
 
   return (
     <div className={`mr-root ${className}`}>
-      {/* 標題獨立 div */}
-      <br></br>
+      <br />
       <div className="mr-title">
         <h1 className="news-title">Latest News from our Lab</h1>
       </div>
 
-      {/* 箭頭＋框框（卡片）為另一個 div，內部垂直置中 */}
       <div className="mr-stage-wrap">
         <div className="mr-stage">
           <button
@@ -198,7 +204,6 @@ export default function NewsRoll({
           </button>
         </div>
 
-        {/* 指示點（需要時可顯示） */}
         <div className="mr-dots" aria-hidden="true">
           {items.map((_, i) => (
             <button
@@ -208,7 +213,7 @@ export default function NewsRoll({
             />
           ))}
         </div>
-        <br></br>
+        <br />
       </div>
     </div>
   );
