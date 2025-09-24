@@ -1,3 +1,6 @@
+# Bugs
+- 為什麼Project.jsx無法fetch 而使用了src裡的fallback?
+
 # TODO
 - 於content_on_main.yml加入自動生成dist並push至branch gh-page的自動部署
 - Footer.jsx之design credit shoutout contact button設計者

@@ -59,8 +59,6 @@ function Projects() {
 
 
 
-
-
   return (
     <>
       <div className={`${style.title} ${style.marginLR} rufina-bold`}>
@@ -86,7 +84,7 @@ function Projects() {
           return (
             <Link to={`/project-column/project_${id}`} key={p.filename}><li className={style.piece}>
               <div className={style.img43}>
-                <img src={`/data/projects/${id}.png`} alt="cover of project" />
+                <img src={`/data/projects/project_${id}.png`} alt="cover of project" />
               </div>
               <div className={`${style.headline} inter-bold`}>{name}</div>
               <div className={`${style.content} inter-medium`}>{brief_introduction}</div>
