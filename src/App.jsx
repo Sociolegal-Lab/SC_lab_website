@@ -22,8 +22,8 @@ function App() {
           <Route path="/projects" element={<Projects/>}/>
           <Route path="/leader" element={<Leader/>}/>
           <Route path="/members" element={<Members/>}/>
-          {/* Dynamic path, id is parameter. The id store on the return of useParams()*/}
-          <Route path="/project-column:id" element={<ProjectColumn/>}/>
+          {/* Dynamic path, id is parameter. The id store in the return of useParams()*/}
+          <Route path="/project-column/:slug" element={<ProjectColumn/>}/>
           {/* react-router 由上而下依序配對，當 */}
           <Route path="*" element={<Homepage/>}/>
         </Route>

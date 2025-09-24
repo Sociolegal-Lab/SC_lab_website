@@ -1,3 +1,14 @@
+/* Page not found */
+.back{
+  text-decoration: underline;
+  color: blue;
+}
+
+
+
+
+
+
 /* put into your global CSS or component CSS (higher specificity if needed) */
 .markdown {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;

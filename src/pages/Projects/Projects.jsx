@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import style from "./Projects.module.css";
 import extractIdFromFilename from "../../utils/extractIdFromFilename"; "../../utils/extractIdFromFilename.js";
+import { Link } from "react-router-dom";
 
 const fallback_projectFiles = import.meta.glob("../../data/projects/*");
 
@@ -83,13 +84,13 @@ function Projects() {
           const { id, type } = extractIdFromFilename(p.filename) || {};
           const {name, brief_introduction} = p.content;
           return (
-            <li key={p.filename} className={style.piece}>
+            <Link to={`/project-column/project_${id}`} key={p.filename}><li className={style.piece}>
               <div className={style.img43}>
                 <img src={`/data/projects/${id}.png`} alt="cover of project" />
               </div>
               <div className={`${style.headline} inter-bold`}>{name}</div>
               <div className={`${style.content} inter-medium`}>{brief_introduction}</div>
-            </li>
+            </li></Link>
           );
         })}
       </ul>

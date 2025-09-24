@@ -4,11 +4,21 @@
   "type": "object",
   "properties": {
     "name": { "type": "string" },
+    "duration": { "type": "string" },
     "contributors": {
       "type": "array",
       "items": { "type": ["string", "null"] }
     },
-    "brief_introduction": { "type": ["string", "null"] }
+    "link": { "type": "string" },
+    "brief_introduction": { "type": ["string","null"] },
+    "introduction": { "type": "string" }
   },
-  "required": ["name", "contributors", "brief_introduction"]
+  "required": [
+    "name",
+    "duration",
+    "contributors",
+    "link",
+    "brief_introduction",
+    "introduction"
+  ]
 }
