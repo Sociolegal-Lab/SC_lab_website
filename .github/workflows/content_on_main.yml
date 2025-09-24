@@ -33,7 +33,7 @@ jobs:
         run: npm run sync:once
 
       - name: Update content version
-        run: npm run update-content-version
+        run: npm run update_content_version
 
       - name: Commit generated changes (projects.json omitted)
         run: |
