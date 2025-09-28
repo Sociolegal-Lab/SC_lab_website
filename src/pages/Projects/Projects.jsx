@@ -1,64 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import style from "./Projects.module.css";
-import extractIdFromFilename from "../../utils/extractIdFromFilename"; "../../utils/extractIdFromFilename.js";
 import { Link } from "react-router-dom";
+import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
 
-const fallback_projectFiles = import.meta.glob("../../data/projects/*");
+const project_data = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
+const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg|jpeg|png|gif)", {eager: true, as: 'url'});
+
 
 function Projects() {
-  const [projects, setProjects] = useState(null);
-
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        // 1. 取得 content-version
-        const v = await fetch("/data/content-version.txt")
-          .then((r) => r.text())
-          .catch(() => Date.now()); // fallback 使用當前時間
-
-        // 2. fetch 最新 projects_index.json
-        const response1 = await fetch(
-          `/data/projects/projects_index.json?v=${encodeURIComponent(v)}`
-        );
-        if (!response1.ok)
-          throw new Error("Failed to fetch projects_index.json");
-        const projects_index = await response1.json();
-
-        // 3. 根據 projects_index 動態載入專案檔案
-        const filePromises = projects_index.map(async (filename) => {
-          const url = `/data/projects/${filename}?v=${encodeURIComponent(v)}`;
-          const response2 = await fetch(url);
-          if (!response2.ok) throw new Error(`Failed to fetch ${filename}`);
-          let content;
-          if (filename.endsWith(".json")) {
-            content = await response2.json();
-          } else {
-            content = await response2.text();
-          }
-          return { filename, content };
-        });
-
-        const data = await Promise.all(filePromises);
-
-        // 4. 更新 state
-        setProjects(data);
-        console.log(data);
-      } catch (err) {
-        // 5. fetch 失敗時使用 fallback
-        console.error("Failed to fetch news:", err);
-        setProjects(fallback_projectFiles);
-      }
-    }
-
-    fetchProjects();
-  }, []);
-
-  if (!projects) {
-    return <>Loading. . .</>;
-  }
-
-
-
   return (
     <>
       <div className={`${style.title} ${style.marginLR} rufina-bold`}>
@@ -77,14 +26,26 @@ function Projects() {
         className={`${style.shelf} ${style.marginLR}`}
         style={{ backgroundColor: "gray" }}
       >
-        {projects.map((p) => {
-          // Destructuring Assignment
-          const { id, type } = extractIdFromFilename(p.filename) || {};
-          const {name, brief_introduction} = p.content;
+        {Object.entries(project_data).map(([path, mod]) => {
+          // path = "../../data/projects/project_1.json"
+          // mod  = { default: { name: "...", brief_introduction: "..." } }
+
+          // Destructuring Assignment(json)
+          const { id, type } = extractIdFromFilePath(path) || {};
+          // console.log("id: ", id, "type: ", type);
+          const {name, brief_introduction} = mod;
+
+          // Destructuring Assignment(covers)
+          // 找到 project_id 對應的第一個圖檔
+          const image_path = Object.keys(project_covers).find((key) =>
+            key.includes(`project_${id}.`)
+          );
+          const cover = project_covers[image_path];
+
           return (
-            <Link to={`/project-column/project_${id}`} key={p.filename}><li className={style.piece}>
+            <Link to={`/SC_lab_website/project-column/project_${id}`} key={path}><li className={style.piece}>
               <div className={style.img43}>
-                <img src={`/data/projects/project_${id}.png`} alt="cover of project" />
+                <img src={cover} alt="cover of project" />
               </div>
               <div className={`${style.headline} inter-bold`}>{name}</div>
               <div className={`${style.content} inter-medium`}>{brief_introduction}</div>

@@ -2,132 +2,57 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import style from "./ProjectColumn.module.css";
 import ReactMarkdown from "react-markdown";
-import openNewTab from "../../utils/openNewTab";
+import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
+
+const projects_json = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
+const projects_md = import.meta.glob("../../data/projects/project_[0-9]*.md", {eager: true, as: 'raw'});
+const projects_image = import.meta.glob("../../data/projects/project_[0-9]*.(jpg|jpeg|png|gif)", {eager: true, as: 'url'});
 
 function ProjectColumn() {
   // Get id from path
   const { slug } = useParams(); // slug = project_x
-  const [contentJSON, setContentJSON] = useState(null); // project_x.json
-  const [contentMD, setContentMD] = useState(""); // project_x.md
-  const [loading, setLoading] = useState(true);
-  const [imageSrc, setImageSrc] = useState(null);
-  const [prevName, setPrevName] = useState(null);
-  const [nextName, setNextName] = useState(null);
 
-  useEffect(() => {
-    if (!slug) return;
-    // TOUNDERSTAND: Abort controller
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    async function load() {
-      setLoading(true);
-      try {
-        // 1. Get content-version
-        const v = await fetch("/data/content-version.txt")
-          .then((r) => r.text())
-          .catch(() => Date.now());
-
-        // 2A. fetch project_x.json
-        const response_json = await fetch(
-          `/data/projects/${slug}.json?v=${encodeURIComponent(v)}`,
-          { signal }
-        );
-        if (!response_json.ok) throw new Error(`Failed to fetch ${slug}.json`);
-        const data_json = await response_json.json();
-        setContentJSON(data_json);
-
-        // 2B fetch project_x.json
-        const response_md = await fetch(
-          `/data/projects/${slug}.md?v=${encodeURIComponent(v)}`,
-          { signal }
-        );
-        if (response_md.ok) {
-          const data_md = await response_md.text();
-          setContentMD(data_md);
-        } else {
-          setContentMD("");
-        }
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          console.error("fetch error:", err);
-          setContentJSON(null);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-    // Cleanup function to abort fetch on unmount or slug change
-    // TOUNDERSTAND
-    return () => controller.abort();
-  }, [slug]);
-
-  // Fetch image
-  useEffect(() => {
-    if (!slug) return;
-    const exts = ['png', 'jpg', 'jpeg'];
-    let found = false;
-    (async () => {
-      for (const ext of exts) {
-        try {
-          const res = await fetch(`/data/projects/${slug}.${ext}`);
-          if (res.ok) {
-            setImageSrc(`/data/projects/${slug}.${ext}`);
-            found = true;
-            break;
-          }
-        } catch {}
-      }
-      if (!found) setImageSrc(null);
-    })();
-  }, [slug]);
-
-  // Fetch previous and next projects data
-  useEffect(() => {
-    if (!slug) {
-      setPrevName(null);
-      setNextName(null);
-      return;
-    }
     // Extract x from slug
     const match = slug.match(/^project_(\d+)$/);
-    if (!match) {
-      setPrevName(null);
-      setNextName(null);
-      return;
+    const id = match[1];
+    
+    // Get json file with id
+    const mod_json = projects_json[`../../data/projects/project_${id}.json`];
+    const content_json = mod_json?.default ?? mod_json;
+    const {name, duration, contributors, link, brief_introduction, introduction} = content_json;
+
+    // Get name of next and prev projects
+    const id_list = [];
+    Object.entries(projects_json).map(([path, mod]) => {
+      // path = "../../data/projects/project_1.json"
+      // mod  = { default: { name: "...", brief_introduction: "..." } }
+    const { id:n_of_ids, type } = extractIdFromFilePath(path) || {};
+    id_list.push(n_of_ids);
+    });
+
+    let prev_name = null;
+    const prev_id = parseInt(id, 10) - 1;
+    if (id_list.includes(prev_id)){
+      const mod_json_prev = projects_json[`../../data/projects/project_${prev_id}.json`];
+      const content_json_prev = mod_json_prev?.default ?? mod_json_prev;
+      prev_name = content_json_prev.name;
     }
-    const x = parseInt(match[1], 10);
-    const prevSlug = `project_${x - 1}`;
-    const nextSlug = `project_${x + 1}`;
 
-    // Fetch previous project name
-    fetch(`/data/projects/${prevSlug}.json`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => setPrevName(data ? data.name : null))
-      .catch(() => setPrevName(null));
+    let next_name = null;
+    const next_id = parseInt(id, 10) + 1;
+    if (id_list.includes(next_id)){
+      const mod_json_next = projects_json[`../../data/projects/project_${next_id}.json`];
+      const content_json_next = mod_json_next?.default ?? mod_json_next;
+      next_name = content_json_next.name;
+    }
 
-    // Fetch next project name
-    fetch(`/data/projects/${nextSlug}.json`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => setNextName(data ? data.name : null))
-      .catch(() => setNextName(null));
-  }, [slug]);
+    // Get md(raw) file with id 
+    const mod_md = projects_md[`../../data/projects/project_${id}.md`];
+    const content_md = mod_md?.default ?? mod_md ?? "";
 
-  if (loading) return <div>Loading. . .</div>;
-  if (!contentJSON)
-    return (
-      <>
-        <div>OOPS! Project not found </div>
-        <div>
-          <Link to="/projects" className={`${style.back}`}>
-            Back to Projects
-          </Link>
-        </div>
-      </>
-    );
-
-  let { name, duration, contributors, link, brief_introduction, introduction } = contentJSON;
+    // Get image file with id 
+    const img_key = Object.keys(projects_image).find(k => k.includes(`project_${id}.`));
+    const image_src = img_key ? projects_image[img_key] : null;
 
   return (
     <>
@@ -169,27 +94,27 @@ function ProjectColumn() {
       </div>
 
       {/* image */}
-      {imageSrc && (
-        <img className={style.img43} src={imageSrc} alt="Project image" />
+      {image_src && (
+        <img className={style.img43} src={image_src} alt="Project image" />
       )}
 
-      {/* contentMD */}
-      {contentMD &&( 
+      {/* content_md */}
+      {content_md &&( 
         <article className={style.markdown}>
-            <ReactMarkdown>{contentMD}</ReactMarkdown>
+            <ReactMarkdown>{content_md}</ReactMarkdown>
         </article>
       )}
 
       {/* Switch page */}
       <div>
-        {prevName && (
-          <Link to={`/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} className={style.switch}>
-            &lt;--- {prevName}
+        {prev_name && (
+          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} className={style.switch}>
+            &lt;--- {prev_name}
           </Link>
         )}
-        {nextName && (
-          <Link to={`/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} className={style.switch}>
-            {nextName} ---&gt;
+        {next_name && (
+          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} className={style.switch}>
+            {next_name} ---&gt;
           </Link>
         )}
       </div>
