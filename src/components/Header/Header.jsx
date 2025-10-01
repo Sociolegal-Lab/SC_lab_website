@@ -1,13 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import { useState } from "react";
 import style from "./Header.module.css";
 import scl_logo_white from "../../assets/logo/3_scl_logo_white_trim.png";
 import Contact from "./Contact";
 
 function Header() {
+  // Change background color depending on different pages
+  const {pathname} = useLocation();
+  console.log(pathname);
+  const project_column_regex = /^\/SC_lab_website\/project-column\/.*/
+  // TODO: Add regexs of each page and its condition
+  console.log("TODO: Add regexs of each page and its condition");
+
+  let class_name_location = ""
+  if(project_column_regex.test(pathname)){
+    class_name_location = "project_column";
+  }
+  else{
+    class_name_location = "not_project_column";
+  }
+
+
   const [menuOpen, setMenuOpen] = useState(false);
   return (<>
-  <header className={style.header}>
+  <header className={`${style.header} ${style[class_name_location]}`}>
 
     {/* Left side */}
     <div className={style.nav_bar}>

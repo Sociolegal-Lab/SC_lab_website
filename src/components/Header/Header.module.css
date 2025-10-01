@@ -10,12 +10,23 @@
 
     height: auto;
     width: 100vw;
-    background-color: transparent;
     display:flex;
     justify-content: space-between;
     padding: var(--element-space) 0px;
 
 }
+
+/* Change background depending on the location(page) */
+/* TODO: Add class and its background color of each page*/
+.project_column{
+    background-color: transparent;
+}
+
+.not_project_column{
+    background-color: #121732;
+}
+
+
 
 /* second layer */
 /* Left side */

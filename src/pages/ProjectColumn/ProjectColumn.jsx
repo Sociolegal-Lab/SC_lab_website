@@ -56,6 +56,7 @@ function ProjectColumn() {
     const image_src = img_key ? projects_image[img_key] : null;
 
   return (
+  <div className={`${style.background}`}>
     <div className={`${style.marginLR}`}>
       {/* Head */}
       <div className={`${style.head}`}>
@@ -125,6 +126,8 @@ function ProjectColumn() {
           </Link>
       </div>
     </div>
+  </div>
+    
   );
 }
 

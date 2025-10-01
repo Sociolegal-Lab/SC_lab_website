@@ -1,7 +1,5 @@
 # Markdown 範例文件
 
-這是一份示範用的 Markdown 文件，包含常見語法。
-
 ---
 
 ## 1. 標題 (Headings)

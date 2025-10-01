@@ -6,13 +6,15 @@ import Leader from './pages/Leader/Leader.jsx'
 import Members from './pages/Members/Members.jsx'
 import ProjectColumn from './pages/ProjectColumn/ProjectColumn.jsx'
 import Layout from './Layout.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 
 /* Import dynamic page: ProjectColumn_XXXX */
 
 
 function App() {
-  return (
-    <BrowserRouter>
+  return (<>    
+     <BrowserRouter>
+      <ScrollToTop/>
       <Routes>
         {/* element={<Layout/>} 告訴 react-router-dom（導航總管，透過 browser History API 監聽使用者在瀏覽器的行為，避免重新發送請求），當任何子層路由被匹配時，先渲染 <Layout/> 這個元素。這是React Router的預設行為模式 */}
         {/* react-router-dom 將在 <Layout/> 內部尋找 <Outlet/>，並將匹配到的子路由元件（例如 <Homepage/>、<News/>）渲染到  <Layout/> 內部 <Outlet/> 的位置。 */}
@@ -29,6 +31,10 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+  
+  </>
+    
+   
       
     
   )
