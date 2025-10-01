@@ -1,18 +1,33 @@
+
+
 /* First level */
+.marginLR {
+  margin: 0px 6rem;
+}
+
+@media (max-width: 768px) {
+ .marginLR{
+  margin: 0px 3rem;
+ }
+} 
+
+
 .title {
     font-size:5rem;
     text-align: center;
     padding: 1.2rem 0px;
 }
 
+@media (max-width: 768px) {
+ .title{
+  font-size: 4rem;
+ }
+} 
+
 .subtitle {
     font-size:1.4rem;
     text-align: center;
     padding: 1.2rem 0px;
-}
-
-.marginLR {
-    margin: 0px 6rem;
 }
 
 .shelf{
