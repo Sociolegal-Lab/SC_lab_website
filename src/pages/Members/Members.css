@@ -1,0 +1,223 @@
+:root{
+  --bg:#1b235a;           /* deep navy */
+  --fg:#e9edf7;           /* light text */
+  --muted:#cfd2d6;        /* avatar gray */
+  --accent:#8ea6ff;       /* button/outline */
+  --gold:#eac35b;         /* subtitle gold */
+  --card-max:1120px;
+}
+*{box-sizing:border-box}
+body{margin:0}
+.profile-wrap{
+  min-height:100vh;
+  height: fit-content;
+  background:#1b235a;
+  display:grid;
+  place-items:center;
+  padding:32px 0px;
+  color:var(--fg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  padding-bottom: 50px;
+}
+.profile-card{
+  width:100%;
+  max-width:var(--card-max);
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:48px;
+  align-items:center;
+  position:relative;
+  margin-top: 100px;
+}
+.avatar-col{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+.avatar{
+  width:min(520px, 60vw);
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:var(--muted);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,.2);
+}
+.contact{display:flex;flex-direction:column;gap:12px;}
+.contact-item{display:flex;align-items:center;gap:10px;opacity:.95}
+.contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
+.contact-item a:hover{text-decoration:underline}
+
+.info-col{min-width:0}
+.name{font-size: clamp(40px, 6vw, 72px);line-height:1.05;margin:0 0 8px}
+.subtitle{
+  color:var(--gold);
+  font-weight:700;
+  margin:0 0 8px;
+  letter-spacing:.2px;
+}
+.affil{color:var(--gold);margin:0 0 28px;font-weight:700}
+.motto{font-size: clamp(26px, 4vw, 48px);margin: 0 0 48px;font-weight:800}
+
+.cta-row{display:flex;align-items:center;gap:18px;position:relative}
+
+button {
+  border: none;
+  display: block;
+  position: relative;
+  padding: 0.7em 2.4em;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  color: white;
+  z-index: 1;
+  font-family: inherit;
+  font-size: 100%;
+  height: 80px;
+  width: 300px;
+  text-align: center;
+}
+
+button span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+  border: 4px solid #364dfa;
+}
+
+button span::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8%;
+  height: 500%;
+  background: #1f296f;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-60deg);
+  transition: all 0.3s;
+}
+
+button:hover span::before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 100%;
+  background: #364dfa;
+}
+
+button:hover {
+  color: white;
+}
+
+button:active span::before {
+  background: #2751cd;
+}
+
+.members-section {
+  background: #2d2d2d;
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+}
+
+.members-section h2 {
+  font-size: clamp(32px, 6vw, 64px);
+  margin: 0;
+}
+
+.members-section .subtitle {
+  font-weight: 700;
+  color: gold;
+  margin: 12px 0 40px;
+  display: inline-block;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 4px;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+.member-card {
+  background: #2d2d2d;
+  padding: 28px 20px;
+  border-radius: 12px;
+  max-width: 320px;
+}
+
+.member-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: #ccc;
+  margin: 0 auto 20px;
+}
+
+.member-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.member-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.member-bio {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+  margin: 0 auto 16px;
+  max-width: 260px;
+}
+
+.member-email {
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.members-picture {
+    display: flex;       /* 或保持 flex 也行 */
+    width: 50%;
+    border-radius: 12px;
+    margin: auto;       /* 左右自動外邊距 → 水平置中 */
+}
+
+.socials {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.socials a {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: white;
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.socials a:hover {
+  background: var(--gold);
+  color: var(--bg-dark);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .profile-card{grid-template-columns:1fr;gap:28px}
+  .avatar{width:min(380px, 72vw);margin: 0 auto}
+  .avatar-col{align-items:center}
+  .contact{align-items:center;text-align:center}
+  .info-col{text-align:center}
+  .cta-row{justify-content:center}
+}
+
