@@ -1,5 +1,5 @@
 import React from 'react';
-import './Members.css';
+import './Leader.css';
 
 export default function Leaderarea() {
   return (
@@ -50,23 +50,17 @@ export default function Leaderarea() {
         <div className="info-col">
           <h1 className="name">Shao‑Man Lee</h1>
           <p className="subtitle">
-            AI and Law; Legal Text Mining; Cultural Study of Law;<br />
+            AI and Law; Legal Text Mining; <br />Cultural Study of Law;<br />
             Constitutional Law
           </p>
           <p className="affil">
             NCKU Miin Wu School of Computing Assistant Professor
           </p>
 
-          <blockquote className="motto">“Work hard, play hard”</blockquote>
+          <p className="motto">Trained as a lawyer with advanced law degrees from Yale and UC Berkeley, Shao-Man Lee employs her legal expertise to apply natural language processing to scrutinize judicial language and social discourses.
+          Trained as a lawyer with advanced law degrees from Yale and UC Berkeley, Shao-Man Lee employs her legal expertise to apply natural language processing to scrutinize judicial language and social discourses.
+          Trained as a lawyer with advanced law degrees from Yale and UC Berkeley, Shao-Man Lee employs her legal expertise to apply natural language processing to scrutinize judicial language and social discourses.</p>
 
-          <div className="cta-row">
-            <button className="cta-btn" type="button">
-                <Link to="/Leader" >
-                    <div className="inter-bold">Projects</div>
-                </Link>
-              <span>View Profile</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
