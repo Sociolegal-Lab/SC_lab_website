@@ -1,0 +1,25 @@
+{
+  "Ongoing Projects": [
+    {
+      "title": "Digital Democracy and AI Governance in East Asia",
+      "period": "2024 – Present",
+      "organization": "National Science and Technology Council (NSTC)",
+      "role": "Principal Investigator",
+      "description": "Exploring the intersection of artificial intelligence policy, transparency, and democratic participation in Taiwan, Japan, and South Korea."
+    },
+    {
+      "title": "Political Communication and Public Opinion in the Post-Pandemic Era",
+      "period": "2023 – Present",
+      "organization": "National Cheng Kung University",
+      "role": "Co-Investigator",
+      "description": "Investigating the evolution of political discourse and digital media effects on citizen engagement."
+    },
+    {
+      "title": "Data Visualization for Comparative Politics Education",
+      "period": "2022 – Present",
+      "organization": "NCKU Department of Political Science",
+      "role": "Project Coordinator",
+      "description": "Developing interactive teaching tools to enhance political science education through visual analytics."
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import './Leader.css';
+import "./Leader.css";
+import educationData from "./educationData.json"; // 匯入 JSON 資料
 
 export default function EducationCollapse() {
   return (
@@ -11,8 +12,17 @@ export default function EducationCollapse() {
         </summary>
 
         <div className="collapse-body">
-          {/* 這裡放你的內容*/}
-
+          {educationData.Education.map((edu, index) => (
+            <div key={index} className="collapse-section">
+              <p className="collapse-text-title">{edu.degree}</p>
+              <p className="collapse-text">
+                {edu.institution} ({edu.period})
+              </p>
+              {edu.description && (
+                <p className="collapse-text">{edu.description}</p>
+              )}
+            </div>
+          ))}
         </div>
       </details>
     </div>

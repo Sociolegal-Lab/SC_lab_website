@@ -1,5 +1,6 @@
 import React from 'react';
 import './Members.css';
+import { Link } from "react-router-dom";
 
 export default function Leaderarea() {
   return (
@@ -61,7 +62,7 @@ export default function Leaderarea() {
 
           <div className="cta-row">
             <button className="cta-btn" type="button">
-                <Link to="/Leader" >
+                <Link to="/SC_lab_website/leader"  >
                     <div className="inter-bold">Projects</div>
                 </Link>
               <span>View Profile</span>

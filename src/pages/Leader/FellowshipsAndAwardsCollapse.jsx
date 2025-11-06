@@ -1,7 +1,13 @@
 import React from "react";
-import './Leader.css';
+import "./Leader.css";
+import data from "./fellowshipsAndAwardsData.json";
 
 export default function FellowshipsAndAwardsCollapse() {
+  // 自動依年份排序（降序：最新在上）
+  const sortedAwards = [...data["Fellowships and Awards"]].sort(
+    (a, b) => b.year - a.year
+  );
+
   return (
     <div className="collapse-wrap">
       <details className="collapse" open={false}>
@@ -11,8 +17,17 @@ export default function FellowshipsAndAwardsCollapse() {
         </summary>
 
         <div className="collapse-body">
-          {/* 這裡放你的內容*/}
-
+          {sortedAwards.map((item, index) => (
+            <div key={index} className="collapse-section">
+              <p className="collapse-text-title">
+                {item.title} ({item.year})
+              </p>
+              <p className="collapse-text">{item.organization}</p>
+              {item.description && (
+                <p className="collapse-text">{item.description}</p>
+              )}
+            </div>
+          ))}
         </div>
       </details>
     </div>

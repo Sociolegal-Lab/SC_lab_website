@@ -1,0 +1,25 @@
+{
+  "Upcoming Speaking Engagements": [
+    {
+      "title": "AI and Civic Responsibility: Governing Emerging Technologies",
+      "event": "2025 Global Digital Democracy Forum",
+      "location": "Singapore",
+      "date": "March 2025",
+      "description": "Invited keynote to discuss the implications of AI regulation for participatory governance."
+    },
+    {
+      "title": "The Future of Political Communication in Asia",
+      "event": "International Conference on Political Science and Media Studies",
+      "location": "Kyoto, Japan",
+      "date": "May 2025",
+      "description": "Panel discussion on cross-national media effects and digital literacy."
+    },
+    {
+      "title": "Data, Trust, and Public Policy",
+      "event": "OECD Asia Policy Forum",
+      "location": "Paris, France",
+      "date": "September 2025",
+      "description": "Presentation on public trust in government data usage and algorithmic transparency."
+    }
+  ]
+}

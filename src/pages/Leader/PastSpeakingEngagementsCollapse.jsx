@@ -1,7 +1,13 @@
 import React from "react";
-import './Leader.css';
+import "./Leader.css";
+import data from "./pastSpeakingEngagementsData.json";
 
-export default function PublicationCollapse() {
+export default function PastSpeakingEngagementsCollapse() {
+  // 依年份自動排序（降序：最新講座在上）
+  const sortedEngagements = [...data["Past Speaking Engagements"]].sort(
+    (a, b) => b.year - a.year
+  );
+
   return (
     <div className="collapse-wrap">
       <details className="collapse" open={false}>
@@ -11,8 +17,19 @@ export default function PublicationCollapse() {
         </summary>
 
         <div className="collapse-body">
-          {/* 這裡放你的內容*/}
-
+          {sortedEngagements.map((item, index) => (
+            <div key={index} className="collapse-section">
+              <p className="collapse-text-title">
+                {item.title} ({item.year})
+              </p>
+              <p className="collapse-text">
+                {item.event}, {item.location}
+              </p>
+              {item.description && (
+                <p className="collapse-text">{item.description}</p>
+              )}
+            </div>
+          ))}
         </div>
       </details>
     </div>
