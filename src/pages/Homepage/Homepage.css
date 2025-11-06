@@ -40,7 +40,7 @@
   padding: 2rem 2.5rem;
   background: transparent;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1000px) {
   .mr-profile { 
     grid-template-columns: 1fr; 
     gap: 1.75rem; 

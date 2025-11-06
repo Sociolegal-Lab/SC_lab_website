@@ -1,10 +1,11 @@
 import style from "./News.module.css";
 import { useEffect, useState, useCallback } from "react";
-import fallbackNews from "../../data/news/news.json";
+import news_data from "../../data/news/news.json";
 import Search from "./Search";
 
+const news_covers = import.meta.glob("../../data/news/*.png", {eager: true});
+
 function News() {
-  const [news, setNews] = useState(null);
   const [selectedYear, setSelectedYear] = useState("All");
   const AMOUNT_OF_NEWS = 15;
   const [newslimit, setNewslimit] = useState(AMOUNT_OF_NEWS);
@@ -15,42 +16,13 @@ function News() {
     setNewslimit(AMOUNT_OF_NEWS);
   }, []);
 
-  useEffect(() => {
-    async function fetchNews() {
-      try {
-        // 1️⃣ 取得 content-version
-        const v = await fetch("/data/content-version.txt")
-          .then((r) => r.text())
-          .catch(() => Date.now()); // fallback 使用當前時間
-
-        // 2️⃣ 用 cache-busting URL 取得最新 news.json
-        const response = await fetch(
-          `/data/news/news.json?v=${encodeURIComponent(v)}`
-        );
-        const data = await response.json();
-
-        // 3️⃣ 更新 state
-        setNews(data);
-      } catch (err) {
-        // 4️⃣ fetch 失敗時使用 fallback
-        console.error("Failed to fetch news:", err);
-        setNews(fallbackNews);
-      }
-    }
-
-    fetchNews();
-  }, []);
-
-  if (!news) {
-    return <>Loading. . .</>;
-  }
   // Avoid mutating news in place!
-  const sortedNews = [...news].sort(
+  const sortedNews = [...news_data].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
   // year categorize
   const year_set = Array.from(
-    new Set(news.map((n) => new Date(n.date).getFullYear()))
+    new Set(news_data.map((n) => new Date(n.date).getFullYear()))
   );
   let selectedNews = [];
   for (let i = 0; i < sortedNews.length; i++) {
@@ -66,6 +38,8 @@ function News() {
 
   // Display news
   const displayNews = selectedNews.slice(0, newslimit);
+
+console.log(news_covers);
 
   return (
     <>
@@ -96,7 +70,7 @@ function News() {
         {displayNews.map((n) => (
           <li key={n.id} className={style.piece}>
             <div className={style.img43}>
-              <img src={`/data/news/${n.id}.png`} alt="news picture" />
+              <img src={news_covers[`../../data/news/${n.id}.png`].default} alt="news picture" />
             </div>
             <div className={`${style.date} inter-bold`}>
               {new Date(n.date).toLocaleDateString("en-US", {

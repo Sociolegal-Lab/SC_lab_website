@@ -1,4 +1,4 @@
-// scripts/sync.js
+// scripts/sync.js 棄用
 // from public/data to src/data in order to make fallback file when fetch fails.
 import fs from 'fs-extra';
 import path from 'path';

@@ -23,10 +23,10 @@ function Footer(){
                 <div className={`${style.heading}`}>QUICK LINKS</div>
                 <hr className={style.hr}/>
                 <ul >
-                    <Link to="/Home"><li className={style.li}>Home</li></Link>
-                    <Link to="/Projects"><li className={style.li}>Projects</li></Link>
-                    <Link to="/Members"><li className={style.li}>Members</li></Link>
-                    <Link to="/News"><li className={style.li}>News</li></Link>
+                    <Link to="/SC_lab_website/"><li className={style.li}>Home</li></Link>
+                    <Link to="/SC_lab_website/projects"><li className={style.li}>Projects</li></Link>
+                    <Link to="/SC_lab_website/members"><li className={style.li}>Members</li></Link>
+                    <Link to="/SC_lab_website/news"><li className={style.li}>News</li></Link>
                 </ul>
             </div>
         </section>
