@@ -14,17 +14,18 @@
 }
 *{box-sizing:border-box}
 body{margin:0}
+
 .profile-wrap{
   min-height:100vh;
   height: fit-content;
-  background:#1b235a;
+  background: var(--bg);                 /* ← 改用變數 */
   display:grid;
   place-items:center;
-  padding:32px 0px;
-  padding-bottom: 150px;
+  padding:32px 0 150px;                  /* 合併 padding */
   color:var(--fg);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 }
+
 .profile-card{
   width:100%;
   max-width:var(--card-max);
@@ -35,6 +36,7 @@ body{margin:0}
   position:relative;
   margin-top: 100px;
 }
+
 .avatar-col{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
 .avatar{
   width:min(520px, 60vw);
@@ -43,6 +45,7 @@ body{margin:0}
   background:var(--muted);
   box-shadow: inset 0 2px 8px rgba(0,0,0,.2);
 }
+
 .contact{display:flex;flex-direction:column;gap:12px;}
 .contact-item{display:flex;align-items:center;gap:10px;opacity:.95}
 .contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
@@ -52,30 +55,26 @@ body{margin:0}
 .name{font-size: clamp(40px, 6vw, 72px);line-height:1.05;margin:0 0 8px}
 .subtitle{
   color:var(--gold);
-  font-size: 24px;;
+  font-size: 24px;                       /* ← 移除多餘分號 */
   margin:0 0 8px;
   letter-spacing:.2px;
 }
 .affil{color:var(--gold);margin:0 0 28px;font-size: 24px;}
 
-.mooto{
-    margin:0 0 28px;
-    font-size: 24px;
+.motto{                                   /* ← 原 .mooto 更名為 .motto，請同步 JSX */
+  margin:0 0 28px;
+  font-size: 24px;
 }
 
-
 .cta-row{display:flex;align-items:center;gap:18px;position:relative}
-
-
 
 /* 外框（方便置中或拉滿寬） */
 .collapse-wrap{
   background: var(--collapse-bg);
-  margin: 0 auto;
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
-/* details 容器 */
+/* details 容器（預期用在 <details class="collapse">） */
 .collapse{
   width: 80%;
   margin: auto;
@@ -85,7 +84,7 @@ body{margin:0}
   border-bottom: 1px solid var(--collapse-border);
 }
 
-/* 移除預設 marker */
+/* 移除預設 marker（套在 <summary class="collapse-sum">） */
 .collapse-sum::-webkit-details-marker{ display:none; }
 .collapse-sum{
   list-style: none;
@@ -131,7 +130,9 @@ body{margin:0}
 }
 
 /* 展開時：把垂直線收起，剩下一條橫線＝減號 */
-.collapse[open] .collapse-plus::after{ opacity: 0; transform: translateX(-50%) scaleY(.1); }
+.collapse[open] .collapse-plus::after{
+  opacity: 0; transform: translateX(-50%) scaleY(.1);
+}
 
 /* 內容區 */
 .collapse-body{
@@ -142,9 +143,9 @@ body{margin:0}
 
 .collapse-text{
   padding: 0;
-  margin: 0 0 0;
+  margin: 0;
   color: var(--collapse-muted);
-  font-family: Roboto condeced, ;
+  font-family: "Roboto Condensed", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; /* ← 修正 */
 }
 .collapse-text-title{
   font-weight: bold;
@@ -160,7 +161,6 @@ body{margin:0}
   outline-offset: 4px;
 }
 
-
 .schedule{
   font-size: 56px;
   font-weight: 700;
@@ -169,7 +169,7 @@ body{margin:0}
   padding-top: 50px;
   padding-bottom: 10px;
   text-align: center;
-  background-color: #1b235a;
+  background-color: var(--bg);           /* 一致用變數 */
   height: 150px;
   margin: 0 auto;
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;

@@ -1,16 +1,14 @@
 import React from "react";
-import './Leader.css';
+import styles from "./Leader.module.css"; // ✅ 正確導入
 
 export default function Schedule() {
   return (
     <div>
-        <p className="schedule">
-            Schedule
-        </p>
-        <p className="schedule" />
-        <p className="schedule" />
-        <p className="schedule" />
-        <p className="schedule" />
-    </ div>
+      <p className={styles["schedule"]}>Schedule</p>
+      <p className={styles["schedule"]}></p>
+      <p className={styles["schedule"]}></p>
+      <p className={styles["schedule"]}></p>
+      <p className={styles["schedule"]}></p>
+    </div>
   );
 }

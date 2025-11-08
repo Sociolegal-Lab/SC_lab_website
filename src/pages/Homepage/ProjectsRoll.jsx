@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import "./Homepage.css";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
+import projectData from "../../data/projects/projects_index.json";
 
 export default function ProjectsRoll({
   items: itemsProp,
@@ -10,19 +11,8 @@ export default function ProjectsRoll({
   className = "",
   loop = true,
 }) {
-
-  const defaultItems = useMemo(
-    () => [
-      { name: "001", bio: "A first-year student at NCKU Miin Wu School of Computing, specializing in the integration of large language models (LLMs) with system and cloud architecture. Focused on developing scalable, efficient AI-driven solutions that bridge cutting-edge technology with practical applications.", photo: "/src/assets/shaoman.jpg" },
-      { name: "002", bio: "Second-year undergraduate focusing on computer vision and deep learning. Interested in applying AI to healthcare and medical imaging.", photo: "/src/assets/yiting.jpg" },
-      { name: "003", bio: "Graduate student in information engineering, researching distributed systems and scalable cloud infrastructures. Enthusiastic about open-source contributions.", photo: "/src/assets/kaihsian.jpg" },
-      { name: "004", bio: "Specializes in human-computer interaction (HCI) and UX design. Passionate about bridging the gap between AI technology and everyday user experiences.", photo: null },
-      { name: "005", bio: "Research assistant focusing on reinforcement learning and robotics. Loves building autonomous systems and exploring AI-driven control methods.", photo: "/src/assets/junhao.png" },
-    ],
-    []
-  );
-
-  const items = itemsProp && itemsProp.length ? itemsProp : defaultItems;
+  // 資料來源：props 優先，否則使用 JSON
+  const items = (itemsProp && itemsProp.length ? itemsProp : projectData) || [];
 
   const scrollerRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -30,6 +20,7 @@ export default function ProjectsRoll({
   const autoplayRef = useRef(null);
   const resumeTimerRef = useRef(null);
 
+  // 依中心計算目前卡片
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -58,6 +49,7 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
+  // 拖曳
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -71,7 +63,7 @@ export default function ProjectsRoll({
       startX = e.pageX - el.offsetLeft;
       scrollStart = el.scrollLeft;
       el.setPointerCapture?.(e.pointerId);
-      el.classList.add("mr-cursor-grabbing");
+      el.style.cursor = "grabbing";
       pauseAutoplay();
     };
 
@@ -86,7 +78,7 @@ export default function ProjectsRoll({
     const onUp = (e) => {
       isDown = false;
       try { el.releasePointerCapture?.(e.pointerId); } catch {}
-      el.classList.remove("mr-cursor-grabbing");
+      el.style.cursor = "";
     };
 
     el.addEventListener("pointerdown", onDown);
@@ -124,6 +116,7 @@ export default function ProjectsRoll({
 
   const startAutoplay = () => {
     stopAutoplay();
+    if (!items.length) return;
     autoplayRef.current = window.setInterval(() => {
       const next = (activeRef.current + 1) % items.length;
       scrollToIndex(next);
@@ -138,7 +131,10 @@ export default function ProjectsRoll({
   const pauseAutoplay = () => {
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(() => startAutoplay(), pauseAfterInteractMs);
+    resumeTimerRef.current = window.setTimeout(
+      () => startAutoplay(),
+      pauseAfterInteractMs
+    );
   };
 
   useEffect(() => {
@@ -147,47 +143,48 @@ export default function ProjectsRoll({
       stopAutoplay();
       if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length, interval]);
 
   return (
-    <div className={`mr-root-projects mr-root-projects-news ${className}`}>
-      <br></br>
-      <div className="mr-container mr-container-news">
-
+    <div className={`${styles["mr-root-projects"]} ${className || ""}`}>
+      <br />
+      <div className={styles["mr-container"]}>
         {/* 左右圓形箭頭 */}
         <button
           aria-label="上一張"
-          className="mr-nav mr-nav-news mr-nav-left"
+          className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
           onClick={() => { go(-1); pauseAutoplay(); }}
         >
           <img src={left_arrow} alt="" height={50} />
         </button>
         <button
           aria-label="下一張"
-          className="mr-nav mr-nav-news mr-nav-right"
+          className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
           onClick={() => { go(1); pauseAutoplay(); }}
         >
           <img src={right_arrow} alt="" height={50} />
         </button>
 
         {/* 橫向滑動區（每頁 1 張） */}
-        <div ref={scrollerRef} className="mr-scroller mr-no-scrollbar">
+        <div
+          ref={scrollerRef}
+          className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
+        >
           {items.map((m, i) => (
-            <section key={i} className="mr-section mr-section-news">
-              <article className="mr-profile mr-profile-news">
+            <section key={i} className={styles["mr-section"]}>
+              <article className={styles["mr-profile"]}>
                 {/* 左：大圖（或灰色方塊） */}
-                <div className="mr-photo-wrap">
+                <div className={styles["mr-photo-wrap"]}>
                   {m.photo ? (
-                    <img className="mr-photo mr-photo-news" src={m.photo} alt={m.name} />
+                    <img className={styles["mr-photo"]} src={m.photo} alt={m.name} />
                   ) : (
-                    <div className="mr-photo mr-photo-news placeholder" />
+                    <div className={styles["mr-photo"]} />
                   )}
                 </div>
                 {/* 右：標題＋內文 */}
-                <div className="mr-text">
-                  <h2 className="mr-name">{m.name}</h2>
-                  <p className="mr-bio">{m.bio}</p>
+                <div className={styles["mr-text"]}>
+                  <h2 className={styles["mr-name"]}>{m.name}</h2>
+                  <p className={styles["mr-bio"]}>{m.bio}</p>
                 </div>
               </article>
             </section>
@@ -195,17 +192,17 @@ export default function ProjectsRoll({
         </div>
 
         {/* 點點導航 */}
-        <div className="mr-dots">
+        <div className={styles["mr-dots"]}>
           {items.map((_, i) => (
             <button
               key={i}
               aria-label={`跳到第 ${i + 1} 張`}
-              className={`mr-dot ${active === i ? "is-active" : ""}`}
+              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] ?? "" : ""}`}
               onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
             />
           ))}
         </div>
-        <br></br>
+        <br />
       </div>
     </div>
   );

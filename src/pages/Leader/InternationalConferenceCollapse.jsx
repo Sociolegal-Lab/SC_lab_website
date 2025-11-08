@@ -1,5 +1,5 @@
 import React from "react";
-import "./Leader.css";
+import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
 import data from "./internationalConferenceData.json";
 
 export default function InternationalConferenceCollapse() {
@@ -9,24 +9,26 @@ export default function InternationalConferenceCollapse() {
   );
 
   return (
-    <div className="collapse-wrap">
-      <details className="collapse" open={false}>
-        <summary className="collapse-sum">
-          <span className="collapse-title">International Conference</span>
-          <span className="collapse-plus" aria-hidden="true" />
+    <div className={styles["collapse-wrap"]}>
+      <details className={styles["collapse"]}>
+        <summary className={styles["collapse-sum"]}>
+          <span className={styles["collapse-title"]}>
+            International Conference
+          </span>
+          <span className={styles["collapse-plus"]} aria-hidden="true" />
         </summary>
 
-        <div className="collapse-body">
+        <div className={styles["collapse-body"]}>
           {sortedConferences.map((conf, index) => (
-            <div key={index} className="collapse-section">
-              <p className="collapse-text-title">
+            <div key={index} className={styles["collapse-section"]}>
+              <p className={styles["collapse-text-title"]}>
                 {conf.title} ({conf.year})
               </p>
-              <p className="collapse-text">
+              <p className={styles["collapse-text"]}>
                 {conf.conference}, {conf.location}
               </p>
               {conf.description && (
-                <p className="collapse-text">{conf.description}</p>
+                <p className={styles["collapse-text"]}>{conf.description}</p>
               )}
             </div>
           ))}

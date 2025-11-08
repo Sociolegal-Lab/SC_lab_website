@@ -1,18 +1,13 @@
 import React from "react";
-import "./Homepage.css";
+import styles from "./Homepage.module.css"; // ✅ 改成模組化導入
 
-const events = [
-  { date: "08/25", name: "08456132c", location: "adasdcasc" },
-  { date: "08/30", name: "adasdcasc", location: "adasdcasc" },
-  { date: "09/02~09/03", name: "adasdcasc", location: "adasdcasc" },
-  { date: "10/15", name: "adasdcasc", location: "adasdcasc" }
-];
+import events from "../../data/homepage/upcomingEvents.json"; // ✅ 可改為從 .json 匯入資料（可選）
 
 export default function UpcomingEvents() {
   return (
-    <div className="events-container">
-      <div className="title">Upcoming Events</div>
-      <table className="events-table">
+    <div className={styles["events-container"]}>
+      <div className={styles["title"]}>Upcoming Events</div>
+      <table className={styles["events-table"]}>
         <thead>
           <tr>
             <th>日期</th>

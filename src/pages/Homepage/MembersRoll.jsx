@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import "./Homepage.css";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
+import membersData from "../../data/members/members.json"; // ✅ 新增：從 JSON 匯入
 
 export default function MembersRoll({
   items: itemsProp,
@@ -10,42 +11,8 @@ export default function MembersRoll({
   className = "",
   loop = true,
 }) {
-
-  // 🆕 改成符合截圖的資料結構（name / bio / photo）
-const defaultItems = useMemo(
-  () => [
-    
-    {
-      name: "Shao-Man Lee",
-      bio: "A first-year student at NCKU Miin Wu School of Computing, specializing in the integration of large language models (LLMs) with system and cloud architecture. Focused on developing scalable, efficient AI-driven solutions that bridge cutting-edge technology with practical applications.",
-      photo: "/src/assets/shaoman.jpg", // 這裡放你真實的圖片檔
-    },
-    {
-      name: "Yi-Ting Chen",
-      bio: "Second-year undergraduate focusing on computer vision and deep learning. Interested in applying AI to healthcare and medical imaging.",
-      photo: "/src/assets/yiting.jpg",
-    },
-    {
-      name: "Kai-Hsiang Wang",
-      bio: "Graduate student in information engineering, researching distributed systems and scalable cloud infrastructures. Enthusiastic about open-source contributions.",
-      photo: "/src/assets/kaihsian.jpg",
-    },
-    {
-      name: "Mei-Ling Huang",
-      bio: "Specializes in human-computer interaction (HCI) and UX design. Passionate about bridging the gap between AI technology and everyday user experiences.",
-      photo: null, // 沒圖片就會顯示灰色方塊
-    },
-    {
-      name: "Jun-Hao Lin",
-      bio: "Research assistant focusing on reinforcement learning and robotics. Loves building autonomous systems and exploring AI-driven control methods.",
-      photo: "/src/assets/junhao.png",
-    },
-  ],
-  []
-);
-
-
-  const items = itemsProp && itemsProp.length ? itemsProp : defaultItems;
+  // 資料來源：props 優先，否則使用 JSON
+  const items = (itemsProp && itemsProp.length ? itemsProp : membersData) || [];
 
   const scrollerRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -68,10 +35,7 @@ const defaultItems = useMemo(
         Array.from(el.children).forEach((child, i) => {
           const c = child.offsetLeft + child.offsetWidth / 2;
           const d = Math.abs(c - center);
-          if (d < minDist) {
-            minDist = d;
-            nearest = i;
-          }
+          if (d < minDist) { minDist = d; nearest = i; }
         });
         setActive(nearest);
         activeRef.current = nearest;
@@ -99,7 +63,7 @@ const defaultItems = useMemo(
       startX = e.pageX - el.offsetLeft;
       scrollStart = el.scrollLeft;
       el.setPointerCapture?.(e.pointerId);
-      el.classList.add("mr-cursor-grabbing");
+      el.style.cursor = "grabbing";
       pauseAutoplay();
     };
 
@@ -114,7 +78,7 @@ const defaultItems = useMemo(
     const onUp = (e) => {
       isDown = false;
       try { el.releasePointerCapture?.(e.pointerId); } catch {}
-      el.classList.remove("mr-cursor-grabbing");
+      el.style.cursor = "";
     };
 
     el.addEventListener("pointerdown", onDown);
@@ -153,6 +117,7 @@ const defaultItems = useMemo(
 
   const startAutoplay = () => {
     stopAutoplay();
+    if (!items.length) return;
     autoplayRef.current = window.setInterval(() => {
       const next = (activeRef.current + 1) % items.length;
       scrollToIndex(next);
@@ -167,7 +132,10 @@ const defaultItems = useMemo(
   const pauseAutoplay = () => {
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(() => startAutoplay(), pauseAfterInteractMs);
+    resumeTimerRef.current = window.setTimeout(
+      () => startAutoplay(),
+      pauseAfterInteractMs
+    );
   };
 
   useEffect(() => {
@@ -176,46 +144,47 @@ const defaultItems = useMemo(
       stopAutoplay();
       if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length, interval]);
 
   return (
-    <div className={`mr-root ${className}`}>
-      <div className="mr-container">
-
+    <div className={`${styles["mr-root"]} ${className || ""}`}>
+      <div className={styles["mr-container"]}>
         {/* 左右圓形箭頭 */}
         <button
           aria-label="上一張"
-          className="mr-nav mr-nav-left"
+          className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
           onClick={() => { go(-1); pauseAutoplay(); }}
         >
           <img src={left_arrow} alt="" height={50} />
         </button>
         <button
           aria-label="下一張"
-          className="mr-nav mr-nav-right"
+          className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
           onClick={() => { go(1); pauseAutoplay(); }}
         >
           <img src={right_arrow} alt="" height={50} />
         </button>
 
         {/* 橫向滑動區（每頁 1 張） */}
-        <div ref={scrollerRef} className="mr-scroller mr-no-scrollbar">
+        <div
+          ref={scrollerRef}
+          className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
+        >
           {items.map((m, i) => (
-            <section key={i} className="mr-section">
-              <article className="mr-profile">
+            <section key={i} className={styles["mr-section"]}>
+              <article className={styles["mr-profile"]}>
                 {/* 左：大圖（或灰色方塊） */}
-                <div className="mr-photo-wrap">
+                <div className={styles["mr-photo-wrap"]}>
                   {m.photo ? (
-                    <img className="mr-photo" src={m.photo} alt={m.name} />
+                    <img className={styles["mr-photo"]} src={m.photo} alt={m.name} />
                   ) : (
-                    <div className="mr-photo placeholder" />
+                    <div className={styles["mr-photo"]} />
                   )}
                 </div>
                 {/* 右：標題＋內文 */}
-                <div className="mr-text">
-                  <h2 className="mr-name">{m.name}</h2>
-                  <p className="mr-bio">{m.bio}</p>
+                <div className={styles["mr-text"]}>
+                  <h2 className={styles["mr-name"]}>{m.name}</h2>
+                  <p className={styles["mr-bio"]}>{m.bio}</p>
                 </div>
               </article>
             </section>
@@ -223,12 +192,12 @@ const defaultItems = useMemo(
         </div>
 
         {/* 點點導航 */}
-        <div className="mr-dots">
+        <div className={styles["mr-dots"]}>
           {items.map((_, i) => (
             <button
               key={i}
               aria-label={`跳到第 ${i + 1} 張`}
-              className={`mr-dot ${active === i ? "is-active" : ""}`}
+              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] : ""}`}
               onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
             />
           ))}

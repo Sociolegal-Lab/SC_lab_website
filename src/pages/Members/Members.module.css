@@ -1,58 +1,18 @@
 :root{
   --bg:#1b235a;           /* deep navy */
+  --bg-dark:#0f153a;      /* 新增：hover 反差色用 */
   --fg:#e9edf7;           /* light text */
   --muted:#cfd2d6;        /* avatar gray */
   --gold:#eac35b;         /* subtitle gold */
   --card-max:1120px;
 }
+
+/* 可選：讓語意更清楚
+:global(:root){ ... }
+:global(body){ margin:0 }
+*/
 *{box-sizing:border-box}
 body{margin:0}
-.profile-wrap{
-  min-height:100vh;
-  height: fit-content;
-  background:#1b235a;
-  display:grid;
-  place-items:center;
-  padding:32px 0px;
-  color:var(--fg);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  padding-bottom: 50px;
-}
-.profile-card{
-  width:100%;
-  max-width:var(--card-max);
-  display:grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap:48px;
-  align-items:center;
-  position:relative;
-  margin-top: 100px;
-}
-.avatar-col{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
-.avatar{
-  width:min(520px, 60vw);
-  aspect-ratio:1/1;
-  border-radius:50%;
-  background:var(--muted);
-  box-shadow: inset 0 2px 8px rgba(0,0,0,.2);
-}
-.contact{display:flex;flex-direction:column;gap:12px;}
-.contact-item{display:flex;align-items:center;gap:10px;opacity:.95}
-.contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
-.contact-item a:hover{text-decoration:underline}
-
-.info-col{min-width:0}
-.name{font-size: clamp(40px, 6vw, 72px);line-height:1.05;margin:0 0 8px}
-.subtitle{
-  color:var(--gold);
-  font-weight:700;
-  margin:0 0 8px;
-  letter-spacing:.2px;
-}
-.affil{color:var(--gold);margin:0 0 28px;font-weight:700}
-.motto{font-size: clamp(26px, 4vw, 48px);margin: 0 0 48px;font-weight:800}
-
-.cta-row{display:flex;align-items:center;gap:18px;position:relative}
 
 .button {
     align-items: center;
@@ -62,6 +22,7 @@ body{margin:0}
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     box-sizing: border-box;
     color: #ffffff;
+    display: flex;
     font-size: 1.3em;
     justify-content: center;
     line-height: 1em;
@@ -100,8 +61,58 @@ body{margin:0}
     transform: scale(0.9);
   }
 
+.profile-wrap{
+  min-height:100vh;
+  height: fit-content;
+  background: var(--bg);           /* ← 改用變數 */
+  display:grid;
+  place-items:center;
+  padding:32px 0px 50px;           /* 合併 padding-bottom */
+  color:var(--fg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.profile-card{
+  width:100%;
+  max-width:var(--card-max);
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:48px;
+  align-items:center;
+  position:relative;
+  margin-top: 100px;
+}
+
+.avatar-col{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+
+.avatar{
+  width:min(520px, 60vw);
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:var(--muted);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,.2);
+}
+
+.contact{display:flex;flex-direction:column;gap:12px;}
+.contact-item{display:flex;align-items:center;gap:10px;opacity:.95}
+.contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
+.contact-item a:hover{text-decoration:underline}
+
+.info-col{min-width:0}
+.name{font-size: clamp(40px, 6vw, 72px);line-height:1.05;margin:0 0 8px}
+.subtitle{
+  color:var(--gold);
+  font-weight:700;
+  margin:0 0 8px;
+  letter-spacing:.2px;
+}
+.affil{color:var(--gold);margin:0 0 28px;font-weight:700}
+.motto{font-size: clamp(26px, 4vw, 48px);margin: 0 0 48px;font-weight:800}
+
+.cta-row{display:flex;align-items:center;gap:18px;position:relative;height: fit-content;}
+
 .members-section {
-  background: #2d2d2d;
+  background: #2d2d2d; /* 可考慮改為 var(--bg-dark) 或新增 --panel 變數 */
   padding: 60px 20px;
   text-align: center;
   color: white;
@@ -114,7 +125,7 @@ body{margin:0}
 
 .members-section .subtitle {
   font-weight: 700;
-  color: gold;
+  color: var(--gold); /* 與上面一致 */
   margin: 12px 0 40px;
   display: inline-block;
   border-bottom: 2px solid var(--gold);
@@ -129,7 +140,7 @@ body{margin:0}
 }
 
 .member-card {
-  background: #2d2d2d;
+  background: #2d2d2d;  /* 同上：可抽變數 */
   padding: 28px 20px;
   border-radius: 12px;
   max-width: 320px;
@@ -139,7 +150,7 @@ body{margin:0}
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: #ccc;
+  background: #ccc;     /* 可抽變數為 --muted */
   margin: 0 auto 20px;
 }
 
@@ -170,10 +181,10 @@ body{margin:0}
 }
 
 .members-picture {
-    display: flex;       /* 或保持 flex 也行 */
-    width: 50%;
-    border-radius: 12px;
-    margin: auto;       /* 左右自動外邊距 → 水平置中 */
+  display: block;       /* ← 單一圖片置中改為 block + margin:auto */
+  width: 50%;
+  border-radius: 12px;
+  margin: auto;
 }
 
 .socials {
@@ -197,7 +208,7 @@ body{margin:0}
 
 .socials a:hover {
   background: var(--gold);
-  color: var(--bg-dark);
+  color: var(--bg-dark); /* ← 現在變數已定義 */
 }
 
 /* Responsive */
@@ -209,4 +220,3 @@ body{margin:0}
   .info-col{text-align:center}
   .cta-row{justify-content:center}
 }
-

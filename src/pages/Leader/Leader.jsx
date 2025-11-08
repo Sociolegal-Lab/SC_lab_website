@@ -21,12 +21,7 @@ function Leader(){
         <PastSpeakingEngagementsCollapse />
         <UpcomingSpeakingEngagementsCollapse />
         <OngoingProjectsCollapse />
-        <p className="collapse-wrap">
-            <br />
-            <br />
-            <br />
-        </ p>
-        </ div>
+        </div>
     )
 }
 
