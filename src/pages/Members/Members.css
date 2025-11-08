@@ -2,7 +2,6 @@
   --bg:#1b235a;           /* deep navy */
   --fg:#e9edf7;           /* light text */
   --muted:#cfd2d6;        /* avatar gray */
-  --accent:#8ea6ff;       /* button/outline */
   --gold:#eac35b;         /* subtitle gold */
   --card-max:1120px;
 }
@@ -55,61 +54,51 @@ body{margin:0}
 
 .cta-row{display:flex;align-items:center;gap:18px;position:relative}
 
-button {
-  border: none;
-  display: block;
-  position: relative;
-  padding: 0.7em 2.4em;
-  background: transparent;
-  cursor: pointer;
-  user-select: none;
-  overflow: hidden;
-  color: white;
-  z-index: 1;
-  font-family: inherit;
-  font-size: 100%;
-  height: 80px;
-  width: 300px;
-  text-align: center;
-}
+.button {
+    align-items: center;
+    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-size: 1.3em;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right:1.6rem;
+  }
 
-button span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: -1;
-  border: 4px solid #364dfa;
-}
+.button:active,
+.button:hover {
+    outline: 0;
+  }
 
-button span::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 8%;
-  height: 500%;
-  background: #1f296f;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-60deg);
-  transition: all 0.3s;
-}
+.button span {
+    background-color: rgb(5, 6, 45);
+    padding: 16px 24px;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    transition: 300ms;
+  }
 
-button:hover span::before {
-  transform: translate(-50%, -50%) rotate(-90deg);
-  width: 100%;
-  background: #364dfa;
-}
+.button:hover span {
+    background: none;
+  }
 
-button:hover {
-  color: white;
-}
-
-button:active span::before {
-  background: #2751cd;
-}
+.button:active {
+    transform: scale(0.9);
+  }
 
 .members-section {
   background: #2d2d2d;

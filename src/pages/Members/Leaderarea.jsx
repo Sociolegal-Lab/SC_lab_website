@@ -61,11 +61,10 @@ export default function Leaderarea() {
           <blockquote className="motto">“Work hard, play hard”</blockquote>
 
           <div className="cta-row">
-            <button className="cta-btn" type="button">
+            <button className="button">
                 <Link to="/SC_lab_website/leader"  >
                     <div className="inter-bold">Projects</div>
                 </Link>
-              <span>View Profile</span>
             </button>
           </div>
         </div>
