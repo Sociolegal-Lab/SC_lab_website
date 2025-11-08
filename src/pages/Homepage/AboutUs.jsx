@@ -1,19 +1,22 @@
+import React from "react";
+import styles from "./Homepage.module.css"; // ✅ 正確導入 CSS Modules
+
 export default function AboutUs() {
   return (
-    <section className="mr-about">
-      <div className="mr-about__inner">
-        <h2 className="mr-about__title">About Us</h2>
+    <section className={styles["mr-about"]}>
+      <div className={styles["mr-about__inner"]}>
+        <h2 className={styles["mr-about__title"]}>About Us</h2>
 
-        <div className="mr-about__grid">
+        <div className={styles["mr-about__grid"]}>
           {/* DATA */}
-          <div className="mr-about__item">
+          <div className={styles["mr-about__item"]}>
             <img
               src="/images/circle.png"
               alt="circle"
-              className="mr-shape-img"
+              className={styles["mr-shape-img"]}
             />
-            <div className="mr-about__label">DATA</div>
-            <div className="mr-about__lines">
+            <div className={styles["mr-about__label"]}>DATA</div>
+            <div className={styles["mr-about__lines"]}>
               <div>50465406845</div>
               <div>05306543032</div>
               <div>053022000</div>
@@ -22,14 +25,14 @@ export default function AboutUs() {
           </div>
 
           {/* LAW */}
-          <div className="mr-about__item">
+          <div className={styles["mr-about__item"]}>
             <img
               src="/images/triangle.png"
               alt="triangle"
-              className="mr-shape-img"
+              className={styles["mr-shape-img"]}
             />
-            <div className="mr-about__label">LAW</div>
-            <div className="mr-about__lines">
+            <div className={styles["mr-about__label"]}>LAW</div>
+            <div className={styles["mr-about__lines"]}>
               <div>50465406845</div>
               <div>05306543032</div>
               <div>053022000</div>
@@ -38,14 +41,14 @@ export default function AboutUs() {
           </div>
 
           {/* SOCIETY */}
-          <div className="mr-about__item">
+          <div className={styles["mr-about__item"]}>
             <img
               src="/images/star.png"
               alt="star"
-              className="mr-shape-img"
+              className={styles["mr-shape-img"]}
             />
-            <div className="mr-about__label">SOCIETY</div>
-            <div className="mr-about__lines">
+            <div className={styles["mr-about__label"]}>SOCIETY</div>
+            <div className={styles["mr-about__lines"]}>
               <div>50465406845</div>
               <div>05306543032</div>
               <div>053022000</div>

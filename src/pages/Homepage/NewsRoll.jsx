@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Homepage.css";
+import styles from "./Homepage.module.css"; 
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
-import rawNews from "../../data/news/news.json"; // ← 直接用你貼的 JSON
+import rawNews from "../../data/news/news.json";
 
 export default function NewsRoll({
   items: itemsProp,
@@ -10,40 +10,29 @@ export default function NewsRoll({
   pauseAfterInteractMs = 5000,
   className = "",
   loop = true,
-  maxChars = 250,            // ← 可調：subtitle 最多顯示幾個字（0 表示不截斷）
-  hideBefore = null,         // ← 可選：只顯示此日期(YYYY-MM-DD)之後的新聞，例如 "2022-01-01"
+  maxChars = 250,
+  hideBefore = null,
 }) {
-  // 將不同來源的欄位對齊為 {title, subtitle, date}
   const normalize = (it) => ({
     title: it.title ?? it.headline ?? it.name ?? "",
     subtitle: it.subtitle ?? it.content ?? it.bio ?? "",
     date: it.date ?? "",
   });
 
-  // 安全地把 date 轉成可比較的數值（無日期放 -Infinity）
   const ts = (d) => {
     if (!d) return -Infinity;
     const t = Date.parse(d);
     return Number.isNaN(t) ? -Infinity : t;
   };
 
-  // 可選：截斷長文字
   const clamp = (s, n) => (n > 0 && s && s.length > n ? s.slice(0, n) + "…" : s);
 
-  // 來源：props 優先，否則用 JSON
-  let items = (itemsProp?.length ? itemsProp : rawNews)
-    .map(normalize);
-
-  // 可選：過濾舊新聞
+  let items = (itemsProp?.length ? itemsProp : rawNews).map(normalize);
   if (hideBefore) {
     const cutoff = ts(hideBefore);
     items = items.filter((x) => ts(x.date) >= cutoff);
   }
-
-  // 依日期新→舊排序（無日期的排後面）
   items.sort((a, b) => ts(b.date) - ts(a.date));
-
-  // 可選：截斷內容避免超長
   if (maxChars > 0) {
     items = items.map((x) => ({ ...x, subtitle: clamp(x.subtitle, maxChars) }));
   }
@@ -54,7 +43,6 @@ export default function NewsRoll({
   const autoplayRef = useRef(null);
   const resumeTimerRef = useRef(null);
 
-  // 依中心位置判斷目前卡片
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -80,7 +68,6 @@ export default function NewsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳滑動
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -115,7 +102,6 @@ export default function NewsRoll({
     };
   }, []);
 
-  // 輔助
   const scrollToIndex = (i) => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -151,10 +137,7 @@ export default function NewsRoll({
   const pauseAutoplay = () => {
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(
-      () => startAutoplay(),
-      pauseAfterInteractMs
-    );
+    resumeTimerRef.current = window.setTimeout(() => startAutoplay(), pauseAfterInteractMs);
   };
 
   useEffect(() => {
@@ -167,29 +150,29 @@ export default function NewsRoll({
   }, [items.length, interval]);
 
   return (
-    <div className={`mr-root ${className}`}>
+    <div className={`${styles["mr-root"]} ${className || ""}`}>
       <br />
-      <div className="mr-title">
-        <h1 className="news-title">Latest News from our Lab</h1>
+      <div className={styles["mr-title"]}>
+        <h1 className={styles["news-title"]}>Latest News from our Lab</h1>
       </div>
 
-      <div className="mr-stage-wrap">
-        <div className="mr-stage">
+      <div className={styles["mr-stage-wrap"]}>
+        <div className={styles["mr-stage"]}>
           <button
             aria-label="Previous"
-            className="mr-nav mr-nav-left"
+            className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
             onClick={() => { go(-1); pauseAutoplay(); }}
           >
             <img src={left_arrow} alt="" />
           </button>
 
-          <div ref={scrollerRef} className="mr-scroller mr-no-scrollbar">
+          <div ref={scrollerRef} className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}>
             {items.map((m, i) => (
-              <section key={i} className="mr-section">
-                <article className="mr-card" role="article" aria-roledescription="news item">
-                  <h3 className="mr-card-title">{m.title}</h3>
-                  <p className="mr-card-subtitle">{m.subtitle}</p>
-                  {m.date ? <div className="mr-card-date">{m.date}</div> : null}
+              <section key={i} className={styles["mr-section"]}>
+                <article className={styles["mr-card"]} role="article" aria-roledescription="news item">
+                  <h3 className={styles["mr-card-title"]}>{m.title}</h3>
+                  <p className={styles["mr-card-subtitle"]}>{m.subtitle}</p>
+                  {m.date ? <div className={styles["mr-card-date"]}>{m.date}</div> : null}
                 </article>
               </section>
             ))}
@@ -197,18 +180,18 @@ export default function NewsRoll({
 
           <button
             aria-label="Next"
-            className="mr-nav mr-nav-right"
+            className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
             onClick={() => { go(1); pauseAutoplay(); }}
           >
             <img src={right_arrow} alt="" />
           </button>
         </div>
 
-        <div className="mr-dots" aria-hidden="true">
+        <div className={styles["mr-dots"]} aria-hidden="true">
           {items.map((_, i) => (
             <button
               key={i}
-              className={`mr-dot ${active === i ? "is-active" : ""}`}
+              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] ?? "" : ""}`}
               onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
             />
           ))}

@@ -1,11 +1,10 @@
 import React from "react";
-import "./Leader.css";
+import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
 import data from "./ongoingProjectsData.json";
 
 export default function OngoingProjectsCollapse() {
   // 自動依年份排序（降序：最新計畫在上）
   const sortedProjects = [...data["Ongoing Projects"]].sort((a, b) => {
-    // 從期間中提取年份（例如 "2024 – Present" -> 2024）
     const extractYear = (text) => {
       const match = text.match(/(19|20)\d{2}/);
       return match ? parseInt(match[0], 10) : 0;
@@ -14,24 +13,24 @@ export default function OngoingProjectsCollapse() {
   });
 
   return (
-    <div className="collapse-wrap">
-      <details className="collapse" open={false}>
-        <summary className="collapse-sum">
-          <span className="collapse-title">Ongoing Projects</span>
-          <span className="collapse-plus" aria-hidden="true" />
+    <div className={styles["collapse-wrap"]}>
+      <details className={styles["collapse"]}>
+        <summary className={styles["collapse-sum"]}>
+          <span className={styles["collapse-title"]}>Ongoing Projects</span>
+          <span className={styles["collapse-plus"]} aria-hidden="true" />
         </summary>
 
-        <div className="collapse-body">
+        <div className={styles["collapse-body"]}>
           {sortedProjects.map((proj, index) => (
-            <div key={index} className="collapse-section">
-              <p className="collapse-text-title">
+            <div key={index} className={styles["collapse-section"]}>
+              <p className={styles["collapse-text-title"]}>
                 {proj.title} ({proj.period})
               </p>
-              <p className="collapse-text">
+              <p className={styles["collapse-text"]}>
                 {proj.organization} — {proj.role}
               </p>
               {proj.description && (
-                <p className="collapse-text">{proj.description}</p>
+                <p className={styles["collapse-text"]}>{proj.description}</p>
               )}
             </div>
           ))}

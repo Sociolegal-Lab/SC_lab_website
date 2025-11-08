@@ -1,24 +1,78 @@
 :root{
   --bg:#1b235a;           /* deep navy */
+  --bg-dark:#0f153a;      /* 新增：hover 反差色用 */
   --fg:#e9edf7;           /* light text */
   --muted:#cfd2d6;        /* avatar gray */
-  --accent:#8ea6ff;       /* button/outline */
   --gold:#eac35b;         /* subtitle gold */
   --card-max:1120px;
 }
+
+/* 可選：讓語意更清楚
+:global(:root){ ... }
+:global(body){ margin:0 }
+*/
 *{box-sizing:border-box}
 body{margin:0}
+
+.button {
+    align-items: center;
+    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: flex;
+    font-size: 1.3em;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right:1.6rem;
+  }
+
+.button:active,
+.button:hover {
+    outline: 0;
+  }
+
+.button span {
+    background-color: rgb(5, 6, 45);
+    padding: 16px 24px;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    transition: 300ms;
+  }
+
+.button:hover span {
+    background: none;
+  }
+
+.button:active {
+    transform: scale(0.9);
+  }
+
 .profile-wrap{
   min-height:100vh;
   height: fit-content;
-  background:#1b235a;
+  background: var(--bg);           /* ← 改用變數 */
   display:grid;
   place-items:center;
-  padding:32px 0px;
+  padding:32px 0px 50px;           /* 合併 padding-bottom */
   color:var(--fg);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  padding-bottom: 50px;
 }
+
 .profile-card{
   width:100%;
   max-width:var(--card-max);
@@ -29,7 +83,9 @@ body{margin:0}
   position:relative;
   margin-top: 100px;
 }
+
 .avatar-col{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+
 .avatar{
   width:min(520px, 60vw);
   aspect-ratio:1/1;
@@ -37,6 +93,7 @@ body{margin:0}
   background:var(--muted);
   box-shadow: inset 0 2px 8px rgba(0,0,0,.2);
 }
+
 .contact{display:flex;flex-direction:column;gap:12px;}
 .contact-item{display:flex;align-items:center;gap:10px;opacity:.95}
 .contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
@@ -53,66 +110,10 @@ body{margin:0}
 .affil{color:var(--gold);margin:0 0 28px;font-weight:700}
 .motto{font-size: clamp(26px, 4vw, 48px);margin: 0 0 48px;font-weight:800}
 
-.cta-row{display:flex;align-items:center;gap:18px;position:relative}
-
-button {
-  border: none;
-  display: block;
-  position: relative;
-  padding: 0.7em 2.4em;
-  background: transparent;
-  cursor: pointer;
-  user-select: none;
-  overflow: hidden;
-  color: white;
-  z-index: 1;
-  font-family: inherit;
-  font-size: 100%;
-  height: 80px;
-  width: 300px;
-  text-align: center;
-}
-
-button span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: -1;
-  border: 4px solid #364dfa;
-}
-
-button span::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 8%;
-  height: 500%;
-  background: #1f296f;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-60deg);
-  transition: all 0.3s;
-}
-
-button:hover span::before {
-  transform: translate(-50%, -50%) rotate(-90deg);
-  width: 100%;
-  background: #364dfa;
-}
-
-button:hover {
-  color: white;
-}
-
-button:active span::before {
-  background: #2751cd;
-}
+.cta-row{display:flex;align-items:center;gap:18px;position:relative;height: fit-content;}
 
 .members-section {
-  background: #2d2d2d;
+  background: #2d2d2d; /* 可考慮改為 var(--bg-dark) 或新增 --panel 變數 */
   padding: 60px 20px;
   text-align: center;
   color: white;
@@ -125,7 +126,7 @@ button:active span::before {
 
 .members-section .subtitle {
   font-weight: 700;
-  color: gold;
+  color: var(--gold); /* 與上面一致 */
   margin: 12px 0 40px;
   display: inline-block;
   border-bottom: 2px solid var(--gold);
@@ -140,7 +141,7 @@ button:active span::before {
 }
 
 .member-card {
-  background: #2d2d2d;
+  background: #2d2d2d;  /* 同上：可抽變數 */
   padding: 28px 20px;
   border-radius: 12px;
   max-width: 320px;
@@ -150,7 +151,7 @@ button:active span::before {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background: #ccc;
+  background: #ccc;     /* 可抽變數為 --muted */
   margin: 0 auto 20px;
 }
 
@@ -181,10 +182,10 @@ button:active span::before {
 }
 
 .members-picture {
-    display: flex;       /* 或保持 flex 也行 */
-    width: 50%;
-    border-radius: 12px;
-    margin: auto;       /* 左右自動外邊距 → 水平置中 */
+  display: block;       /* ← 單一圖片置中改為 block + margin:auto */
+  width: 50%;
+  border-radius: 12px;
+  margin: auto;
 }
 
 .socials {
@@ -208,7 +209,7 @@ button:active span::before {
 
 .socials a:hover {
   background: var(--gold);
-  color: var(--bg-dark);
+  color: var(--bg-dark); /* ← 現在變數已定義 */
 }
 
 /* Responsive */
@@ -220,4 +221,3 @@ button:active span::before {
   .info-col{text-align:center}
   .cta-row{justify-content:center}
 }
-

@@ -1,14 +1,17 @@
 import React from "react";
-import "./members.css";
+import styles from "./Members.module.css"; // ← 正確載入 CSS Modules
 
 export default function Thelabinaction() {
   return (
-    <div className="members-section">
-        <h2>The Lab In Action</h2>
-        <br />
-        <div className="members-picture">
-            <img src="https://pbs.twimg.com/media/GzSnuLdb0AASEjf?format=jpg&name=4096x4096" alt="The Lab in Action" />
-        </ div>
-    </ div>
-    );
+    <div className={styles["members-section"]}>
+      <h2>The Lab In Action</h2>
+      <br />
+      <div className={styles["members-picture"]}>
+        <img
+          src="https://pbs.twimg.com/media/GzSnuLdb0AASEjf?format=jpg&name=4096x4096"
+          alt="The Lab in Action"
+        />
+      </div>
+    </div>
+  );
 }
