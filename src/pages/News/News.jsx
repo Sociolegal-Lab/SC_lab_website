@@ -67,7 +67,6 @@ console.log(news_covers);
       </div>
       <ul
         className={` ${style.shelf} ${style.marginLR}`}
-        style={{ backgroundColor: "gray" }}
       >
         {displayNews.map((n) => (
           <li key={n.id} className={style.piece}>
@@ -134,6 +133,8 @@ console.log(news_covers);
           </div>
         ))}
       </div>
+      {/* band */}
+      <div style={{background: "#CDD3FE", height: "6px", width:"100vw"}}> </div>
     </>
   );
 }

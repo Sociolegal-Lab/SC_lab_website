@@ -1,9 +1,12 @@
 # TODO
-- Footer: design credit shoutout contact button designer
-- Footer: 右下角 放兩位網站架設者的 github 連結
+- 各個頁面中的區塊交界放上細線
+    - homepage
+    - member
+    - leader
 - All pages: 圖片矩形邊角圓化
 
 ## 調整完網址後
+- 更改所有程式的 Link to= 
 - 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
 
 

@@ -9,6 +9,7 @@
 } 
 
 .title {
+    color: #364DFA;
     font-size:5rem;
     text-align: center;
     padding: 1.2rem 0px;
@@ -22,6 +23,7 @@
 
 .shelf{
     display: grid;
+    padding: 1.2rem;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: minmax(20rem, auto);
     gap: 4rem;
@@ -58,21 +60,21 @@
 
 .date {
     font-size:1.2rem;
-    color:#d1d1d1;
+    color:#9BA6FD;
 }
 
 .headline{
     font-size:1.92rem;
-    color: white;
+    color: #364DFA;
 }
 
 .content{
     font-size:1.2rem;
-    color: white;
+    color: #364DFA;
 }
 
 .switch_page{
-    color: #FFDD75;
+    color: #FFC23A;
     margin-top: 2rem;
     text-align:right;
     font-size: 1.92rem;

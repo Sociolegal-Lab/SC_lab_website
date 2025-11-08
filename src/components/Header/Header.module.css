@@ -16,15 +16,30 @@
 
 }
 
-/* Change background depending on the location(page) */
-/* TODO: Add class and its background color of each page*/
+/* TODO: Change background depending on the location(page) */
+
 .project_column{
     background-color: transparent;
 }
 
-.not_project_column{
-    background-color: #121732;
+/* .news {
 }
+
+.projects {
+}
+
+.leader {
+}
+
+.members {
+}
+
+.homepage {
+} */
+
+
+
+
 
 
 

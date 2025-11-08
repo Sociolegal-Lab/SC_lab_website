@@ -24,7 +24,7 @@
 .circle_background{
   position: relative;
   z-index: 1; /* 確保文字在上層 */
-  color: black;
+  color: rgb(255, 255, 255);
   width: 33rem;
   flex-shrink: 0;
 
@@ -43,12 +43,33 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 52rem;   
+  width: 57rem;   
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: #0D2841;
+  background: #B786FF;
   transform: translate(-33%, -28%); /*調整圓心位置*/
   z-index: -1;    /* 放在文字後面 */
+}
+
+.github_button{
+  width:75px;
+  height: 75px;
+}
+
+.circle_icon_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px; /* Make it larger than the 16px SVG */
+    height: 75px;
+    background-color: #ffffff;
+    border-radius: 50%; /* Makes the box a circle */
+}
+.circle_icon_wrapper .icon {
+    /* Ensure the SVG stays its original size */
+    width: 55px;
+    height: 55px;
+    color: #000;
 }
 
 
@@ -64,7 +85,7 @@
 
 
 .subtitle{
-  color:#BDBDBD;
+  color:#ffffff;
   font-size:1.4rem;
   width: 100%;
 }
@@ -72,7 +93,7 @@
 
 
 .icon{
-  color: #BAE1FF;
+  color: #000;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -82,6 +103,7 @@
   max-width: auto;
   font-size: 1.4rem;
   margin-top: 2rem; /* Lower than the name of project at its right side. */
+  color: #9BA6FD;
 }
 
 /* introduction wrapping automatically */
@@ -157,7 +179,7 @@
 /* put into your global CSS or component CSS (higher specificity if needed) */
 .markdown {
   font-family: "Inter", sans-serif;
-  color: #111;
+  color: #9BA6FD;
   line-height: 1.6;
   word-break: break-word;
   font-size: 1.4rem;
@@ -169,6 +191,7 @@
   margin: 1.2rem 0 0.6rem;
   line-height: 1.2;
   font-weight: 700;
+  color: #B786FF;
 }
 
 /* paragraphs */
@@ -197,7 +220,7 @@
   margin: 0 0 1rem;
   padding-left: 1rem;
   border-left: 3px solid #ddd;
-  color: #555;
+  color: #000;
   background: #fafafa;
 }
 
@@ -236,7 +259,7 @@
 
 /* links */
 .markdown a {
-  color: #0b63ff;
+  color: #364DFA;
   text-decoration: underline;
 }
 
@@ -249,12 +272,12 @@
 }
 
 .switch_left{
-    color: #FFDD75;
+    color: #FFB33A;
     font-size: 1.6rem; 
 }
 
 .switch_right{
-    color: #FFDD75;
+    color: #FFB33A;
     font-size: 1.6rem; 
     display: inline-block;
     text-align: right;

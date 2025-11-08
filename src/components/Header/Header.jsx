@@ -7,19 +7,32 @@ import Contact from "./Contact";
 function Header() {
   // Change background color depending on different pages
   const {pathname} = useLocation();
-  console.log(pathname);
-  const project_column_regex = /^\/SC_lab_website\/project-column\/.*/
-  // TODO: Add regexs of each page and its condition
-  console.log("TODO: Add regexs of each page and its condition");
+  // Edit regex depending on final url: https://sociolegal-lab.github.io/
+  const project_column_regex = /\/project-column\/.*/
+  const news_regex = /\/news/
+  const projects_regex = /\/projects/
+  const leader_regex = /\/leader/
+  const members_regex = /\/members/
 
   let class_name_location = ""
-  if(project_column_regex.test(pathname)){
-    class_name_location = "project_column";
+  if (project_column_regex.test(pathname)){
+    class_name_location = "project_column"
+  }
+  else if (news_regex.test(pathname)){
+    class_name_location = "news"
+  }
+  else if(projects_regex.test(pathname)){
+    class_name_location = "projects";
+  }
+  else if(leader_regex.test(pathname)){
+    class_name_location = "leader";
+  }
+  else if(members_regex.test(pathname)){
+    class_name_location = "members";
   }
   else{
-    class_name_location = "not_project_column";
+    class_name_location = "homepage";
   }
-
 
   const [menuOpen, setMenuOpen] = useState(false);
   return (<>
@@ -27,7 +40,9 @@ function Header() {
 
     {/* Left side */}
     <div className={style.nav_bar}>
+
       <Link to="/SC_lab_website/" >
+        {/* TODO:  Replace depend class_name_location*/}
         <img src={scl_logo_white} alt= "scl_logo_white"/>
       </Link>
       <div className={style.desktop_links}>

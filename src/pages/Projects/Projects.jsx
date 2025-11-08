@@ -9,7 +9,7 @@ const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg
 
 function Projects() {
   return (
-    <>
+    <div className={style.back}>
       <div className={`${style.title} ${style.marginLR} rufina-bold`}>
         Featured Projects
       </div>
@@ -24,7 +24,6 @@ function Projects() {
 
       <ul
         className={`${style.shelf} ${style.marginLR}`}
-        style={{ backgroundColor: "gray" }}
       >
         {Object.entries(project_data).map(([path, mod]) => {
           // path = "../../data/projects/project_1.json"
@@ -53,7 +52,7 @@ function Projects() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
 
