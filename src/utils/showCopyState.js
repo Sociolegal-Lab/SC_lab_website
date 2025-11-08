@@ -15,7 +15,7 @@ function showCopyState(message, type = "success") {
   toast.style.transition = "opacity 0.3s ease";
   toast.style.fontFamily = 'Inter, sans-serif';
   toast.style.fontOpticalSizing = 'auto';
-  toast.style.fontWeight = '500';
+  toast.style.fontWeight = 'normal';
   toast.style.fontStyle = 'normal';
 
   document.body.appendChild(toast);
@@ -25,13 +25,12 @@ function showCopyState(message, type = "success") {
     toast.style.opacity = "1";
   });
 
-  // 2 秒後淡出並移除
   setTimeout(() => {
     toast.style.opacity = "0";
     setTimeout(() => {
       document.body.removeChild(toast);
     }, 300);
-  }, 4000);
+  }, 5000);
 }
 
 export default showCopyState;
