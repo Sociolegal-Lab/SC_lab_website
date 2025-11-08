@@ -1,6 +1,7 @@
 .footer {
     background-color: #17181A;
     padding: 5rem 10rem;
+    min-height: 100%;
 
     --margin-between-two-info-columns-L: 10%;
     --margin-between-two-info-columns-R: 5%;
@@ -43,6 +44,10 @@
 }
 .sec1_L{
     margin-right: 14%;
+}
+
+.slogan{
+    max-width: 29rem;
 }
 
 @media (max-width: 800px){
@@ -157,6 +162,7 @@
     width: 2.5rem;
     min-width: 2.5rem;
     max-width: 2.5rem;
+    
     height: 2.5rem;
     min-height: 2.5rem;
     max-height: 2.5rem;
@@ -176,8 +182,10 @@
     
 }
 
-.slogan{
-    max-width: 29rem;
+.credit{
+    text-decoration: underline;
 }
+
+
 
 

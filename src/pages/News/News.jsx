@@ -7,6 +7,8 @@ const news_covers = import.meta.glob("../../data/news/*.png", {eager: true});
 
 function News() {
   const [selectedYear, setSelectedYear] = useState("All");
+  
+  // Determine how many news should display in a page
   const AMOUNT_OF_NEWS = 15;
   const [newslimit, setNewslimit] = useState(AMOUNT_OF_NEWS);
 
@@ -70,7 +72,15 @@ console.log(news_covers);
         {displayNews.map((n) => (
           <li key={n.id} className={style.piece}>
             <div className={style.img43}>
-              <img src={news_covers[`../../data/news/${n.id}.png`].default} alt="news picture" />
+              <img
+              // Checking if the news cover image exists. If not, it will render 0.png as a fallback, preventing errors when the image is missing.
+                src={
+                  news_covers[`../../data/news/${n.id}.png`]
+                    ? news_covers[`../../data/news/${n.id}.png`].default
+                    : news_covers[`../../data/news/0.png`].default
+                }
+                alt="news picture"
+              />
             </div>
             <div className={`${style.date} inter-bold`}>
               {new Date(n.date).toLocaleDateString("en-US", {

@@ -1,17 +1,32 @@
 /* First layer */
+
 .header {
+    /* Let circle_background in ProjectColumn.jsx stretch to header*/
+    position: relative;
+    z-index: 10;
 
     --element-space: 1.6rem;
     --font-size: 1.4em;
 
     height: auto;
     width: 100vw;
-    background-color: #1F296F;
     display:flex;
     justify-content: space-between;
     padding: var(--element-space) 0px;
 
 }
+
+/* Change background depending on the location(page) */
+/* TODO: Add class and its background color of each page*/
+.project_column{
+    background-color: transparent;
+}
+
+.not_project_column{
+    background-color: #121732;
+}
+
+
 
 /* second layer */
 /* Left side */

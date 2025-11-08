@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import style from "./ProjectColumn.module.css";
 import ReactMarkdown from "react-markdown";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
+import title_size from "./title_size";
 
 const projects_json = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const projects_md = import.meta.glob("../../data/projects/project_[0-9]*.md", {eager: true, as: 'raw'});
@@ -55,14 +56,15 @@ function ProjectColumn() {
     const image_src = img_key ? projects_image[img_key] : null;
 
   return (
-    <>
+  <div className={`${style.background}`}>
+    <div className={`${style.marginLR}`}>
       {/* Head */}
-      <div className={style.head}>
+      <div className={`${style.head}`}>
         {/* Left side */}
-        <div>
-          <div>{name}</div>
-          <div>{duration}</div>
-          <div>
+        <div className={style.circle_background} lang="eng">
+          <div className= {` ${style.title} ${style[title_size(name)]} rufina-bold`}>{name}</div>
+          <div className={`${style.subtitle} inter-bold`}>{duration}</div>
+          <div className={`${style.subtitle} inter-bold`}>
             Contributors:
             <br />
             {contributors.map((member, id)=> (
@@ -90,35 +92,42 @@ function ProjectColumn() {
           </button>
         </div>
         {/* Right side */}
-        <div>{introduction}</div>
+        <div className={`${style.introduction} inter-bold`}>{introduction}</div>
       </div>
 
       {/* image */}
+
       {image_src && (
-        <img className={style.img43} src={image_src} alt="Project image" />
+        <div className={`${style.img43}`}>
+          <img src={image_src} alt="Project image" />
+        </div>
       )}
+
+      
 
       {/* content_md */}
       {content_md &&( 
-        <article className={style.markdown}>
+        <article className={`${style.markdown} `}>
             <ReactMarkdown>{content_md}</ReactMarkdown>
         </article>
       )}
 
       {/* Switch page */}
-      <div>
-        {prev_name && (
-          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} className={style.switch}>
-            &lt;--- {prev_name}
+      <div className={` ${style.switch} inter-bold`}>
+          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} 
+          className={style.switch_left}
+          style={{visibility: prev_name ? "visible" : "hidden"}}>
+            &lt;--- <br/> {prev_name}
           </Link>
-        )}
-        {next_name && (
-          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} className={style.switch}>
-            {next_name} ---&gt;
+          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} 
+          className={style.switch_right}
+          style={{visibility: next_name ? "visible" : "hidden"}}>
+            ---&gt;<br/> {next_name} 
           </Link>
-        )}
       </div>
-    </>
+    </div>
+  </div>
+    
   );
 }
 

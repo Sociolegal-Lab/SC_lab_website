@@ -1,12 +1,24 @@
+.marginLR {
+  margin: 0px 6rem;
+}
+
+@media (max-width: 768px) {
+ .marginLR{
+  margin: 0px 3rem;
+ }
+} 
+
 .title {
     font-size:5rem;
     text-align: center;
     padding: 1.2rem 0px;
 }
 
-.marginLR {
-    margin: 0px 6rem;
-}
+@media (max-width: 768px) {
+ .title{
+  font-size: 4rem;
+ }
+} 
 
 .shelf{
     display: grid;
@@ -28,8 +40,6 @@
         grid-template-columns: 1fr;
     }
 }
-
-
 
 .img43 {
   aspect-ratio: 4 / 3;
