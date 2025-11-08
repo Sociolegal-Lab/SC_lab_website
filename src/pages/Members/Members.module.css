@@ -30,6 +30,7 @@ body{margin:0}
     min-width: 140px;
     padding: 3px;
     text-decoration: none;
+    text-align: center;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
