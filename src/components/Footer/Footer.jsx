@@ -100,7 +100,7 @@ function Footer(){
                  Designed 🎨 & Built 🏗️ by {'\u0020'}
                 <a className={style.credit} href="https://github.com/pluviophilezack" target="_blank" rel="noopener noreferrer">PluviophileZack</a> 
                 {'\u0020'}and{'\u0020'}
-                <a className={style.credit} href="https://https://github.com/thomaschen9329.com/pluviophilezack" target="_blank" rel="noopener noreferrer">ThomasChen</a>
+                <a className={style.credit} href="https://github.com/thomaschen9329" target="_blank" rel="noopener noreferrer">ThomasChen</a>
 
             </div>
         </section>

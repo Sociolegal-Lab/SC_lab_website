@@ -2,6 +2,7 @@ import { Link, useLocation} from "react-router-dom";
 import { useState } from "react";
 import style from "./Header.module.css";
 import scl_logo_white from "../../assets/logo/3_scl_logo_white_trim.png";
+import scl_logo_blue from "../../assets/logo/1_scl_logo_trim.png"
 import Contact from "./Contact";
 
 function Header() {
@@ -14,24 +15,41 @@ function Header() {
   const leader_regex = /\/leader/
   const members_regex = /\/members/
 
+
+  // Give different logo and className base on class_name_location
+  let logo_src;
+  let logo_alt;
+
   let class_name_location = ""
   if (project_column_regex.test(pathname)){
     class_name_location = "project_column"
+    logo_src = scl_logo_white;
+    logo_alt = "scl_logo_white"
   }
   else if (news_regex.test(pathname)){
     class_name_location = "news"
+    logo_src = scl_logo_blue;
+    logo_alt = "scl_logo_blue"
   }
   else if(projects_regex.test(pathname)){
     class_name_location = "projects";
+    logo_src = scl_logo_white;
+    logo_alt = "scl_logo_white"
   }
   else if(leader_regex.test(pathname)){
     class_name_location = "leader";
+    logo_src = scl_logo_white;
+    logo_alt = "scl_logo_white"
   }
   else if(members_regex.test(pathname)){
     class_name_location = "members";
+    logo_src = scl_logo_blue;
+    logo_alt = "scl_logo_blue"
   }
   else{
     class_name_location = "homepage";
+    logo_src = scl_logo_white;
+    logo_alt = "scl_logo_white"
   }
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,8 +60,7 @@ function Header() {
     <div className={style.nav_bar}>
 
       <Link to="/SC_lab_website/" >
-        {/* TODO:  Replace depend class_name_location*/}
-        <img src={scl_logo_white} alt= "scl_logo_white"/>
+        <img src={logo_src} alt= {logo_alt}/>
       </Link>
       <div className={style.desktop_links}>
         <Link to="/SC_lab_website/projects" >
@@ -64,13 +81,13 @@ function Header() {
       </button>
       {menuOpen && (
         <div className={style.mobile_menu}>
-          <Link to="/Projects" onClick={()=>setMenuOpen(false)}>
+          <Link to="/projects" onClick={()=>setMenuOpen(false)}>
             <div className="inter-bold">Projects</div>
           </Link>
-          <Link to="/Members" onClick={()=>setMenuOpen(false)}>
+          <Link to="/members" onClick={()=>setMenuOpen(false)}>
             <div className="inter-bold">Members</div>
           </Link>
-          <Link to="/News" onClick={()=>setMenuOpen(false)}>
+          <Link to="/news" onClick={()=>setMenuOpen(false)}>
             <div className="inter-bold">News</div>
           </Link>
         </div>
@@ -78,9 +95,8 @@ function Header() {
     </div>
 
     {/* Right side */}
-    {/* TODO: Alter Contact component */}
     <div className={style.right_side}>
-      <Contact/>
+      <Contact class_name_location = {class_name_location}/>
     </div>
 
   </header>

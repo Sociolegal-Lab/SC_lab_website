@@ -16,26 +16,7 @@
 
 }
 
-/* TODO: Change background depending on the location(page) */
 
-.project_column{
-    background-color: transparent;
-}
-
-/* .news {
-}
-
-.projects {
-}
-
-.leader {
-}
-
-.members {
-}
-
-.homepage {
-} */
 
 
 
@@ -50,8 +31,6 @@
     display:flex;
     justify-content: flex-start;
     align-items: center;
-
-    color:white;
 }
 
 /* third layer */
@@ -136,6 +115,49 @@
         display: flex;
     }
 }
+
+/* TODO: Change mobile menu color */
+
+.project_column{
+    background-color: transparent;
+    color: #ffffff;
+}
+
+
+.news {
+    background-color: #ffffff;
+    color: #364DFA;
+}
+.news .nav_bar a:hover{
+    text-decoration-color: #364dfa;
+}
+
+
+.projects {
+    background-color: #364DFA;
+    color: #ffffff;
+}
+
+
+.leader {
+    background-color: #364DFA;
+    color: #ffffff;
+}
+
+
+.members {
+    background-color: #ffffff;
+    color: #364DFA;
+}
+.members .nav_bar a:hover{
+    text-decoration-color: #364dfa;
+}
+
+
+.homepage {
+    background-color: #364DFA;
+    color: #ffffff;
+} 
 
 
 
