@@ -9,7 +9,7 @@ function News() {
   const [selectedYear, setSelectedYear] = useState("All");
   
   // Determine how many news should display in a page
-  const AMOUNT_OF_NEWS = 15;
+  const AMOUNT_OF_NEWS = 12;
   const [newslimit, setNewslimit] = useState(AMOUNT_OF_NEWS);
 
   const handleSearchResult = useCallback((results) => {
@@ -41,7 +41,9 @@ function News() {
   // Display news
   const displayNews = selectedNews.slice(0, newslimit);
 
-console.log(news_covers);
+  useEffect(()=>{
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [selectedYear]);
 
   return (
     <>
@@ -66,10 +68,11 @@ console.log(news_covers);
         /> */}
       </div>
       <ul
+        lang="en"
         className={` ${style.shelf} ${style.marginLR}`}
       >
         {displayNews.map((n) => (
-          <li key={n.id} className={style.piece}>
+          <li key={n.id} className={style.piece} >
             <div className={style.img43}>
               <img
               // Checking if the news cover image exists. If not, it will render 0.png as a fallback, preventing errors when the image is missing.
@@ -113,7 +116,6 @@ console.log(news_covers);
             onClick={() => {
               setSelectedYear("All");
               setNewslimit(AMOUNT_OF_NEWS);
-              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             All
@@ -125,7 +127,6 @@ console.log(news_covers);
               onClick={() => {
                 setSelectedYear(year);
                 setNewslimit(AMOUNT_OF_NEWS);
-                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
               {year}

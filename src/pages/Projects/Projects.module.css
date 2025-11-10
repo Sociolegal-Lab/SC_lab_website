@@ -8,6 +8,12 @@
   margin: 0px 6rem;
 }
 
+@media (max-width: 1024px) {
+ .marginLR{
+  margin: 0px 4.5rem;
+ }
+} 
+
 @media (max-width: 768px) {
  .marginLR{
   margin: 0px 3rem;
@@ -37,7 +43,7 @@
 .shelf{
     display: grid;
     padding: 1.2rem 0px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-auto-rows: minmax(20rem, auto);
     gap: 4rem;
     justify-content: center;

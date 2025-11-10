@@ -16,6 +16,7 @@
 - Tab名稱？
 - Contact button 直接呼叫mailto 會不會不直觀？是否要改叫contact via Email? 雖然醜，但意義明確
 - 未來網站內容更新形式。若於github上更動，無法即時觀察網站變化
+- ScrollToTop.module.css 的fade in 效果暫時凍結，若要恢復，將opacity改為0
 
 # 已討論
 - Header Contact button 點擊後，若直接開啟使用者的系統預設email App 或是開啟email網頁，可能有些突兀。參考英語文化圈的Lab網頁，點擊Contact連結後，一般都是連結到Contact資訊頁。

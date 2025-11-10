@@ -1,11 +1,11 @@
 {
-    "name": "Legal Tech Project 1",
+    "name": "Evaluation of Large Language Models",
     "duration": "2020-2040",
     "contributors":[
-        "Zack",
-        "Pluviophile"
+        "Han-Ting Yu",
+        "Mu-Ke Chou"
     ],
-    "link": "https://github.com/Sociolegal-Lab/Evaluating-Cultural-Diversity-of-Large-Language-Models-in-the-Moral-Machine-Experiment",
-    "brief_introduction": "Anim laboris in anim cupidatat voluptate ex fugiat ut. Ut cillum deserunt nisi dolor exercitation esse mollit voluptate duis aute deserunt magna non elit.",
-    "introduction": "Culpa et reprehenderit veniam reprehenderit cillum cillum in ad aliquip veniam cillum. Veniam tempor esse quis sit cillum proident laborum esse velit dolore adipisicing ad. Ipsum veniam laborum veniam sunt nulla eiusmod adipisicing ipsum nisi esse sit ut."
+    "link": "https://sociolegal-lab.github.io/leaderBoard.html",
+    "brief_introduction": "This study investigates cultural biases in Large Language Models (LLMs) and their impact on cross-cultural representation.",
+    "introduction": "This study investigates cultural biases in Large Language Models (LLMs) and their impact on cross-cultural representation. Focusing on autonomous vehicle ethics and health decision-making, it examines LLMs' handling of culturally-sensitive scenarios. The research aims to develop strategies for enhancing cultural diversity in LLMs, improving fairness, and informing global governance frameworks."
 }

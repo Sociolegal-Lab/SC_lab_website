@@ -21,8 +21,8 @@ function ScrollToTop({ children }) {
     
     // 3. 立即將狀態設為 false (瞬間透明)
 
-    // 暫時取消效果，若要恢復，請取消comment
-    // setVisible(false); 
+
+    setVisible(false); 
 
     let rafHandle;
     const timer = setTimeout(() => {
