@@ -1,4 +1,3 @@
-import { useState } from "react";
 import style from "./Projects.module.css";
 import { Link } from "react-router-dom";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";

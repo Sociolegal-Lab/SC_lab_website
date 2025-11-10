@@ -1,0 +1,7 @@
+.page_wrapper {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;                          /* 起點 */
+}
+.page_wrapper.visible {
+  opacity: 1;                          /* 終點 */
+}

@@ -1,5 +1,5 @@
 import { Link, useLocation} from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import style from "./Header.module.css";
 import scl_logo_white from "../../assets/logo/3_scl_logo_white_trim.png";
 import scl_logo_blue from "../../assets/logo/1_scl_logo_trim.png"
@@ -53,6 +53,26 @@ function Header() {
   }
 
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Close menu when clicking area out of the menu
+  const menu_ref = useRef(null);
+  const handle_click_outside = (event) => {
+    if (menu_ref.current && !menu_ref.current.contains(event.target)){
+      setMenuOpen(false);
+    }
+  }
+  useEffect(() => {
+    if(menuOpen){
+      document.addEventListener('mousedown', handle_click_outside);
+    }
+
+    return () =>{
+      document.removeEventListener('mousedown', handle_click_outside);
+    }
+  }, [menuOpen])
+
+
+
   return (<>
   <header className={`${style.header} ${style[class_name_location]}`}>
 
@@ -73,25 +93,29 @@ function Header() {
           <div className="inter-bold">News</div>
         </Link>
       </div>
-      <button className={style.menu_icon} onClick={() => setMenuOpen(!menuOpen)}>
-        {/* Maybe change this icon to no-radius bar */}
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
-          <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-        </svg>
-      </button>
-      {menuOpen && (
-        <div className={style.mobile_menu}>
-          <Link to="/projects" onClick={()=>setMenuOpen(false)}>
-            <div className="inter-bold">Projects</div>
-          </Link>
-          <Link to="/members" onClick={()=>setMenuOpen(false)}>
-            <div className="inter-bold">Members</div>
-          </Link>
-          <Link to="/news" onClick={()=>setMenuOpen(false)}>
-            <div className="inter-bold">News</div>
-          </Link>
-        </div>
-      )}
+      {/* 為 menu 系列的 dom 貼上標籤，限制 handle_click_outside 觸發範圍 */}
+      <div ref={menu_ref}>
+        <button className={style.menu_icon} onClick={() => setMenuOpen(!menuOpen)}>
+          {/* Maybe change this icon to no-radius bar */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+            <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
+        {menuOpen && (
+          <div className={style.mobile_menu}>
+            <Link to="/projects" onClick={()=>setMenuOpen(false)}>
+              <div className="inter-bold">Projects</div>
+            </Link>
+            <Link to="/members" onClick={()=>setMenuOpen(false)}>
+              <div className="inter-bold">Members</div>
+            </Link>
+            <Link to="/news" onClick={()=>setMenuOpen(false)}>
+              <div className="inter-bold">News</div>
+            </Link>
+          </div>
+        )}
+      </div>
+
     </div>
 
     {/* Right side */}

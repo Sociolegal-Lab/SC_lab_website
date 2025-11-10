@@ -102,7 +102,6 @@ const StyledWrapper = styled.div`
   }
 `;
 
-
 // Todo: Alter the Contact component
 const Contact = ({class_name_location}) => {
   // TODO: Change border color depending on class_name_location
