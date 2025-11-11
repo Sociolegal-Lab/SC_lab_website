@@ -1,11 +1,10 @@
 # TODO
-- 改隱藏header link(mobile) 的背景色、確認LINK
 - 改其他頁面的顏色
 - 各個頁面中的區塊交界放上細線
     - homepage
     - member
     - leader
-- 資料更新上傳
+- 資料更新
 - All pages: 圖片矩形邊角圓化
 
 ## 調整完網址後

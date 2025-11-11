@@ -1,11 +1,11 @@
 {
-    "name": "Legal Tech 3 (This is a template)",
+    "name": "Legal text \n 標記器",
     "duration": "2020-2040",
     "contributors":[
-        "Zack",
-        "Pluviophile"
+        "Yu-Hsiang Tan", 
+        "Shao-Ting Yen"
     ],
-    "link": "https://github.com/Sociolegal-Lab/Evaluating-Cultural-Diversity-of-Large-Language-Models-in-the-Moral-Machine-Experiment",
-    "brief_introduction": "Anim laboris in anim cupidatat voluptate ex fugiat ut. Ut cillum deserunt nisi dolor exercitation esse mollit voluptate duis aute deserunt magna non elit.",
-    "introduction": "Culpa et reprehenderit veniam reprehenderit cillum cillum in ad aliquip veniam cillum. Veniam tempor esse quis sit cillum proident laborum esse velit dolore adipisicing ad. Ipsum veniam laborum veniam sunt nulla eiusmod adipisicing ipsum nisi esse sit ut."
+    "link": "https://github.com/Sociolegal-Lab/",
+    "brief_introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained.",
+    "introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained. In addition to automated annotation, users can also manually tag entities within the documents. This dual functionality ensures both efficiency and accuracy in legal document processing, catering to a variety of user needs."
 }

@@ -1,7 +1,9 @@
 .footer {
     background-color: #0E133F;
-    padding: 5rem 10rem;
+    padding: 8rem 10rem;
     min-height: 100%;
+    display: flex;
+    flex-direction: column;
 
     --margin-between-two-info-columns-L: 10%;
     --margin-between-two-info-columns-R: 5%;
@@ -40,10 +42,14 @@
 /* Section 1 */ 
 .parent{
     display: flex;
-    margin-bottom: 10px;
 }
 .sec1_L{
     margin-right: 14%;
+    margin-bottom: 1rem;
+}
+
+.sec1_R{
+    margin-bottom: 2rem;
 }
 
 .slogan{
@@ -97,6 +103,12 @@
 }
 
 /* Section 2 */
+.section2{
+    margin-bottom: 8rem;
+}
+
+
+
 .info_mother{
     display: flex;
     justify-content: flex-start;
@@ -178,8 +190,7 @@
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 5rem;
-    
+    margin-top: auto;
 }
 
 .credit{

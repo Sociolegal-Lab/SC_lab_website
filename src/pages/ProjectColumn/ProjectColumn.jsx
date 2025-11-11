@@ -56,7 +56,7 @@ function ProjectColumn() {
     const image_src = img_key ? projects_image[img_key] : null;
 
   return (<>
-  <div className={`${style.background}`}>
+  <div className={`${style.background}`} lang="eng">
     <div className={`${style.marginLR}`}>
       {/* Head */}
       <div className={`${style.head}`}>
@@ -73,12 +73,13 @@ function ProjectColumn() {
                 </span>
             ))}
           </div>
-          <button className={style.github_button}
+          { link &&
+            (<button className={style.github_button}
             type="button"
             onClick={() =>
                 window.open(link, '_blank', 'noopener,noreferrer')
-            }
-          >
+            }>
+
             <div className={style.circle_icon_wrapper}>
               <svg
                 className={`${style.icon} icon bi bi-github`}
@@ -92,6 +93,7 @@ function ProjectColumn() {
               </svg>
             </div>
           </button>
+          )}
         </div>
         {/* Right side */}
         <div className={`${style.introduction} inter-bold`}>{introduction}</div>
@@ -115,7 +117,7 @@ function ProjectColumn() {
       )}
 
       {/* Switch page */}
-      <div className={` ${style.switch} inter-bold`}>
+      <div className={` ${style.switch} inter-bold`} lang="eng">
           <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} 
           className={style.switch_left}
           style={{visibility: prev_name ? "visible" : "hidden"}}>
@@ -129,7 +131,7 @@ function ProjectColumn() {
       </div>
     </div>
   </div>
-  <div style={{background: "#CDD3FE", height: "6px", width:"100vw"}}> </div>
+  <div style={{background: "#CDD3FE", height: "6px", width:"100%"}}> </div>
   </>);
 }
 

@@ -1,6 +1,8 @@
 .background{
-  background-color: transparent;
+  background-color:transparent;
+  
 }
+
 
 .marginLR {
   margin: 0px 6rem;
@@ -25,7 +27,7 @@
   position: relative;
   z-index: 1; /* 確保文字在上層 */
   color: rgb(255, 255, 255);
-  width: 33rem;
+  width: 38rem;
   flex-shrink: 0;
 
   display: flex;
@@ -34,8 +36,6 @@
 
   overflow-wrap: break-word;
   hyphens: auto;
-
-  
 }
 
 .circle_background::before {
@@ -43,12 +43,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 57rem;   
+  width: 60rem;   
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: #B786FF;
   transform: translate(-33%, -28%); /*調整圓心位置*/
   z-index: -1;    /* 放在文字後面 */
+
 }
 
 .github_button{
@@ -87,7 +88,9 @@
 .subtitle{
   color:#ffffff;
   font-size:1.4rem;
-  width: 100%;
+  width: 95%;
+  overflow-wrap: break-word;
+  
 }
 
 
@@ -114,16 +117,17 @@
     gap: 0px;
   }
   .introduction{
-    margin-top: 15rem;
+    margin-top: 25rem;
   }
 } 
   /* Circle shrink!! Following setting follow the size of circle. (manually)*/
   @media (max-width: 700px) {
   .circle_background{
-    width:20rem;
+    max-width:20rem;
   }
   .circle_background::before {
-    width: 33rem;
+    width: 43rem;
+    transform: translate(-48%, -20%);
   } 
 
   .head{
@@ -141,15 +145,23 @@
 
   .subtitle{
     font-size: 1.2rem;
+    width: 90%;
+    
   }
+
+  .introduction{
+    margin-top: 20rem;
+  }
+
+
 } 
 
 @media (max-width: 400px) {
   .circle_background{
-    width:18rem;
+    width:16.5rem;
   }
   .circle_background::before {
-    transform: translate(-40%, -30%);
+    transform: translate(-61%, -40%);
   } 
 
   .XL { font-size:2.5rem }
@@ -270,19 +282,36 @@
 /* switch page */
 .switch{
   display: flex; 
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
   margin: 3rem 0px;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size: 1.6rem;
 }
+
+
 
 .switch_left{
     color: #FFB33A;
-    font-size: 1.6rem; 
+    display: inline-block;
+    width: auto;
+    
+    
 }
 
 .switch_right{
     color: #FFB33A;
-    font-size: 1.6rem; 
     display: inline-block;
+    width: auto;
     text-align: right;
+    margin-left: auto;
+
+}
+
+@media (max-width:700px){
+  .switch{
+    font-size: 1.4rem;
+  }
 }

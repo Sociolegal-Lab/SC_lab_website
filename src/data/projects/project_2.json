@@ -1,13 +1,12 @@
 {
-    "name": "Project 2 (This is a template)",
+    "name": "LeArNER: Few-shot Legal Argument Named Entity Recognition",
     "duration": "2020-2040",
     "contributors":[
-        "Pluviophile",
-        "Zack",
-        "Jimmy Yu",
-        "David"
+        "Shao-Man Lee",
+        "Yu-Hsiang Tan",
+        "Han-Ting"
     ],
-    "link": "https://github.com/Sociolegal-Lab/Evaluating-Cultural-Diversity-of-Large-Language-Models-in-the-Moral-Machine-Experiment",
-    "brief_introduction": "Anim laboris in anim cupidatat voluptate ex fugiat ut. Ut cillum deserunt nisi dolor exercitation esse mollit voluptate duis aute deserunt magna non elit.",
-    "introduction": "Culpa et reprehenderit veniam reprehenderit cillum cillum in ad aliquip veniam cillum. Veniam tempor esse quis sit cillum proident laborum esse velit dolore adipisicing ad. Ipsum veniam laborum veniam sunt nulla eiusmod adipisicing ipsum nisi esse sit ut.Laboris laboris qui ad reprehenderit anim fugiat nisi velit non aliqua incididunt cupidatat ullamco sit. Esse amet adipisicing magna occaecat. Magna commodo irure qui aliqua.Ea cupidatat non mollit nostrud Lorem sit amet. Qui consectetur irure ad non culpa sit nulla deserunt nisi aliquip. Duis fugiat ea mollit minim. Dolor cupidatat voluptate aliqua sit mollit cupidatat exercitation aute labore est eiusmod sit irure. Sunt exercitation excepteur in et duis non. Est ipsum mollit officia officia fugiat labore quis proident consequat eiusmod."
+    "link": "https://dl.acm.org/doi/10.1145/3594536.3595144",
+    "brief_introduction": "Our proposed NER model for legal texts, LeArNER, utilizes minimal annotated data for model training to reduce expenses associated with corpus collection and training.",
+    "introduction": "Our proposed NER model for legal texts, LeArNER, utilizes minimal annotated data for model training to reduce expenses associated with corpus collection and training. We evaluated our model on a dataset of constitutional legal cases from Taiwan, written in traditional Chinese, and achieved an impressive F1 score of 94.88% for 13 entity types. LeArNER's performance was best achieved with a training sample of only 2000 sentences, highlighting its efficiency and potential for further legal NER research."
 }
