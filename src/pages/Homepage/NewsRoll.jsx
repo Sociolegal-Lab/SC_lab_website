@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./Homepage.module.css"; 
+import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 import rawNews from "../../data/news/news.json";
+import "../../styles/font.css";
 
 export default function NewsRoll({
   items: itemsProp,
@@ -153,7 +154,8 @@ export default function NewsRoll({
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <br />
       <div className={styles["mr-title"]}>
-        <h1 className={styles["news-title"]}>Latest News from our Lab</h1>
+        {/* 主標題 → Inter 800 */}
+        <h1 className={`rufina-bold ${styles["news-title"]}`}>Latest News from our Lab</h1>
       </div>
 
       <div className={styles["mr-stage-wrap"]}>
@@ -170,9 +172,12 @@ export default function NewsRoll({
             {items.map((m, i) => (
               <section key={i} className={styles["mr-section"]}>
                 <article className={styles["mr-card"]} role="article" aria-roledescription="news item">
-                  <h3 className={styles["mr-card-title"]}>{m.title}</h3>
-                  <p className={styles["mr-card-subtitle"]}>{m.subtitle}</p>
-                  {m.date ? <div className={styles["mr-card-date"]}>{m.date}</div> : null}
+                  {/* 卡片標題 → Inter 800 */}
+                  <h3 className={`inter-extrabold ${styles["mr-card-title"]}`}>{m.title}</h3>
+                  {/* 內文 → Inter 700 */}
+                  <p className={`inter-bold ${styles["mr-card-subtitle"]}`}>{m.subtitle}</p>
+                  {/* 日期 → Inter 500（若你偏好 700 也可改成 inter-bold） */}
+                  {m.date ? <div className={`inter-medium ${styles["mr-card-date"]}`}>{m.date}</div> : null}
                 </article>
               </section>
             ))}

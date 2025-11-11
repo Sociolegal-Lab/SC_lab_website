@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Homepage.module.css"; // ✅ 改成模組化導入
-
 import events from "../../data/homepage/upcomingEvents.json"; // ✅ 可改為從 .json 匯入資料（可選）
+import "../../styles/font.css"
 
 export default function UpcomingEvents() {
   return (

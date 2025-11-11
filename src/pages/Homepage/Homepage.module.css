@@ -40,6 +40,7 @@
   padding: 2rem 2.5rem;
   background: transparent;
 }
+
 @media (max-width: 1000px) {
   .mr-profile { 
     grid-template-columns: 1fr; 
@@ -376,7 +377,6 @@
   padding: 0;
   margin: 12px 0 0 4px;
   color: #ffd76a;
-  font-weight: 700;
   letter-spacing: 0.3px;
   line-height: 1.1;
 }
@@ -423,7 +423,6 @@
 }
 
 .mr-about__label {
-  font-weight: 800;
   letter-spacing: 0.4px;
   font-size: 40px;
 }
@@ -431,7 +430,6 @@
 .mr-about__lines {
   display: grid;
   row-gap: 4px;
-  font-weight: 700;
   font-size: 32px;
   line-height: 1.15;
 }

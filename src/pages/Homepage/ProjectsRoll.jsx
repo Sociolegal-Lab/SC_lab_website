@@ -3,6 +3,7 @@ import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 import projectData from "../../data/projects/projects_index.json";
+import "../../styles/font.css";
 
 export default function ProjectsRoll({
   items: itemsProp,
@@ -11,7 +12,6 @@ export default function ProjectsRoll({
   className = "",
   loop = true,
 }) {
-  // 資料來源：props 優先，否則使用 JSON
   const items = (itemsProp && itemsProp.length ? itemsProp : projectData) || [];
 
   const scrollerRef = useRef(null);
@@ -20,7 +20,7 @@ export default function ProjectsRoll({
   const autoplayRef = useRef(null);
   const resumeTimerRef = useRef(null);
 
-  // 依中心計算目前卡片
+  // 依中心點判定目前卡片
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -35,7 +35,10 @@ export default function ProjectsRoll({
         Array.from(el.children).forEach((child, i) => {
           const c = child.offsetLeft + child.offsetWidth / 2;
           const d = Math.abs(c - center);
-          if (d < minDist) { minDist = d; nearest = i; }
+          if (d < minDist) {
+            minDist = d;
+            nearest = i;
+          }
         });
         setActive(nearest);
         activeRef.current = nearest;
@@ -49,7 +52,7 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳
+  // 拖曳操作
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -77,7 +80,9 @@ export default function ProjectsRoll({
 
     const onUp = (e) => {
       isDown = false;
-      try { el.releasePointerCapture?.(e.pointerId); } catch {}
+      try {
+        el.releasePointerCapture?.(e.pointerId);
+      } catch {}
       el.style.cursor = "";
     };
 
@@ -149,23 +154,29 @@ export default function ProjectsRoll({
     <div className={`${styles["mr-root-projects"]} ${className || ""}`}>
       <br />
       <div className={styles["mr-container"]}>
-        {/* 左右圓形箭頭 */}
+        {/* 左右箭頭 */}
         <button
           aria-label="上一張"
           className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
-          onClick={() => { go(-1); pauseAutoplay(); }}
+          onClick={() => {
+            go(-1);
+            pauseAutoplay();
+          }}
         >
           <img src={left_arrow} alt="" height={50} />
         </button>
         <button
           aria-label="下一張"
           className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
-          onClick={() => { go(1); pauseAutoplay(); }}
+          onClick={() => {
+            go(1);
+            pauseAutoplay();
+          }}
         >
           <img src={right_arrow} alt="" height={50} />
         </button>
 
-        {/* 橫向滑動區（每頁 1 張） */}
+        {/* 專案卡片 */}
         <div
           ref={scrollerRef}
           className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
@@ -173,18 +184,24 @@ export default function ProjectsRoll({
           {items.map((m, i) => (
             <section key={i} className={styles["mr-section"]}>
               <article className={styles["mr-profile"]}>
-                {/* 左：大圖（或灰色方塊） */}
                 <div className={styles["mr-photo-wrap"]}>
                   {m.photo ? (
-                    <img className={styles["mr-photo"]} src={m.photo} alt={m.name} />
+                    <img
+                      className={styles["mr-photo"]}
+                      src={m.photo}
+                      alt={m.name}
+                    />
                   ) : (
                     <div className={styles["mr-photo"]} />
                   )}
                 </div>
-                {/* 右：標題＋內文 */}
                 <div className={styles["mr-text"]}>
-                  <h2 className={styles["mr-name"]}>{m.name}</h2>
-                  <p className={styles["mr-bio"]}>{m.bio}</p>
+                  {/* 標題字重800 → inter-extrabold */}
+                  <h2 className={`inter-extrabold ${styles["mr-name"]}`}>
+                    {m.name}
+                  </h2>
+                  {/* 內文字重700 → inter-bold */}
+                  <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio}</p>
                 </div>
               </article>
             </section>
@@ -197,8 +214,13 @@ export default function ProjectsRoll({
             <button
               key={i}
               aria-label={`跳到第 ${i + 1} 張`}
-              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] ?? "" : ""}`}
-              onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
+              className={`${styles["mr-dot"]} ${
+                active === i ? styles["is-active"] ?? "" : ""
+              }`}
+              onClick={() => {
+                scrollToIndex(i);
+                pauseAutoplay();
+              }}
             />
           ))}
         </div>

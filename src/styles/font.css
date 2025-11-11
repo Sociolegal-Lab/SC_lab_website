@@ -43,5 +43,22 @@
   font-style: normal;
 }
 
+/* === Utilities to mirror original weights === */
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+
+/* IBM Plex Mono (for the Landing mini-list) */
+.ibm-plex-mono-bold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+}
+
+/* Inter 800 (your components use weight 800) */
+.inter-extrabold {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
 
 
