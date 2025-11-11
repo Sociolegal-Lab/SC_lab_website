@@ -117,16 +117,16 @@ function ProjectColumn() {
       )}
 
       {/* Switch page */}
-      <div className={` ${style.switch} inter-bold`} lang="eng">
+      <div className={` ${style.switch} roboto-condensed-bold`} lang="eng">
           <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} 
           className={style.switch_left}
           style={{visibility: prev_name ? "visible" : "hidden"}}>
-            &lt;--- <br/> {prev_name}
+            <span className="inter-bold">&lt;---</span> <br/> {prev_name}
           </Link>
           <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} 
           className={style.switch_right}
           style={{visibility: next_name ? "visible" : "hidden"}}>
-            ---&gt;<br/> {next_name} 
+            <span className="inter-bold">---&gt;</span><br/> {next_name} 
           </Link>
       </div>
     </div>

@@ -9,7 +9,7 @@ const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg
 function Projects() {
   return (
     <div className={style.back}>
-      <div className={`${style.title} ${style.marginLR} rufina-bold`}>
+      <div className={`${style.title} ${style.marginLR} inter-bold`}>
         Featured Projects
       </div>
 

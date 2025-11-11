@@ -47,8 +47,8 @@ function News() {
 
   return (
     <>
-      <div className={`${style.title} ${style.marginLR} rufina-bold`}>
-        Keep up with SC Lab!
+      <div className={`${style.title} ${style.marginLR} inter-bold`}>
+        Latest News from Our Lab
       </div>
       <div className={style.marginLR}>
         {/* <Search
@@ -84,7 +84,7 @@ function News() {
                 alt="news picture"
               />
             </div>
-            <div className={`${style.date} inter-bold`}>
+            <div className={`${style.date} roboto-condensed-medium`}>
               {new Date(n.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -103,14 +103,14 @@ function News() {
       {/* switch page */}
       {newslimit < selectedNews.length && (
         <div
-          className={`${style.switch_page} ${style.marginLR} inter-bold`}
+          className={`${style.switch_page} ${style.marginLR} roboto-condensed-bold`}
           onClick={() => setNewslimit((existing_news) => existing_news + 9)}
         >
-          Older ---&gt;
+          Older <span className="inter-bold" >---&gt;</span>
         </div>
       )}
       {/* year tab */}
-      <div className={`${style.news_nav_bar} ${style.marginLR} inter-bold`}>
+      <div className={`${style.news_nav_bar} ${style.marginLR} roboto-condensed-bold`}>
         <div>
           <button
             onClick={() => {
