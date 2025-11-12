@@ -24,7 +24,9 @@ export default function Leaderarea() {
                   fill="currentColor"
                 />
               </svg>
-              <span>+886 2757575&nbsp;#80980</span>
+              <div className="roboto-condensed-bold">
+                <span>+886 2757575&nbsp;#80980</span>
+              </div>
             </div>
 
             <div className={styles["contact-item"]}>
@@ -35,16 +37,18 @@ export default function Leaderarea() {
                   fill="currentColor"
                 />
               </svg>
-              <a href="mailto:shaomanlee@gs.ncku.edu.tw">
-                shaomanlee@gs.ncku.edu.tw
-              </a>
+              <div className="roboto-condensed-bold">
+                <a href="mailto:shaomanlee@gs.ncku.edu.tw">
+                    shaomanlee@gs.ncku.edu.tw
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         {/* RIGHT: Details */}
         <div className={styles["info-col"]}>
-          <h1 className={styles["name"]}>Shao-Man Lee</h1>
+          <h1 className={`rufina-bold ${styles["name"]}`}>Shao-Man Lee</h1>
           <p className={styles["subtitle"]}>
             AI and Law; Legal Text Mining; Cultural Study of Law;<br />
             Constitutional Law
@@ -53,7 +57,7 @@ export default function Leaderarea() {
             NCKU Miin Wu School of Computing Assistant Professor
           </p>
 
-          <blockquote className={styles["motto"]}>
+          <blockquote className={`inter-bold ${styles["motto"]}`}>
             “Work hard, play hard”
           </blockquote>
 

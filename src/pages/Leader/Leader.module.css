@@ -47,7 +47,7 @@ body{margin:0}
 }
 
 .contact{display:flex;flex-direction:column;gap:12px;}
-.contact-item{display:flex;align-items:center;gap:10px;opacity:.95}
+.contact-item{display:flex;align-items:center;gap:10px;opacity:.95;font-size: 24px}
 .contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
 .contact-item a:hover{text-decoration:underline}
 
@@ -55,16 +55,13 @@ body{margin:0}
 .name{font-size: clamp(40px, 6vw, 72px);line-height:1.05;margin:0 0 8px}
 .subtitle{
   color:var(--gold);
-  font-size: 24px;                       /* ← 移除多餘分號 */
   margin:0 0 8px;
   letter-spacing:.2px;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 26px
 }
-.affil{color:var(--gold);margin:0 0 28px;font-size: 24px;}
-
-.motto{                                   /* ← 原 .mooto 更名為 .motto，請同步 JSX */
-  margin:0 0 28px;
-  font-size: 24px;
-}
+.affil{color:var(--gold);margin:0 0 28px;font-family: "Roboto Condensed", sans-serif;  font-size: 26px;}
+.motto{font-size: 24px;margin: 0 0 48px}
 
 .cta-row{display:flex;align-items:center;gap:18px;position:relative}
 

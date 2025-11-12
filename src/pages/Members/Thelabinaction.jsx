@@ -3,7 +3,7 @@ import styles from "./Members.module.css"; // ← 正確載入 CSS Modules
 
 export default function Thelabinaction() {
   return (
-    <div className={styles["members-section"]}>
+    <div className={`rufina-bold ${styles["members-section"]}`}>
       <h2>The Lab In Action</h2>
       <br />
       <div className={styles["members-picture"]}>

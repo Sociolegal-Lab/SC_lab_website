@@ -5,6 +5,34 @@ import right_arrow from "../../assets/right_arrow.png";
 import membersData from "../../data/members/members.json";
 import "../../styles/font.css";
 
+/** 將 members.json 欄位轉成渲染用格式 */
+const normalize = (m = {}) => ({
+  id: m.id ?? "",
+  name: m.English_name || m.Chinese_name || m.title || "",
+  bio: m.short_bio || m.research_interests || "",
+  photo: m.photo || null,
+});
+
+/** ✅ 根據 src/data/members 資料夾載入 .jpeg 照片 */
+const toSrc = (m) => {
+  const p = m.photo;
+  if (p) {
+    // 若 JSON 內 photo 有值，仍優先用它
+    if (p.startsWith("/") || /^https?:\/\//i.test(p)) return p;
+    try {
+      return new URL(`../../data/members/${p}`, import.meta.url).href;
+    } catch {
+      return p;
+    }
+  }
+  // 若 photo 為 null，就依 id 對應成 src/data/members/{id}.jpeg
+  try {
+    return new URL(`../../data/members/${m.id}.jpeg`, import.meta.url).href;
+  } catch {
+    return "";
+  }
+};
+
 export default function MembersRoll({
   items: itemsProp,
   interval = 4000,
@@ -12,7 +40,9 @@ export default function MembersRoll({
   className = "",
   loop = true,
 }) {
-  const items = (itemsProp && itemsProp.length ? itemsProp : membersData) || [];
+  const raw = (itemsProp && itemsProp.length ? itemsProp : membersData) ?? [];
+  const list = Array.isArray(raw) ? raw : (raw.members || raw.data || raw.items || []);
+  const items = list.map(normalize);
 
   const scrollerRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -20,25 +50,20 @@ export default function MembersRoll({
   const autoplayRef = useRef(null);
   const resumeTimerRef = useRef(null);
 
-  // 依中心點判定目前卡片
+  // 判定目前卡片
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
       window.requestAnimationFrame(() => {
         const center = el.scrollLeft + el.clientWidth / 2;
-        let nearest = 0;
-        let minDist = Infinity;
+        let nearest = 0, minDist = Infinity;
         Array.from(el.children).forEach((child, i) => {
           const c = child.offsetLeft + child.offsetWidth / 2;
           const d = Math.abs(c - center);
-          if (d < minDist) {
-            minDist = d;
-            nearest = i;
-          }
+          if (d < minDist) { minDist = d; nearest = i; }
         });
         setActive(nearest);
         activeRef.current = nearest;
@@ -46,21 +71,16 @@ export default function MembersRoll({
       });
       ticking = true;
     };
-
     el.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳操作
+  // 拖曳橫向滑動
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-
-    let isDown = false;
-    let startX = 0;
-    let scrollStart = 0;
-
+    let isDown = false, startX = 0, scrollStart = 0;
     const onDown = (e) => {
       isDown = true;
       startX = e.pageX - el.offsetLeft;
@@ -69,7 +89,6 @@ export default function MembersRoll({
       el.style.cursor = "grabbing";
       pauseAutoplay();
     };
-
     const onMove = (e) => {
       if (!isDown) return;
       const x = e.pageX - el.offsetLeft;
@@ -77,20 +96,15 @@ export default function MembersRoll({
       el.scrollLeft = scrollStart - walk;
       e.preventDefault();
     };
-
     const onUp = (e) => {
       isDown = false;
-      try {
-        el.releasePointerCapture?.(e.pointerId);
-      } catch {}
+      try { el.releasePointerCapture?.(e.pointerId); } catch {}
       el.style.cursor = "";
     };
-
     el.addEventListener("pointerdown", onDown);
     el.addEventListener("pointermove", onMove);
     el.addEventListener("pointerup", onUp);
     el.addEventListener("pointerleave", onUp);
-
     return () => {
       el.removeEventListener("pointerdown", onDown);
       el.removeEventListener("pointermove", onMove);
@@ -127,19 +141,14 @@ export default function MembersRoll({
       scrollToIndex(next);
     }, interval);
   };
-
   const stopAutoplay = () => {
     if (autoplayRef.current) window.clearInterval(autoplayRef.current);
     autoplayRef.current = null;
   };
-
   const pauseAutoplay = () => {
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(
-      () => startAutoplay(),
-      pauseAfterInteractMs
-    );
+    resumeTimerRef.current = window.setTimeout(() => startAutoplay(), pauseAfterInteractMs);
   };
 
   useEffect(() => {
@@ -157,57 +166,55 @@ export default function MembersRoll({
         <button
           aria-label="上一張"
           className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
-          onClick={() => {
-            go(-1);
-            pauseAutoplay();
-          }}
+          onClick={() => { go(-1); pauseAutoplay(); }}
         >
           <img src={left_arrow} alt="" height={50} />
         </button>
         <button
           aria-label="下一張"
           className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
-          onClick={() => {
-            go(1);
-            pauseAutoplay();
-          }}
+          onClick={() => { go(1); pauseAutoplay(); }}
         >
           <img src={right_arrow} alt="" height={50} />
         </button>
 
-        {/* 成員卡片 */}
-        <div
-          ref={scrollerRef}
-          className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
-        >
-          {items.map((m, i) => (
-            <section key={i} className={styles["mr-section"]}>
-              <article className={styles["mr-profile"]}>
-                {/* 左側圖片 */}
-                <div className={styles["mr-photo-wrap"]}>
-                  {m.photo ? (
-                    <img
-                      className={styles["mr-photo"]}
-                      src={m.photo}
-                      alt={m.name}
-                    />
-                  ) : (
-                    <div className={styles["mr-photo"]} />
-                  )}
-                </div>
+        {/* 成員區塊 */}
+        <div ref={scrollerRef} className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}>
+          {items.length === 0 ? (
+            <div style={{ color: "#fff", padding: 16 }}>
+              （沒有找到成員資料，請檢查 members.json 結構或圖片路徑）
+            </div>
+          ) : (
+            items.map((m, i) => (
+              <section key={m.id || i} className={styles["mr-section"]}>
+                <article className={styles["mr-profile"]}>
+                  {/* 照片 */}
+                  <div className={styles["mr-photo-wrap"]}>
+                    {toSrc(m) ? (
+                      <img
+                        className={styles["mr-photo"]}
+                        src={toSrc(m)}
+                        alt={m.name || `member-${i}`}
+                        onError={(e) => (e.currentTarget.style.display = "none")}
+                      />
+                    ) : (
+                      <div className={styles["mr-photo"]} />
+                    )}
+                  </div>
 
-                {/* 右側文字區 */}
-                <div className={styles["mr-text"]}>
-                  {/* 姓名：font-weight 800 → inter-extrabold */}
-                  <h2 className={`inter-extrabold ${styles["mr-name"]}`}>
-                    {m.name}
-                  </h2>
-                  {/* 簡介：font-weight 700 → inter-bold */}
-                  <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio}</p>
-                </div>
-              </article>
-            </section>
-          ))}
+                  {/* 文字 */}
+                  <div className={styles["mr-text"]}>
+                    <h2 className={`inter-extrabold ${styles["mr-name"]}`}>
+                      {m.name || "Unnamed Member"}
+                    </h2>
+                    <div className={styles["scroll-box"]} tabIndex={0}>
+                      <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio || "—"}</p>
+                    </div>
+                  </div>
+                </article>
+              </section>
+            ))
+          )}
         </div>
 
         {/* 點點導航 */}
@@ -216,13 +223,8 @@ export default function MembersRoll({
             <button
               key={i}
               aria-label={`跳到第 ${i + 1} 張`}
-              className={`${styles["mr-dot"]} ${
-                active === i ? styles["is-active"] : ""
-              }`}
-              onClick={() => {
-                scrollToIndex(i);
-                pauseAutoplay();
-              }}
+              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] : ""}`}
+              onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
             />
           ))}
         </div>

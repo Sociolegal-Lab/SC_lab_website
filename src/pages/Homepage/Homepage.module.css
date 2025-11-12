@@ -15,6 +15,7 @@
   max-width: 1200px; 
   margin: 0 auto; 
   padding: 2rem 1rem; 
+  padding-top: 100px;
 }
 
 /* 橫向滑動容器與每頁（共用定義） */
@@ -56,7 +57,6 @@
   height: clamp(280px, 38vw, 540px);
   border-radius: 2px;
   object-fit: cover;
-  background: #D9D9D9; /* 灰色方塊 */
 }
 
 /* 右側文字 */
@@ -190,77 +190,6 @@
 /* 讓內容欄位撐滿寬度 */
 .mr-stage .mr-scroller { width: 100%; }
 
-/* ===================== Upcoming Events (append-only) ===================== */
-.ue-section {
-  /* 與你的內容一致的寬度與置中 */
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 1rem 2.5rem;
-  color: #fff; /* 深色底下的白字 */
-  
-}
-
-.ue-title {
-  margin-left: 1rem;                 /* 與表格左緣對齊 */
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
-  font-size: clamp(1.25rem, 2.2vw, 2rem); /* 接近截圖大小 */
-}
-
-.ue-rule {
-  height: 1.5px;
-  background: rgba(255, 255, 255, 0.7);   /* 標題下方的水平線 */
-  margin: 0.25rem 1rem 0.75rem;
-  width: calc(100% - 2rem);               /* 與表格同寬 */
-}
-
-.ue-table {
-  width: calc(100% - 2rem);               /* 讓左右各留 1rem 內距 */
-  margin: 0 1rem;
-  border-collapse: collapse;
-  table-layout: fixed;                    /* 固定欄寬避免抖動 */
-}
-
-.ue-table thead th {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.86);
-  text-align: center;                     /* 中、右欄置中/右 */
-  padding: 0.35rem 0 0.6rem;
-}
-
-.ue-table thead th:first-child {          /* 日期欄沒有抬頭文字 */
-  text-align: left;
-  font-weight: 600;
-}
-
-.ue-table tbody td {
-  padding: 0.9rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);  /* 每列細分隔線 */
-  vertical-align: middle;
-  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-}
-
-.ue-date { text-align: left;  font-weight: 700; white-space: nowrap; }
-.ue-name { text-align: center; font-weight: 700; }
-.ue-loc  { text-align: right; }
-
-/* 欄寬（依需求微調，符合截圖比例） */
-.ue-col-date { width: 160px; }    /* 左欄日期 */
-.ue-col-loc  { width: 220px; }    /* 右欄地點 */
-
-/* 小尺寸優化 */
-@media (max-width: 720px) {
-  .ue-col-date { width: 110px; }
-  .ue-col-loc  { width: 160px; }
-  .ue-title { margin-left: 0.5rem; }
-  .ue-rule, .ue-table { width: calc(100% - 1rem); margin-left: 0.5rem; margin-right: 0.5rem; }
-}
-
-
-
 .events-container {
   display: flex;
   flex-direction: column;
@@ -274,30 +203,12 @@
 }
 
 .title {
-  width: 600px;
+  width: 60%;
+  font-family: "inter";
   text-align: left;
-  font-size: 1.2em;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 10px;
-}
-
-.events-table {
-  border-collapse: collapse;
-  width: 600px;
-}
-
-.events-table th,
-.events-table td {
-  padding: 12px 16px;
-  text-align: center;
-}
-
-.events-table th {
-  border-bottom: 2px solid #ccc;
-}
-
-.events-table tr:not(:last-child) td {
-  border-bottom: 1px solid #555;
 }
 
 /* ===================== Landing Section ===================== */
@@ -440,3 +351,32 @@
 @media (min-width: 640px) and (max-width: 900px) {
   .mr-about__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* === MembersRoll 內文方塊可滾動 (RWD 自適應) =============================== */
+.scroll-box {
+  /* 預設桌機高度 */
+  height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  margin-top: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 4px;
+  transition: max-height 0.3s ease;
+}
+
+/* 捲軸樣式：低調白透明風格 */
+.scroll-box::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+.scroll-box:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+}
+

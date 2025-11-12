@@ -5,9 +5,10 @@ import membersData from "./Ourmembers.json";
 export default function Members() {
   return (
     <section className={styles["members-section"]}>
-      <h2>OUR MEMBERS</h2>
+      <p className="rufina-bold">
+        <h2>OUR MEMBERS</h2>
+      </p>
       <div className={styles["subtitle"]}>LAB TEAM</div>
-
       <div className={styles["member-grid"]}>
         {membersData.map((member, index) => {
           const bio = Array.isArray(member.bio) ? member.bio : [];

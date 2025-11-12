@@ -2,8 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
-import projectData from "../../data/projects/projects_index.json";
+import projectIndex from "../../data/projects/projects_index.json"; // ← 檔名陣列
 import "../../styles/font.css";
+
+// 轉換專案物件到 UI 需要的欄位
+const normalize = (p = {}) => ({
+  name: p.name || "",
+  bio: p.brief_introduction || p.introduction || "",
+  photo: p.photo
+    ? new URL(`../../data/projects/${p.photo}`, import.meta.url).href
+    : "",
+});
 
 export default function ProjectsRoll({
   items: itemsProp,
@@ -12,7 +21,42 @@ export default function ProjectsRoll({
   className = "",
   loop = true,
 }) {
-  const items = (itemsProp && itemsProp.length ? itemsProp : projectData) || [];
+  // ← 用 state 保存真正要渲染的 items
+  const [items, setItems] = useState([]);
+
+  // 一次載入所有 project_X.json，並依 index 的順序整理
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      // 1) 載入資料來源：優先用 props.items（若外層傳進來）
+      if (itemsProp && itemsProp.length) {
+        setItems(itemsProp);
+        return;
+      }
+
+      // 2) 用 import.meta.glob 掃描資料夾中的所有 json（eager: true 直接同步載入）
+      const modules = import.meta.glob("../../data/projects/*.json", {
+        eager: true,
+      });
+
+      // 3) 依 index 指定的檔名排序 & 取出 default
+      const loaded = projectIndex
+        .map((filename) => {
+          const key = `../../data/projects/${filename}`;
+          const mod = modules[key];
+          return mod && mod.default ? normalize(mod.default) : null;
+        })
+        .filter(Boolean);
+
+      if (!cancelled) setItems(loaded);
+    };
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [itemsProp]);
 
   const scrollerRef = useRef(null);
   const [active, setActive] = useState(0);
@@ -186,21 +230,13 @@ export default function ProjectsRoll({
               <article className={styles["mr-profile"]}>
                 <div className={styles["mr-photo-wrap"]}>
                   {m.photo ? (
-                    <img
-                      className={styles["mr-photo"]}
-                      src={m.photo}
-                      alt={m.name}
-                    />
+                    <img className={styles["mr-photo"]} src={m.photo} alt={m.name} />
                   ) : (
                     <div className={styles["mr-photo"]} />
                   )}
                 </div>
                 <div className={styles["mr-text"]}>
-                  {/* 標題字重800 → inter-extrabold */}
-                  <h2 className={`inter-extrabold ${styles["mr-name"]}`}>
-                    {m.name}
-                  </h2>
-                  {/* 內文字重700 → inter-bold */}
+                  <h2 className={`inter-extrabold ${styles["mr-name"]}`}>{m.name}</h2>
                   <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio}</p>
                 </div>
               </article>
@@ -214,9 +250,7 @@ export default function ProjectsRoll({
             <button
               key={i}
               aria-label={`跳到第 ${i + 1} 張`}
-              className={`${styles["mr-dot"]} ${
-                active === i ? styles["is-active"] ?? "" : ""
-              }`}
+              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] ?? "" : ""}`}
               onClick={() => {
                 scrollToIndex(i);
                 pauseAutoplay();
