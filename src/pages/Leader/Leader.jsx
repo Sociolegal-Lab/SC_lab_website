@@ -3,7 +3,6 @@ import EducationCollapse from "./EducationCollapse"
 import FellowshipsAndAwardsCollapse from  "./FellowshipsAndAwardsCollapse"
 import PublicationCollapse from "./PublicationCollapse"
 import InternationalConferenceCollapse from "./InternationalConferenceCollapse"
-import Schedule from "./Schedule"
 import PastSpeakingEngagementsCollapse from "./PastSpeakingEngagementsCollapse.jsx"
 import UpcomingSpeakingEngagementsCollapse from "./OngoingProjectsCollapse.jsx"
 import OngoingProjectsCollapse from "./OngoingProjectsCollapse.jsx"
@@ -17,7 +16,6 @@ function Leader(){
         <FellowshipsAndAwardsCollapse />
         <PublicationCollapse />
         <InternationalConferenceCollapse />
-        <Schedule />
         <PastSpeakingEngagementsCollapse />
         <UpcomingSpeakingEngagementsCollapse />
         <OngoingProjectsCollapse />
