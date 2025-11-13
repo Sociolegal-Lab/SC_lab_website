@@ -6,13 +6,13 @@ export default function UpcomingEvents() {
     <div className={styles["events-container"]}>
       <div className={styles["title"]}>Upcoming Events</div>
       <div style={{ marginTop: "2rem" }}>
-/*      <iframe
+      <iframe
         src="https://calendar.google.com/calendar/embed?src=c3e13d39067d947aao54c9eb2dd572914c82f9eebcaffa46ddoa83a5ede44249b%40group.calendar.google.com&ctz=Asia%2FTaipei"
-        style={{ border: 0, width: "1000px", height: "600px", borderRadius: "8px" }}
+        style={{ border: 0, width: "80vw", height: "600px", borderRadius: "8px" }}
         frameBorder="0"
         scrolling="no"
         title="Event Calendar"
-        />
+      />
       </div>
     </div>
   );

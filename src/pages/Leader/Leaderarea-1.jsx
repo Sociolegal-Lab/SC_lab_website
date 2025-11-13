@@ -1,16 +1,21 @@
 import React from "react";
 import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
+import avatar from "../../data/members/1.jpeg";
 
 export default function Leaderarea() {
   return (
     <div className={styles["profile-wrap"]}>
       <div className={styles["profile-card"]}>
-        {/* LEFT: Avatar placeholder */}
         <div className={styles["avatar-col"]}>
           <div
             className={styles["avatar"]}
-            aria-label="avatar placeholder"
-            aria-hidden="true"
+            style={{
+              backgroundImage: `url(${avatar})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+            aria-label="avatar"
           />
 
           {/* Contact block */}
