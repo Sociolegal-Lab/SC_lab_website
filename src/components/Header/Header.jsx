@@ -79,22 +79,22 @@ function Header() {
     {/* Left side */}
     <div className={style.nav_bar}>
 
-      <Link to="/SC_lab_website/" >
+      <Link to="/" >
         <img src={logo_src} alt= {logo_alt}/>
       </Link>
-      {/* <div className={style.desktop_links}>
-        <Link to="/SC_lab_website/projects" >
+      <div className={style.desktop_links}>
+        <Link to="/projects" >
           <div className="inter-bold">Projects</div>
         </Link>
-        <Link to="/SC_lab_website/members" >
+        <Link to="/members" >
           <div className="inter-bold">Members</div>
         </Link>      
-        <Link to="/SC_lab_website/news" >
+        <Link to="/news" >
           <div className="inter-bold">News</div>
         </Link>
-      </div> */}
+      </div>
       {/* 為 menu 系列的 dom 貼上標籤，限制 handle_click_outside 觸發範圍 */}
-      {/* <div ref={menu_ref}>
+      <div ref={menu_ref}>
         <button className={style.menu_icon} onClick={() => setMenuOpen(!menuOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
@@ -113,7 +113,7 @@ function Header() {
             </Link>
           </div>
         )}
-      </div> */}
+      </div>
 
     </div>
 
