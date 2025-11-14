@@ -1,0 +1,12 @@
+{
+  "id": 6,
+  "name": "News Classification for the Empirical Legal Data Portal",
+  "duration": "2024–ongoing",
+  "contributors": [
+    "CHIN-YU HOU"
+  ],
+  "link": "https://sociolegal-lab.github.io/legal-news-website/",
+  "brief_introduction": "This subproject is part of the Empirical Legal Data Portal and focuses on automated classification of judicial news in Taiwan. Using Large Language Models (LLMs), it identifies the procedural stage represented in each article and stores the results as structured JSON. An interactive web interface allows users to filter and analyze news by source and stage, bridging empirical legal studies with AI-driven media analysis.",
+  "introduction": "This subproject aims to build an automated news analysis system that supports empirical legal studies through structured data. Using an LLM-based classification model (gpt-oss:20b), the system automatically classifies Taiwanese judicial news into different procedural stages, such as pre-indictment, indictment, trial, verdict, and execution.\n\nCurrently, the pipeline integrates data from EBC News, Liberty Times, and The Reporter. The classification results are stored in a unified JSON schema and exposed through a web-based interface, where users can filter, compare, and analyze articles by news source or judicial stage.\n\nKey features include: (1) automatic classification of judicial news into procedural stages using LLMs; (2) integration of multiple media outlets into a single, consistent dataset; and (3) an interactive visualization interface that supports filtering and basic statistical summaries. The system deliberately focuses on media narratives rather than court judgments, in order to examine how judicial processes are represented and interpreted in Taiwanese news coverage. In doing so, it provides a scalable, quantifiable AI-assisted tool for empirical legal research, connecting law, data science, and media analysis.",
+  "photo": "project_6.png"
+}

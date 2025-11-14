@@ -10,7 +10,6 @@ export default function HomePage(){
    return (
     <div className="body">
         <Landing />
-        <AboutUs />
         <ProjectsRoll />
         <MembersRoll />
         <NewsRoll />

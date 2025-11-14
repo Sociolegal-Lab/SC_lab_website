@@ -5,7 +5,7 @@ import "../../styles/font.css";
 
 export default function Landing() {
   return (
-    <section className={styles["landing"]} role="banner" aria-labelledby="brand">
+    <section className={`${styles["mr-root"]} ${styles["landing"]}`} role="banner" aria-labelledby="brand">
       <div>
         <img src={logo} className={styles["brand-img"]} alt="Lab Logo" />
       </div>
@@ -13,7 +13,7 @@ export default function Landing() {
       <div className={styles["landing__inner"]}>
         {/* 左側：三行小字 → 保持 IBM Plex Mono 700 */}
         <div className={styles["landing__left"]}>
-          <ul className={`${styles["mini-list"]} ibm-plex-mono-bold`}>
+          <ul className={`${styles["mini-list"]} inter-bold`}>
             <li>Data</li>
             <li>Law</li>
             <li>Society</li>
