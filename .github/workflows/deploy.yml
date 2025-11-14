@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 18 }
-      - run: npm run build     # 依你的專案調整打包指令
+      - run: npm ci && npm run build     # 依你的專案調整打包指令
       - name: Deploy to Sociolegal-Lab.github.io
         uses: peaceiris/actions-gh-pages@v4
         with:
