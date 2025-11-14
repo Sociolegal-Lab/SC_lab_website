@@ -5,7 +5,7 @@ import "../../styles/font.css";
 
 export default function Landing() {
   return (
-    <section className={styles["landing"]} role="banner" aria-labelledby="brand">
+    <section className={`${styles["mr-root"]} ${styles["landing"]}`} role="banner" aria-labelledby="brand">
       <div>
         <img src={logo} className={styles["brand-img"]} alt="Lab Logo" />
       </div>

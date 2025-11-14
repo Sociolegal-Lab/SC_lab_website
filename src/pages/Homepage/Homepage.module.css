@@ -1,21 +1,16 @@
-/* 版面維持深色主題 */
 .mr-root { 
   margin: 0; /* 確保背景佔滿整個視窗 */
   min-height: 100vh; /* 保證全螢幕高度 */
-  background: #2A2C2F; 
+  background: #364DFA; 
   color: #fff; 
 }
-.mr-root-projects { 
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #2B41C1, #1F296F 30%, #1F296F);
-  color: #fff; 
-}
+
 .mr-container { 
   position: relative; 
   max-width: 1200px; 
   margin: 0 auto; 
   padding: 2rem 1rem; 
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
 /* 橫向滑動容器與每頁（共用定義） */
@@ -54,7 +49,6 @@
 .mr-photo,
 .mr-photo.placeholder {
   width: clamp(280px, 38vw, 540px);
-  height: clamp(280px, 38vw, 540px);
   border-radius: 2px;
   object-fit: cover;
 }
@@ -62,18 +56,23 @@
 /* 右側文字 */
 .mr-text { max-width: 700px; }
 .mr-name {
-  margin: 0 0 1rem 0;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.05;
-  font-size: clamp(2.2rem, 6vw, 5.5rem); /* 巨大標題 */
-  letter-spacing: -0.01em;
+  font-style: normal;
 }
+
 .mr-bio {
   margin: 0;
   font-size: clamp(1rem, 1.1vw + 0.8rem, 1.75rem);
   line-height: 1.4;
   color: rgba(255,255,255,0.92);
   font-weight: 700;
+  /* ★ 兩端對齊（左右對齊） */
+  text-align: justify;
+  /* ★ 讓中文兩端對齊效果更自然（可選，但推薦） */
+  text-justify: inter-ideograph;
+  padding-right: 5px;
 }
 
 /* 圓形箭頭（對齊截圖） */
@@ -95,7 +94,6 @@
 /* 你原本的隱藏卷軸 class 可沿用 */
 .mr-no-scrollbar::-webkit-scrollbar { display: none; }
 .mr-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
 
 /* === NewsRoll: screenshot look & feel (append-only) ====================== */
 /* Heading（巨型襯線字） */
@@ -125,19 +123,19 @@
   line-height: 1.15;
   font-size: clamp(1.6rem, 3.2vw, 2.4rem);
   letter-spacing: 0.1px;
-  color: #fff;
+  color: #364DFA;
 }
 .mr-card-subtitle {
   margin: 0 0 1.2rem 0;
   font-size: clamp(1rem, 1.05vw + 0.85rem, 1.35rem);
   line-height: 1.45;
-  color: rgba(255,255,255,0.72);
+  color: #9BA6FD;
   font-weight: 600;
 }
 .mr-card-date {
   font-size: 0.98rem;
   line-height: 1;
-  color: rgba(255,255,255,0.88);
+  color: #9BA6FD;
   font-weight: 700;
 }
 
@@ -157,7 +155,7 @@
 }
 
 /* === 版面寬度：讓兩個獨立 div 都與內容寬度一致 =========================== */
-.mr-title { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1rem 0;}
+.mr-title { max-width: 1100px; margin: 100px auto; padding: 2.5rem 1rem 0;text-align: center;}
 .mr-stage-wrap { max-width: 1100px; margin: 0 auto; padding: 1rem 1rem 2rem; }
 
 /* === 讓「箭頭＋框框」在 div 中垂直置中 ================================ */
@@ -184,19 +182,6 @@
   text-align: center;
 }
 
-/* 第一頁 hero slide，填滿舞台高度與寬度 */
-.mr-hero {
-  padding: 0;                /* 不要卡片的邊距 */
-}
-
-.mr-hero-img {
-  display: block;
-  width: 100%;
-  height: clamp(260px, 36vh, 520px); /* 與 .mr-stage 的 min-height 對齊 */
-  object-fit: cover;         /* 等比例裁切填滿 */
-  border-radius: 4px;        /* 視覺上與卡片一致（可選） */
-}
-
 
 /* hover/active 的微縮放仍保留手感 */
 .mr-stage .mr-nav:hover { transform: scale(1.04); }
@@ -209,26 +194,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
-  background: linear-gradient(to bottom, #2A2C2F, #4f4e4e, #1c1c1c);
+  padding-top: 60px;
+  padding-bottom: 20px;
   font-family: Arial, sans-serif;
-  color: white;
   margin: 0; /* 確保背景佔滿整個視窗 */
   min-height: 100vh; /* 保證全螢幕高度 */
+  background: #fff;
 }
 
 .title {
   width: 60%;
   font-family: "inter";
-  text-align: left;
-  font-size: 40px;
+  text-align: center;
+  font-size: 72px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #364DFA;
+  padding-top: 10px;
 }
 
 /* ===================== Landing Section ===================== */
 .landing {
-  background: linear-gradient(to bottom, #121732 0%, #17306d 45%, #2b41c1 100%);
   color: #fff;
   min-height: 100vh;
   padding: 32px 24px;
@@ -310,7 +296,6 @@
 
 /* === About Us Section (with image shapes) =============================== */
 .mr-about {
-  background: #2b41c1;
   color: #fff;
   min-height: 360px;
   padding: 40px 24px;

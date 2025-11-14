@@ -2,16 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
-import projectIndex from "../../data/projects/projects_index.json"; // ← 檔名陣列
+import projectIndex from "../../data/projects/projects_index.json";
 import "../../styles/font.css";
 
-// 轉換專案物件到 UI 需要的欄位
+/** 🔥 只依 JSON photo 來決定圖片路徑 */
+const resolvePhoto = (photo) => {
+  if (!photo) return "";
+
+  // 若是 URL 或絕對路徑
+  if (photo.startsWith("/") || /^https?:\/\//i.test(photo)) return photo;
+
+  // 其餘視為相對於 data/projects
+  try {
+    return new URL(`../../data/projects/${photo}`, import.meta.url).href;
+  } catch {
+    return "";
+  }
+};
+
+/** 🔥 normalize 僅使用 JSON 的值，不再推測 id 或圖片 */
 const normalize = (p = {}) => ({
+  id: p.id,
   name: p.name || "",
   bio: p.brief_introduction || p.introduction || "",
-  photo: p.photo
-    ? new URL(`../../data/projects/${p.photo}`, import.meta.url).href
-    : "",
+  photo: resolvePhoto(p.photo),
 });
 
 export default function ProjectsRoll({
@@ -21,26 +35,21 @@ export default function ProjectsRoll({
   className = "",
   loop = true,
 }) {
-  // ← 用 state 保存真正要渲染的 items
   const [items, setItems] = useState([]);
 
-  // 一次載入所有 project_X.json，並依 index 的順序整理
   useEffect(() => {
     let cancelled = false;
 
     const load = async () => {
-      // 1) 載入資料來源：優先用 props.items（若外層傳進來）
       if (itemsProp && itemsProp.length) {
         setItems(itemsProp);
         return;
       }
 
-      // 2) 用 import.meta.glob 掃描資料夾中的所有 json（eager: true 直接同步載入）
       const modules = import.meta.glob("../../data/projects/*.json", {
         eager: true,
       });
 
-      // 3) 依 index 指定的檔名排序 & 取出 default
       const loaded = projectIndex
         .map((filename) => {
           const key = `../../data/projects/${filename}`;
@@ -53,9 +62,7 @@ export default function ProjectsRoll({
     };
 
     load();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [itemsProp]);
 
   const scrollerRef = useRef(null);
@@ -64,31 +71,24 @@ export default function ProjectsRoll({
   const autoplayRef = useRef(null);
   const resumeTimerRef = useRef(null);
 
-  // 依中心點判定目前卡片
+  // 中心點決定 active
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
 
-    let ticking = false;
     const onScroll = () => {
-      if (ticking) return;
-      window.requestAnimationFrame(() => {
-        const center = el.scrollLeft + el.clientWidth / 2;
-        let nearest = 0;
-        let minDist = Infinity;
-        Array.from(el.children).forEach((child, i) => {
-          const c = child.offsetLeft + child.offsetWidth / 2;
-          const d = Math.abs(c - center);
-          if (d < minDist) {
-            minDist = d;
-            nearest = i;
-          }
-        });
-        setActive(nearest);
-        activeRef.current = nearest;
-        ticking = false;
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let nearest = 0;
+      let minDist = Infinity;
+
+      Array.from(el.children).forEach((child, i) => {
+        const c = child.offsetLeft + child.offsetWidth / 2;
+        const d = Math.abs(c - center);
+        if (d < minDist) { minDist = d; nearest = i; }
       });
-      ticking = true;
+
+      setActive(nearest);
+      activeRef.current = nearest;
     };
 
     el.addEventListener("scroll", onScroll, { passive: true });
@@ -96,7 +96,7 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳操作
+  // 拖曳
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -124,9 +124,7 @@ export default function ProjectsRoll({
 
     const onUp = (e) => {
       isDown = false;
-      try {
-        el.releasePointerCapture?.(e.pointerId);
-      } catch {}
+      el.releasePointerCapture?.(e.pointerId);
       el.style.cursor = "";
     };
 
@@ -147,7 +145,6 @@ export default function ProjectsRoll({
     const el = scrollerRef.current;
     if (!el) return;
     const child = el.children[i];
-    if (!child) return;
     el.scrollTo({ left: child.offsetLeft, behavior: "smooth" });
   };
 
@@ -165,7 +162,6 @@ export default function ProjectsRoll({
 
   const startAutoplay = () => {
     stopAutoplay();
-    if (!items.length) return;
     autoplayRef.current = window.setInterval(() => {
       const next = (activeRef.current + 1) % items.length;
       scrollToIndex(next);
@@ -181,84 +177,70 @@ export default function ProjectsRoll({
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
     resumeTimerRef.current = window.setTimeout(
-      () => startAutoplay(),
+      startAutoplay,
       pauseAfterInteractMs
     );
   };
 
   useEffect(() => {
     startAutoplay();
-    return () => {
-      stopAutoplay();
-      if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    };
+    return () => stopAutoplay();
   }, [items.length, interval]);
 
   return (
-    <div className={`${styles["mr-root-projects"]} ${className || ""}`}>
-      <br />
+    <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 左右箭頭 */}
         <button
           aria-label="上一張"
           className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
-          onClick={() => {
-            go(-1);
-            pauseAutoplay();
-          }}
+          onClick={() => { go(-1); pauseAutoplay(); }}
         >
-          <img src={left_arrow} alt="" height={50} />
+          <img src={left_arrow} alt="" />
         </button>
         <button
           aria-label="下一張"
           className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
-          onClick={() => {
-            go(1);
-            pauseAutoplay();
-          }}
+          onClick={() => { go(1); pauseAutoplay(); }}
         >
-          <img src={right_arrow} alt="" height={50} />
+          <img src={right_arrow} alt="" />
         </button>
 
-        {/* 專案卡片 */}
-        <div
-          ref={scrollerRef}
-          className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
-        >
+        <div ref={scrollerRef} className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}>
           {items.map((m, i) => (
-            <section key={i} className={styles["mr-section"]}>
+            <section key={m.id || i} className={styles["mr-section"]}>
               <article className={styles["mr-profile"]}>
                 <div className={styles["mr-photo-wrap"]}>
                   {m.photo ? (
-                    <img className={styles["mr-photo"]} src={m.photo} alt={m.name} />
+                    <img
+                      className={styles["mr-photo"]}
+                      src={m.photo}
+                      alt={m.name}
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => (e.currentTarget.style.display = "none")}
+                    />
                   ) : (
                     <div className={styles["mr-photo"]} />
                   )}
                 </div>
                 <div className={styles["mr-text"]}>
-                  <h2 className={`inter-extrabold ${styles["mr-name"]}`}>{m.name}</h2>
-                  <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio}</p>
+                  <h2 className={styles["mr-name"]}>{m.name}</h2>
+                  <p className={styles["mr-bio"]}>{m.bio}</p>
                 </div>
               </article>
             </section>
           ))}
         </div>
 
-        {/* 點點導航 */}
         <div className={styles["mr-dots"]}>
           {items.map((_, i) => (
             <button
               key={i}
-              aria-label={`跳到第 ${i + 1} 張`}
-              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] ?? "" : ""}`}
-              onClick={() => {
-                scrollToIndex(i);
-                pauseAutoplay();
-              }}
+              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] : ""}`}
+              onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
             />
           ))}
         </div>
-        <br />
       </div>
     </div>
   );

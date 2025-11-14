@@ -3,6 +3,7 @@ import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 import membersData from "../../data/members/members.json";
+
 import "../../styles/font.css";
 
 /** 將 members.json 欄位轉成渲染用格式 */
@@ -178,6 +179,11 @@ export default function MembersRoll({
           <img src={right_arrow} alt="" height={50} />
         </button>
 
+        <div className="membersroll-firstpage">
+
+
+        </div>
+
         {/* 成員區塊 */}
         <div ref={scrollerRef} className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}>
           {items.length === 0 ? (
@@ -204,9 +210,9 @@ export default function MembersRoll({
 
                   {/* 文字 */}
                   <div className={styles["mr-text"]}>
-                    <h2 className={`inter-extrabold ${styles["mr-name"]}`}>
+                    <p className={styles["mr-name"]}>
                       {m.name || "Unnamed Member"}
-                    </h2>
+                    </p>
                     <div className={styles["scroll-box"]} tabIndex={0}>
                       <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio || "—"}</p>
                     </div>

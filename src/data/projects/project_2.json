@@ -1,4 +1,5 @@
 {
+    "id":2,
     "name": "LeArNER: Few-shot Legal Argument Named Entity Recognition",
     "duration": "2020-2040",
     "contributors":[
@@ -8,5 +9,6 @@
     ],
     "link": "https://dl.acm.org/doi/10.1145/3594536.3595144",
     "brief_introduction": "Our proposed NER model for legal texts, LeArNER, utilizes minimal annotated data for model training to reduce expenses associated with corpus collection and training.",
-    "introduction": "Our proposed NER model for legal texts, LeArNER, utilizes minimal annotated data for model training to reduce expenses associated with corpus collection and training. We evaluated our model on a dataset of constitutional legal cases from Taiwan, written in traditional Chinese, and achieved an impressive F1 score of 94.88% for 13 entity types. LeArNER's performance was best achieved with a training sample of only 2000 sentences, highlighting its efficiency and potential for further legal NER research."
+    "introduction": "Our proposed NER model for legal texts, LeArNER, utilizes minimal annotated data for model training to reduce expenses associated with corpus collection and training. We evaluated our model on a dataset of constitutional legal cases from Taiwan, written in traditional Chinese, and achieved an impressive F1 score of 94.88% for 13 entity types. LeArNER's performance was best achieved with a training sample of only 2000 sentences, highlighting its efficiency and potential for further legal NER research.",
+    "photo":"project_2.png"
 }

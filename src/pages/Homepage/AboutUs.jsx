@@ -7,7 +7,7 @@ import societyImg from "../../data/homepage/SOCIETY.png";
 
 export default function AboutUs() {
   return (
-    <section className={styles["mr-about"]}>
+    <section className={`${styles["mr-about"]} ${styles["mr-root"]}`} aria-labelledby="about-us-title">
       <div className={styles["mr-about__inner"]}>
         <h2 className={`inter-bold ${styles["mr-about__title"]}`}>About Us</h2>
 
@@ -16,10 +16,6 @@ export default function AboutUs() {
             <img src={dataImg} alt="DATA" className={styles["mr-shape-img"]} />
             <div className={`inter-extrabold ${styles["mr-about__label"]}`}>DATA</div>
             <div className={`inter-bold ${styles["mr-about__lines"]}`}>
-              <div>50465406845</div>
-              <div>05306543032</div>
-              <div>053022000</div>
-              <div>000</div>
             </div>
           </div>
 
@@ -27,10 +23,6 @@ export default function AboutUs() {
             <img src={lawImg} alt="LAW" className={styles["mr-shape-img"]} />
             <div className={`inter-extrabold ${styles["mr-about__label"]}`}>LAW</div>
             <div className={`inter-bold ${styles["mr-about__lines"]}`}>
-              <div>50465406845</div>
-              <div>05306543032</div>
-              <div>053022000</div>
-              <div>000</div>
             </div>
           </div>
           
@@ -38,10 +30,6 @@ export default function AboutUs() {
             <img src={societyImg} alt="SOCIETY" className={styles["mr-shape-img"]} />
             <div className={`inter-extrabold ${styles["mr-about__label"]}`}>SOCIETY</div>
             <div className={`inter-bold ${styles["mr-about__lines"]}`}>
-              <div>50465406845</div>
-              <div>05306543032</div>
-              <div>053022000</div>
-              <div>000</div>
             </div>
           </div>
         </div>
