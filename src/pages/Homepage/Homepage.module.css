@@ -7,10 +7,9 @@
 
 .mr-container { 
   position: relative; 
-  max-width: 1200px; 
   margin: 0 auto; 
-  padding: 2rem 1rem; 
   padding-top: 70px;
+  max-width: 2000px;
 }
 
 /* 橫向滑動容器與每頁（共用定義） */
@@ -20,6 +19,7 @@
   overflow-x: auto; 
   scroll-snap-type: x mandatory; 
   scroll-behavior: smooth; 
+  width: 90%;
 }
 .mr-section { 
   scroll-snap-align: start; 
@@ -49,6 +49,13 @@
 .mr-photo,
 .mr-photo.placeholder {
   width: clamp(280px, 38vw, 540px);
+  height: clamp(280px, 38vw, 540px);
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.mr-project-photo {
+  width: clamp(280px, 38vw, 540px);
   border-radius: 2px;
   object-fit: cover;
 }
@@ -58,21 +65,23 @@
 .mr-name {
   font-family: "Inter", sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
+  font-weight: 600;
   font-style: normal;
+  line-height: 1.1 ;
 }
 
 .mr-bio {
-  margin: 0;
+  margin: 10px;
   font-size: clamp(1rem, 1.1vw + 0.8rem, 1.75rem);
-  line-height: 1.4;
+  line-height: 1.25;
   color: rgba(255,255,255,0.92);
-  font-weight: 700;
+  font-weight: 400;
   /* ★ 兩端對齊（左右對齊） */
   text-align: justify;
   /* ★ 讓中文兩端對齊效果更自然（可選，但推薦） */
   text-justify: inter-ideograph;
   padding-right: 5px;
+/*  line-height: 1.1;*/
 }
 
 /* 圓形箭頭（對齊截圖） */
@@ -288,7 +297,6 @@
   list-style: none;
   padding: 0;
   margin: 12px 0 0 4px;
-  color: #ffd76a;
   letter-spacing: 0.3px;
   line-height: 1.1;
 }

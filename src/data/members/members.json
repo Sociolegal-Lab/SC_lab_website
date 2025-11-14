@@ -1,7 +1,7 @@
 [
     {"id":"1", 
     "Chinese_name":"黃鈞喆", 
-    "English_name":"Chun-Che, Huang", 
+    "English_name":"Chun-Che Huang", 
     "title": "HarryHuang", 
     "research_interests": "Applying AI to legal texts through NLP, RAG, and knowledge modeling, enhancing legal information accessibility.",
     "academic_background": "First-year Master’s student",
@@ -15,7 +15,7 @@
     },
     {"id":"2", 
     "Chinese_name":"周穆可", 
-    "English_name":"Mu-Ko, Chou", 
+    "English_name":"Mu-Ko Chou", 
     "title": "Master’s student", 
     "research_interests": "AI ethics and the integration of diverse artificial intelligence technologies",
     "academic_background": "First-year Master’s student",
@@ -29,7 +29,7 @@
     },
     {"id":"3", 
     "Chinese_name":"侯欽祐", 
-    "English_name":"Chin-Yu, Hou", 
+    "English_name":"Chin-Yu Hou", 
     "title": "Multidisciplinary Humanities Explorer", 
     "research_interests": "Digital Humanities",
     "academic_background": "Senior undergraduate student",
@@ -40,6 +40,20 @@
         null
     ],
     "short_bio": "I am a senior undergraduate in History at NCKU, focusing on Digital Humanities. My interests include applying AI, especially language models and retrieval techniques, to expand research possibilities."
+    },
+    {"id":"4", 
+    "Chinese_name":"牛俊傑", 
+    "English_name":"CHUN-CHIEH NIU", 
+    "title": "Human being", 
+    "research_interests": "Developing sports tech with LLMs",
+    "academic_background": "First-year Master’s student",
+    "email": "nm6144038@gs.ncku.edu.tw",
+    "links":[
+        "https://github.com/CCNiu",
+        null,
+        null
+    ],
+    "short_bio": "I am from Taipei and studied in the Department of Engineering Science at National Cheng Kung University. My hobbies include going out on my motorcycle, and my dream is to sleep every day. I am also the CTO of TechNSport Technology. My research interests include robotics, the Internet of Things (IoT), large language models (LLMs), and sports science."
     }
 ]
   
