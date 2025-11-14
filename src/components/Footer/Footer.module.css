@@ -1,7 +1,9 @@
 .footer {
-    background-color: #17181A;
-    padding: 5rem 10rem;
+    background-color: #0E133F;
+    padding: 8rem 10rem;
     min-height: 100%;
+    display: flex;
+    flex-direction: column;
 
     --margin-between-two-info-columns-L: 10%;
     --margin-between-two-info-columns-R: 5%;
@@ -22,7 +24,7 @@
 
 .heading {
     font-size: 1.5rem;
-    color: #CDA514;
+    color: #FFC23A;
     margin-bottom: 0.2rem;
 }
 
@@ -34,16 +36,20 @@
     margin-right: auto;
     border: 0px;
     height:2.5px;
-    background-color: #7D7B5B;
+    background-color: #FFC23A;
 }
 
 /* Section 1 */ 
 .parent{
     display: flex;
-    margin-bottom: 10px;
 }
 .sec1_L{
     margin-right: 14%;
+    margin-bottom: 1rem;
+}
+
+.sec1_R{
+    margin-bottom: 2rem;
 }
 
 .slogan{
@@ -68,7 +74,7 @@
 
 
 .p {
-    color: #D5D5D5;
+    color: #B1B3BD;
     width:auto;
     height: auto;
     font-size: 1.5em;
@@ -84,7 +90,7 @@
 /* link */
 .li {
     font-size: 1.5em;
-    color: #B7B7B7;
+    color: #ffffff;
     text-decoration-line: underline;
     text-underline-offset: 4px;
     margin: 0.6rem 0px;
@@ -97,12 +103,18 @@
 }
 
 /* Section 2 */
+.section2{
+    margin-bottom: 8rem;
+}
+
+
+
 .info_mother{
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     /* color of text */
-    color: #9D821D;
+    color: #FFFFFF;
     flex-direction: row;
 }
 
@@ -167,19 +179,18 @@
     min-height: 2.5rem;
     max-height: 2.5rem;
     /* color of icon (otherwise they inherite from <button>) */
-    color: #9D821D;
+    color: #CDD3FE;
 }
 
 
 /* Section 3 */
 .fine{
     font-size: 0.8rem;
-    color: #BABABA;
+    color: #B1B3BD;
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 5rem;
-    
+    margin-top: auto;
 }
 
 .credit{

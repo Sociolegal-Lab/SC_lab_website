@@ -15,7 +15,13 @@ margin: 0 和 padding: 0：瀏覽器通常會為 body 元素預設 8px 的 margi
   height: 100%;
   margin: 0;
   padding: 0;
+  
 }
+
+html body{
+  overflow-x: hidden;
+}
+
 body {
   /* 行高統一，若要調整可討論 */
   line-height: 1.5;

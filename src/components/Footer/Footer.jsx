@@ -20,19 +20,19 @@ function Footer(){
             </div>
  
             {/* Right side */}
-            <div style={{flex: 'auto'}} className="inter-bold">
+            <div style={{flex: 'auto'}} className={`${style.sec1_R} inter-bold`}>
                 <div className={`${style.heading}`}>QUICK LINKS</div>
                 <hr className={style.hr}/>
                 <ul >
-                    <Link to="/SC_lab_website/"><li className={style.li}>Home</li></Link>
-                    <Link to="/SC_lab_website/projects"><li className={style.li}>Projects</li></Link>
-                    <Link to="/SC_lab_website/members"><li className={style.li}>Members</li></Link>
-                    <Link to="/SC_lab_website/news"><li className={style.li}>News</li></Link>
+                    <li className={style.li}><Link to="/SC_lab_website/">Home</Link></li>
+                    <li className={style.li}><Link to="/SC_lab_website/projects">Projects</Link></li>
+                    <li className={style.li}><Link to="/SC_lab_website/members">Members</Link></li>
+                    <li className={style.li}><Link to="/SC_lab_website/news">News</Link></li>
                 </ul>
             </div>
         </section>
 
-        <section className="inter-bold">
+        <section className={`inter-bold ${style.section2}`}>
             <div className={`${style.heading}`}>CONTACT US</div>
             <hr className={style.hr}/>
 
@@ -94,13 +94,13 @@ function Footer(){
 
 
         <section className={`inter-medium ${style.fine}`} >
-            <div>© 2025 Sociolegal Computing Lab</div>
+            <div style= {{marginRight: "1rem"}}>© 2025 Sociolegal Computing Lab</div>
             {/* TODO: Add link to design credit */}
             <div>
                  Designed 🎨 & Built 🏗️ by {'\u0020'}
                 <a className={style.credit} href="https://github.com/pluviophilezack" target="_blank" rel="noopener noreferrer">PluviophileZack</a> 
                 {'\u0020'}and{'\u0020'}
-                <a className={style.credit} href="https://https://github.com/thomaschen9329.com/pluviophilezack" target="_blank" rel="noopener noreferrer">ThomasChen</a>
+                <a className={style.credit} href="https://github.com/thomaschen9329" target="_blank" rel="noopener noreferrer">ThomasChen</a>
 
             </div>
         </section>

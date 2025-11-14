@@ -1,6 +1,8 @@
 .background{
-  background-color: transparent;
+  background-color:transparent;
+  
 }
+
 
 .marginLR {
   margin: 0px 6rem;
@@ -24,8 +26,8 @@
 .circle_background{
   position: relative;
   z-index: 1; /* 確保文字在上層 */
-  color: black;
-  width: 33rem;
+  color: rgb(255, 255, 255);
+  width: 38rem;
   flex-shrink: 0;
 
   display: flex;
@@ -34,8 +36,6 @@
 
   overflow-wrap: break-word;
   hyphens: auto;
-
-  
 }
 
 .circle_background::before {
@@ -43,12 +43,34 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 52rem;   
+  width: 60rem;   
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: #0D2841;
+  background: #B786FF;
   transform: translate(-33%, -28%); /*調整圓心位置*/
   z-index: -1;    /* 放在文字後面 */
+
+}
+
+.github_button{
+  width:75px;
+  height: 75px;
+}
+
+.circle_icon_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px; /* Make it larger than the 16px SVG */
+    height: 75px;
+    background-color: #ffffff;
+    border-radius: 50%; /* Makes the box a circle */
+}
+.circle_icon_wrapper .icon {
+    /* Ensure the SVG stays its original size */
+    width: 55px;
+    height: 55px;
+    color: #0e133f
 }
 
 
@@ -64,15 +86,17 @@
 
 
 .subtitle{
-  color:#BDBDBD;
+  color:#ffffff;
   font-size:1.4rem;
-  width: 100%;
+  width: 95%;
+  overflow-wrap: break-word;
+  
 }
 
 
 
 .icon{
-  color: #BAE1FF;
+  color: #000;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -82,6 +106,7 @@
   max-width: auto;
   font-size: 1.4rem;
   margin-top: 2rem; /* Lower than the name of project at its right side. */
+  color: #9BA6FD;
 }
 
 /* introduction wrapping automatically */
@@ -92,16 +117,17 @@
     gap: 0px;
   }
   .introduction{
-    margin-top: 15rem;
+    margin-top: 25rem;
   }
 } 
   /* Circle shrink!! Following setting follow the size of circle. (manually)*/
   @media (max-width: 700px) {
   .circle_background{
-    width:20rem;
+    max-width:20rem;
   }
   .circle_background::before {
-    width: 33rem;
+    width: 43rem;
+    transform: translate(-48%, -20%);
   } 
 
   .head{
@@ -115,22 +141,34 @@
   .L { font-size: 3rem} 
   .M { font-size: 2.5rem }
   .S { font-size: 1.5rem}
-  .XS { font-size:1rem}
+  .XS { font-size:1.5rem}
+
+  .subtitle{
+    font-size: 1.2rem;
+    width: 90%;
+    
+  }
+
+  .introduction{
+    margin-top: 20rem;
+  }
+
+
 } 
 
 @media (max-width: 400px) {
   .circle_background{
-    width:18rem;
+    width:16.5rem;
   }
   .circle_background::before {
-    transform: translate(-40%, -30%);
+    transform: translate(-61%, -40%);
   } 
 
   .XL { font-size:2.5rem }
   .L { font-size: 2rem} 
   .M { font-size: 1.5rem }
   .S { font-size: 1.2rem}
-  .XS { font-size:1rem}
+  .XS { font-size:1.2rem}
 
   .subtitle{
     font-size: 1rem;
@@ -157,7 +195,7 @@
 /* put into your global CSS or component CSS (higher specificity if needed) */
 .markdown {
   font-family: "Inter", sans-serif;
-  color: #111;
+  color: #9BA6FD;
   line-height: 1.6;
   word-break: break-word;
   font-size: 1.4rem;
@@ -169,6 +207,7 @@
   margin: 1.2rem 0 0.6rem;
   line-height: 1.2;
   font-weight: 700;
+  color: #B786FF;
 }
 
 /* paragraphs */
@@ -197,8 +236,8 @@
   margin: 0 0 1rem;
   padding-left: 1rem;
   border-left: 3px solid #ddd;
-  color: #555;
-  background: #fafafa;
+  color: #9BA6FD;
+  background: #f6f8fa;
 }
 
 /* code & pre */
@@ -236,26 +275,43 @@
 
 /* links */
 .markdown a {
-  color: #0b63ff;
+  color: #364DFA;
   text-decoration: underline;
 }
 
 /* switch page */
 .switch{
   display: flex; 
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
   margin: 3rem 0px;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size: 1.6rem;
 }
 
+
+
 .switch_left{
-    color: #FFDD75;
-    font-size: 1.6rem; 
+    color: #FFB33A;
+    display: inline-block;
+    width: auto;
+    
+    
 }
 
 .switch_right{
-    color: #FFDD75;
-    font-size: 1.6rem; 
+    color: #FFB33A;
     display: inline-block;
+    width: auto;
     text-align: right;
+    margin-left: auto;
+
+}
+
+@media (max-width:700px){
+  .switch{
+    font-size: 1.4rem;
+  }
 }

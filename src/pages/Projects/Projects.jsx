@@ -1,4 +1,3 @@
-import { useState } from "react";
 import style from "./Projects.module.css";
 import { Link } from "react-router-dom";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
@@ -9,8 +8,8 @@ const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg
 
 function Projects() {
   return (
-    <>
-      <div className={`${style.title} ${style.marginLR} rufina-bold`}>
+    <div className={style.back}>
+      <div className={`${style.title} ${style.marginLR} inter-bold`}>
         Featured Projects
       </div>
 
@@ -24,7 +23,6 @@ function Projects() {
 
       <ul
         className={`${style.shelf} ${style.marginLR}`}
-        style={{ backgroundColor: "gray" }}
       >
         {Object.entries(project_data).map(([path, mod]) => {
           // path = "../../data/projects/project_1.json"
@@ -53,7 +51,7 @@ function Projects() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
 

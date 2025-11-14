@@ -9,7 +9,7 @@ function News() {
   const [selectedYear, setSelectedYear] = useState("All");
   
   // Determine how many news should display in a page
-  const AMOUNT_OF_NEWS = 15;
+  const AMOUNT_OF_NEWS = 12;
   const [newslimit, setNewslimit] = useState(AMOUNT_OF_NEWS);
 
   const handleSearchResult = useCallback((results) => {
@@ -41,12 +41,14 @@ function News() {
   // Display news
   const displayNews = selectedNews.slice(0, newslimit);
 
-console.log(news_covers);
+  useEffect(()=>{
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [selectedYear]);
 
   return (
     <>
-      <div className={`${style.title} ${style.marginLR} rufina-bold`}>
-        Keep up with SC Lab!
+      <div className={`${style.title} ${style.marginLR} inter-bold`}>
+        Latest News from Our Lab
       </div>
       <div className={style.marginLR}>
         {/* <Search
@@ -66,11 +68,11 @@ console.log(news_covers);
         /> */}
       </div>
       <ul
+        lang="en"
         className={` ${style.shelf} ${style.marginLR}`}
-        style={{ backgroundColor: "gray" }}
       >
         {displayNews.map((n) => (
-          <li key={n.id} className={style.piece}>
+          <li key={n.id} className={style.piece} >
             <div className={style.img43}>
               <img
               // Checking if the news cover image exists. If not, it will render 0.png as a fallback, preventing errors when the image is missing.
@@ -82,7 +84,7 @@ console.log(news_covers);
                 alt="news picture"
               />
             </div>
-            <div className={`${style.date} inter-bold`}>
+            <div className={`${style.date} roboto-condensed-medium`}>
               {new Date(n.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -101,20 +103,19 @@ console.log(news_covers);
       {/* switch page */}
       {newslimit < selectedNews.length && (
         <div
-          className={`${style.switch_page} ${style.marginLR} inter-bold`}
+          className={`${style.switch_page} ${style.marginLR} roboto-condensed-bold`}
           onClick={() => setNewslimit((existing_news) => existing_news + 9)}
         >
-          Older ---&gt;
+          Older <span className="inter-bold" >---&gt;</span>
         </div>
       )}
       {/* year tab */}
-      <div className={`${style.news_nav_bar} ${style.marginLR} inter-bold`}>
+      <div className={`${style.news_nav_bar} ${style.marginLR} roboto-condensed-bold`}>
         <div>
           <button
             onClick={() => {
               setSelectedYear("All");
               setNewslimit(AMOUNT_OF_NEWS);
-              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             All
@@ -126,7 +127,6 @@ console.log(news_covers);
               onClick={() => {
                 setSelectedYear(year);
                 setNewslimit(AMOUNT_OF_NEWS);
-                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
               {year}
@@ -134,6 +134,8 @@ console.log(news_covers);
           </div>
         ))}
       </div>
+      {/* band */}
+      <div style={{background: "#CDD3FE", height: "6px", width:"100vw"}}> </div>
     </>
   );
 }
