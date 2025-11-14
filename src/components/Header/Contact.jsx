@@ -106,7 +106,7 @@ const StyledWrapper = styled.div`
 const Contact = ({class_name_location}) => {
   // TODO: Change border color depending on class_name_location
   console.log("Contact.jsx: ", class_name_location)
-  const email="Amy@example.edu"
+  const email="amylin0301@gs.ncku.edu.tw"
   const subject="Inquiry About Lab Information and Scheduling a Meeting / Request for a Meeting with Professor / (Other request...)"
   const body="Hi there \nPlease briefly describe your request below. \nIf you are asking to schedule an appointment, please provide at least three time slots when you are available (include date, start time, and time zone). \nPlease sign your full name — anonymous messages will not be answered. \nOptional contact info (if different from this email): [phone / alternative email] \nThanks, \n[Your full name]"
   const cc="shaomanlee@gs.ncku.edu.tw"

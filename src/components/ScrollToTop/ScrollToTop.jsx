@@ -20,8 +20,6 @@ function ScrollToTop({ children }) {
     currentMain.style.transition = 'none'; 
     
     // 3. 立即將狀態設為 false (瞬間透明)
-
-
     setVisible(false); 
 
     let rafHandle;
