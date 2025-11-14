@@ -181,7 +181,22 @@
   font-size: 50pt;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
 }
+
+/* 第一頁 hero slide，填滿舞台高度與寬度 */
+.mr-hero {
+  padding: 0;                /* 不要卡片的邊距 */
+}
+
+.mr-hero-img {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 36vh, 520px); /* 與 .mr-stage 的 min-height 對齊 */
+  object-fit: cover;         /* 等比例裁切填滿 */
+  border-radius: 4px;        /* 視覺上與卡片一致（可選） */
+}
+
 
 /* hover/active 的微縮放仍保留手感 */
 .mr-stage .mr-nav:hover { transform: scale(1.04); }
