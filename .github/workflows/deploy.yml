@@ -1,0 +1,20 @@
+# .github/workflows/deploy.yml
+name: Deploy new site to org Pages
+on:
+  push:
+    branches: [ deploy ]   # 依你的預設分支調整
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 18 }
+      - run: npm run build     # 依你的專案調整打包指令
+      - name: Deploy to Sociolegal-Lab.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          external_repository: Sociolegal-Lab/Sociolegal-Lab.github.io
+          publish_dir: ./dist            # 你的打包輸出資料夾
+          publish_branch: main           # 目標 repo 的發佈分支
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
