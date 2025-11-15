@@ -23,12 +23,12 @@ function Footer(){
             <div style={{flex: 'auto'}} className={`${style.sec1_R} inter-bold`}>
                 <div className={`${style.heading}`}>QUICK LINKS</div>
                 <hr className={style.hr}/>
-                <ul >
+                {/* <ul >
                     <li className={style.li}><Link to="/">Home</Link></li>
                     <li className={style.li}><Link to="/projects">Projects</Link></li>
                     <li className={style.li}><Link to="/members">Members</Link></li>
                     <li className={style.li}><Link to="/news">News</Link></li>
-                </ul>
+                </ul> */}
             </div>
         </section>
 

@@ -170,11 +170,11 @@ export default function NewsRoll({
               <section key={i} className={styles["mr-section"]}>
                 <article className={styles["mr-card"]} role="article" aria-roledescription="news item">
                   {/* 卡片標題 → Inter 800 */}
-                  <h3 className={`inter-extrabold ${styles["mr-card-title"]}`}>{m.title}</h3>
+                  <h3 className={`inter-bold ${styles["mr-card-title"]}`}>{m.title}</h3>
                   {/* 內文 → Inter 700 */}
-                  <p className={`inter-bold ${styles["mr-card-subtitle"]}`}>{m.subtitle}</p>
+                  <p className={`inter-medium ${styles["mr-card-subtitle"]}`}>{m.subtitle}</p>
                   {/* 日期 → Inter 500（若你偏好 700 也可改成 inter-bold） */}
-                  {m.date ? <div className={`inter-medium ${styles["mr-card-date"]}`}>{m.date}</div> : null}
+                  {m.date ? <div className={`roboto-condensed-medium ${styles["mr-card-date"]}`}>{m.date}</div> : null}
                 </article>
               </section>
             ))}
