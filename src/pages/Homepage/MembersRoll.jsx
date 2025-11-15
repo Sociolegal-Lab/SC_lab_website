@@ -214,7 +214,7 @@ export default function MembersRoll({
                       {m.name || "Unnamed Member"}
                     </p>
                     <div className={styles["scroll-box"]} tabIndex={0}>
-                      <p className={`inter-bold ${styles["mr-bio"]}`}>{m.bio || "—"}</p>
+                      <p className={`inter-medium ${styles["mr-bio"]}`}>{m.bio || "—"}</p>
                     </div>
                   </div>
                 </article>

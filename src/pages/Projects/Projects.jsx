@@ -13,7 +13,7 @@ function Projects() {
         Featured Projects
       </div>
 
-      <div className={`${style.subtitle} ${style.marginLR} inter-bold`}>
+      <div className={`${style.subtitle} ${style.marginLR} inter-medium`}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis augue sed dolor euismod pulvinar. Morbi placerat nunc ac massa auctor, at tempus ex viverra. 
         Integer ut dolor dictum, tincidunt tortor at, euismod mauris. Donec egestas leo a venenatis pellentesque. Vestibulum hendrerit tortor sapien, et fermentum turpis lacinia eu. 
         Nulla facilisi. Proin elementum porta est, at sollicitudin justo fermentum at. Mauris ligula sapien, vestibulum, enim a sodales hendrerit, est libero sagittis ante, sed venenatis dui nunc eget tellus.
@@ -41,7 +41,7 @@ function Projects() {
           const cover = project_covers[image_path];
 
           return (
-            <Link to={`/SC_lab_website/project-column/project_${id}`} key={path}><li className={style.piece}>
+            <Link to={`/project-column/project_${id}`} key={path}><li className={style.piece}>
               <div className={style.img43}>
                 <img src={cover} alt="cover of project" />
               </div>

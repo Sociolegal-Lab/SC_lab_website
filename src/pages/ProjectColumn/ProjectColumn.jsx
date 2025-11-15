@@ -118,12 +118,12 @@ function ProjectColumn() {
 
       {/* Switch page */}
       <div className={` ${style.switch} roboto-condensed-bold`} lang="eng">
-          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} 
+          <Link to={`/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} 
           className={style.switch_left}
           style={{visibility: prev_name ? "visible" : "hidden"}}>
             <span className="inter-bold">&lt;---</span> <br/> {prev_name}
           </Link>
-          <Link to={`/SC_lab_website/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} 
+          <Link to={`/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} 
           className={style.switch_right}
           style={{visibility: next_name ? "visible" : "hidden"}}>
             <span className="inter-bold">---&gt;</span><br/> {next_name} 

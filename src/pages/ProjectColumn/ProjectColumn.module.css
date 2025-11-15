@@ -123,7 +123,7 @@
   /* Circle shrink!! Following setting follow the size of circle. (manually)*/
   @media (max-width: 700px) {
   .circle_background{
-    max-width:20rem;
+    max-width:19rem;
   }
   .circle_background::before {
     width: 43rem;
@@ -140,8 +140,8 @@
   .XL { font-size:3.5rem }
   .L { font-size: 3rem} 
   .M { font-size: 2.5rem }
-  .S { font-size: 1.5rem}
-  .XS { font-size:1.5rem}
+  .S { font-size: 1.6rem}
+  .XS { font-size:1.6rem}
 
   .subtitle{
     font-size: 1.2rem;
@@ -161,17 +161,18 @@
     width:16.5rem;
   }
   .circle_background::before {
-    transform: translate(-61%, -40%);
+    transform: translate(-61%, -33%);
   } 
 
   .XL { font-size:2.5rem }
   .L { font-size: 2rem} 
   .M { font-size: 1.5rem }
-  .S { font-size: 1.2rem}
-  .XS { font-size:1.2rem}
+  .S { font-size: 1.4rem}
+  .XS { font-size:1.4rem}
 
   .subtitle{
     font-size: 1rem;
+    width: 60%;
   }
 } 
 
@@ -307,6 +308,7 @@
     width: auto;
     text-align: right;
     margin-left: auto;
+    padding-left: 10px;
 
 }
 

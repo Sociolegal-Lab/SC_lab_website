@@ -17,13 +17,13 @@ function App() {
         {/* element={<Layout/>} 告訴 react-router-dom（導航總管，透過 browser History API 監聽使用者在瀏覽器的行為，避免重新發送請求），當任何子層路由被匹配時，先渲染 <Layout/> 這個元素。這是React Router的預設行為模式 */}
         {/* react-router-dom 將在 <Layout/> 內部尋找 <Outlet/>，並將匹配到的子路由元件（例如 <Homepage/>、<News/>）渲染到  <Layout/> 內部 <Outlet/> 的位置。 */}
         <Route element={<Layout/>}>
-          <Route path="/SC_lab_website/" element={<Homepage/>}/>
-          <Route path="/SC_lab_website/news" element={<News/>}/>
-          <Route path="/SC_lab_website/projects" element={<Projects/>}/>
-          <Route path="/SC_lab_website/leader" element={<Leader/>}/>
-          <Route path="/SC_lab_website/members" element={<Members/>}/>
+          <Route path="/" element={<Homepage/>}/>
+          <Route path="/news" element={<News/>}/>
+          <Route path="/projects" element={<Projects/>}/>
+          <Route path="/leader" element={<Leader/>}/>
+          <Route path="/members" element={<Members/>}/>
           {/* Dynamic path, id is parameter. The id store in the return of useParams()*/}
-          <Route path="/SC_lab_website/project-column/:slug" element={<ProjectColumn/>}/>
+          <Route path="/project-column/:slug" element={<ProjectColumn/>}/>
           {/* react-router 由上而下依序配對，當 */}
           <Route path="*" element={<Homepage/>}/>
         </Route>

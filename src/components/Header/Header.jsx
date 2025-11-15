@@ -79,17 +79,17 @@ function Header() {
     {/* Left side */}
     <div className={style.nav_bar}>
 
-      <Link to="/SC_lab_website/" >
+      <Link to="/" >
         <img src={logo_src} alt= {logo_alt}/>
       </Link>
       {/* <div className={style.desktop_links}>
-        <Link to="/SC_lab_website/projects" >
+        <Link to="/projects" >
           <div className="inter-bold">Projects</div>
         </Link>
-        <Link to="/SC_lab_website/members" >
+        <Link to="/members" >
           <div className="inter-bold">Members</div>
         </Link>      
-        <Link to="/SC_lab_website/news" >
+        <Link to="/news" >
           <div className="inter-bold">News</div>
         </Link>
       </div> */}
