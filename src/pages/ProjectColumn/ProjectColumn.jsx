@@ -23,26 +23,26 @@ function ProjectColumn() {
     const {name, duration, contributors, link, brief_introduction, introduction} = content_json;
 
     // Get name of next and prev projects
-    const id_list = [];
+    const id_array = [];
     Object.entries(projects_json).map(([path, mod]) => {
       // path = "../../data/projects/project_1.json"
       // mod  = { default: { name: "...", brief_introduction: "..." } }
     const { id:n_of_ids, type } = extractIdFromFilePath(path) || {};
-    id_list.push(n_of_ids);
+    id_array.push(n_of_ids);
     });
 
+    const index_of_id_array = id_array.indexOf(parseInt(id, 10));
+    
     let prev_name = null;
-    const prev_id = parseInt(id, 10) - 1;
-    if (id_list.includes(prev_id)){
-      const mod_json_prev = projects_json[`../../data/projects/project_${prev_id}.json`];
+    if (id_array[index_of_id_array - 1] !== undefined){
+      const mod_json_prev = projects_json[`../../data/projects/project_${id_array[index_of_id_array - 1]}.json`];
       const content_json_prev = mod_json_prev?.default ?? mod_json_prev;
       prev_name = content_json_prev.name;
     }
 
     let next_name = null;
-    const next_id = parseInt(id, 10) + 1;
-    if (id_list.includes(next_id)){
-      const mod_json_next = projects_json[`../../data/projects/project_${next_id}.json`];
+    if (id_array[index_of_id_array + 1] !== undefined){
+      const mod_json_next = projects_json[`../../data/projects/project_${id_array[index_of_id_array + 1]}.json`];
       const content_json_next = mod_json_next?.default ?? mod_json_next;
       next_name = content_json_next.name;
     }
@@ -118,12 +118,12 @@ function ProjectColumn() {
 
       {/* Switch page */}
       <div className={` ${style.switch} roboto-condensed-bold`} lang="eng">
-          <Link to={`/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) - 1}`}`} 
+          <Link to={`/project-column/project_${id_array[index_of_id_array - 1]}`}
           className={style.switch_left}
           style={{visibility: prev_name ? "visible" : "hidden"}}>
             <span className="inter-bold">&lt;---</span> <br/> {prev_name}
           </Link>
-          <Link to={`/project-column/${`project_${parseInt(slug.match(/^project_(\d+)$/)?.[1] || 0, 10) + 1}`}`} 
+          <Link to={`/project-column/project_${id_array[index_of_id_array + 1]}`}
           className={style.switch_right}
           style={{visibility: next_name ? "visible" : "hidden"}}>
             <span className="inter-bold">---&gt;</span><br/> {next_name} 
