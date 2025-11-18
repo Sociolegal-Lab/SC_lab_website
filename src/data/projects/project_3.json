@@ -6,7 +6,7 @@
         "Yu-Hsiang Tan", 
         "Shao-Ting Yen"
     ],
-    "link": "https://github.com/Sociolegal-Lab/",
-    "brief_introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained.",
-    "introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained. In addition to automated annotation, users can also manually tag entities within the documents. This dual functionality ensures both efficiency and accuracy in legal document processing, catering to a variety of user needs."
+    "link": "",
+    "brief_introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained. In addition to automated annotation, users can also manually tag entities within the documents. This dual functionality ensures both efficiency and accuracy in legal document processing, catering to a variety of user needs.",
+    "introduction": ""
 }

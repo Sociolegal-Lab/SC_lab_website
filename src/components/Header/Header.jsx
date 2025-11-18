@@ -9,11 +9,11 @@ function Header() {
   // Change background color depending on different pages
   const {pathname} = useLocation();
   // Edit regex depending on final url: https://sociolegal-lab.github.io/
-  const project_column_regex = /\/project-column\/.*/
-  const news_regex = /\/news/
-  const projects_regex = /\/projects/
-  const leader_regex = /\/leader/
-  const members_regex = /\/members/
+  const project_column_regex = /\/project-column\/.*/i
+  const news_regex = /\/news/i
+  const projects_regex = /\/projects/i
+  const leader_regex = /\/leader/i
+  const members_regex = /\/members/i
 
 
   // Give different logo and className base on class_name_location
