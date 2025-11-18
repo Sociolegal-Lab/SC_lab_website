@@ -1,13 +1,12 @@
 {
     "id":3,
     "name": "Legal text \n 標記器",
-    "duration": "2020-2040",
+    "duration": "?",
     "contributors":[
         "Yu-Hsiang Tan", 
         "Shao-Ting Yen"
     ],
     "link": "https://github.com/Sociolegal-Lab/",
     "brief_introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained.",
-    "introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained. In addition to automated annotation, users can also manually tag entities within the documents. This dual functionality ensures both efficiency and accuracy in legal document processing, catering to a variety of user needs.",
-    "photo":"project_3.png"
+    "introduction": "This tool allows users to upload their legal documents and submit them for annotation using the LeArNER model we have trained. In addition to automated annotation, users can also manually tag entities within the documents. This dual functionality ensures both efficiency and accuracy in legal document processing, catering to a variety of user needs."
 }
