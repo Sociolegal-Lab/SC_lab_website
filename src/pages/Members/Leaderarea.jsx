@@ -67,7 +67,7 @@ export default function Leaderarea() {
           </blockquote>
 
           <div className={styles["cta-row"]}>
-            <Link to="/SC_lab_website/leader" className={styles["button"]}>
+            <Link to="/leader" className={styles["button"]}>
               <span className={styles["inter-bold"]}>View Profile</span>
             </Link>
           </div>

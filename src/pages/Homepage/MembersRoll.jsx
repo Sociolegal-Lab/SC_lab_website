@@ -14,7 +14,7 @@ const normalize = (m = {}) => ({
   photo: m.photo || null,
 });
 
-/** ✅ 根據 src/data/members 資料夾載入 .jpeg 照片 */
+/** 根據 src/data/members 資料夾載入 .jpeg 照片 */
 const toSrc = (m) => {
   const p = m.photo;
   if (p) {
@@ -42,7 +42,9 @@ export default function MembersRoll({
   loop = true,
 }) {
   const raw = (itemsProp && itemsProp.length ? itemsProp : membersData) ?? [];
-  const list = Array.isArray(raw) ? raw : (raw.members || raw.data || raw.items || []);
+  const list = Array.isArray(raw)
+    ? raw
+    : raw.members || raw.data || raw.items || [];
   const items = list.map(normalize);
 
   const scrollerRef = useRef(null);
@@ -60,11 +62,15 @@ export default function MembersRoll({
       if (ticking) return;
       window.requestAnimationFrame(() => {
         const center = el.scrollLeft + el.clientWidth / 2;
-        let nearest = 0, minDist = Infinity;
+        let nearest = 0,
+          minDist = Infinity;
         Array.from(el.children).forEach((child, i) => {
           const c = child.offsetLeft + child.offsetWidth / 2;
           const d = Math.abs(c - center);
-          if (d < minDist) { minDist = d; nearest = i; }
+          if (d < minDist) {
+            minDist = d;
+            nearest = i;
+          }
         });
         setActive(nearest);
         activeRef.current = nearest;
@@ -81,7 +87,9 @@ export default function MembersRoll({
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-    let isDown = false, startX = 0, scrollStart = 0;
+    let isDown = false,
+      startX = 0,
+      scrollStart = 0;
     const onDown = (e) => {
       isDown = true;
       startX = e.pageX - el.offsetLeft;
@@ -99,7 +107,9 @@ export default function MembersRoll({
     };
     const onUp = (e) => {
       isDown = false;
-      try { el.releasePointerCapture?.(e.pointerId); } catch {}
+      try {
+        el.releasePointerCapture?.(e.pointerId);
+      } catch {}
       el.style.cursor = "";
     };
     el.addEventListener("pointerdown", onDown);
@@ -149,7 +159,10 @@ export default function MembersRoll({
   const pauseAutoplay = () => {
     stopAutoplay();
     if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(() => startAutoplay(), pauseAfterInteractMs);
+    resumeTimerRef.current = window.setTimeout(
+      () => startAutoplay(),
+      pauseAfterInteractMs
+    );
   };
 
   useEffect(() => {
@@ -163,64 +176,77 @@ export default function MembersRoll({
   return (
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 左右箭頭 */}
-        <button
-          aria-label="上一張"
-          className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
-          onClick={() => { go(-1); pauseAutoplay(); }}
-        >
-          <img src={left_arrow} alt="" height={50} />
-        </button>
-        <button
-          aria-label="下一張"
-          className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
-          onClick={() => { go(1); pauseAutoplay(); }}
-        >
-          <img src={right_arrow} alt="" height={50} />
-        </button>
+        {/* 版面配置改成跟 NewsRoll 一樣：左箭頭 / 內容 / 右箭頭 */}
+        <div className={styles["mr-stage"]}>
+          {/* 左箭頭 */}
+          <button
+            aria-label="上一張"
+            className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
+            onClick={() => {
+              go(-1);
+              pauseAutoplay();
+            }}
+          >
+            <img src={left_arrow} alt="" />
+          </button>
 
-        <div className="membersroll-firstpage">
-
-
-        </div>
-
-        {/* 成員區塊 */}
-        <div ref={scrollerRef} className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}>
-          {items.length === 0 ? (
-            <div style={{ color: "#fff", padding: 16 }}>
-              （沒有找到成員資料，請檢查 members.json 結構或圖片路徑）
-            </div>
-          ) : (
-            items.map((m, i) => (
-              <section key={m.id || i} className={styles["mr-section"]}>
-                <article className={styles["mr-profile"]}>
-                  {/* 照片 */}
-                  <div className={styles["mr-photo-wrap"]}>
-                    {toSrc(m) ? (
-                      <img
-                        className={styles["mr-photo"]}
-                        src={toSrc(m)}
-                        alt={m.name || `member-${i}`}
-                        onError={(e) => (e.currentTarget.style.display = "none")}
-                      />
-                    ) : (
-                      <div className={styles["mr-photo"]} />
-                    )}
-                  </div>
-
-                  {/* 文字 */}
-                  <div className={styles["mr-text"]}>
-                    <p className={styles["mr-name"]}>
-                      {m.name || "Unnamed Member"}
-                    </p>
-                    <div className={styles["scroll-box"]} tabIndex={0}>
-                      <p className={`inter-medium ${styles["mr-bio"]}`}>{m.bio || "—"}</p>
+          {/* 成員區塊（中間可橫向捲動） */}
+          <div
+            ref={scrollerRef}
+            className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
+          >
+            {items.length === 0 ? (
+              <div style={{ color: "#fff", padding: 16 }}>
+                （沒有找到成員資料，請檢查 members.json 結構或圖片路徑）
+              </div>
+            ) : (
+              items.map((m, i) => (
+                <section key={m.id || i} className={styles["mr-section"]}>
+                  <article className={styles["mr-profile"]}>
+                    {/* 照片 */}
+                    <div className={styles["mr-photo-wrap"]}>
+                      {toSrc(m) ? (
+                        <img
+                          className={styles["mr-photo"]}
+                          src={toSrc(m)}
+                          alt={m.name || `member-${i}`}
+                          onError={(e) =>
+                            (e.currentTarget.style.display = "none")
+                          }
+                        />
+                      ) : (
+                        <div className={styles["mr-photo"]} />
+                      )}
                     </div>
-                  </div>
-                </article>
-              </section>
-            ))
-          )}
+
+                    {/* 文字 */}
+                    <div className={styles["mr-text"]}>
+                      <p className={styles["mr-name"]}>
+                        {m.name || "Unnamed Member"}
+                      </p>
+                      <div className={styles["scroll-box"]} tabIndex={0}>
+                        <p className={`inter-medium ${styles["mr-bio"]}`}>
+                          {m.bio || "—"}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </section>
+              ))
+            )}
+          </div>
+
+          {/* 右箭頭 */}
+          <button
+            aria-label="下一張"
+            className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
+            onClick={() => {
+              go(1);
+              pauseAutoplay();
+            }}
+          >
+            <img src={right_arrow} alt="" />
+          </button>
         </div>
 
         {/* 點點導航 */}
@@ -229,8 +255,13 @@ export default function MembersRoll({
             <button
               key={i}
               aria-label={`跳到第 ${i + 1} 張`}
-              className={`${styles["mr-dot"]} ${active === i ? styles["is-active"] : ""}`}
-              onClick={() => { scrollToIndex(i); pauseAutoplay(); }}
+              className={`${styles["mr-dot"]} ${
+                active === i ? styles["is-active"] : ""
+              }`}
+              onClick={() => {
+                scrollToIndex(i);
+                pauseAutoplay();
+              }}
             />
           ))}
         </div>
