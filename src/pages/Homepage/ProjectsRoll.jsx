@@ -9,7 +9,7 @@ import "../../styles/font.css";
 const resolvePhoto = (photo) => {
   if (!photo) return "";
 
-  // 若是 URL 或絕對路徑
+  // 若是 URL 或 絕對路徑
   if (photo.startsWith("/") || /^https?:\/\//i.test(photo)) return photo;
 
   // 其餘視為相對於 data/projects
@@ -104,7 +104,7 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳橫向滑動
+  // 拖曳橫向滑動（作法一：避開 <a>，不攔截點擊）
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -114,10 +114,12 @@ export default function ProjectsRoll({
     let scrollStart = 0;
 
     const onDown = (e) => {
+      // 如果按到的是 <a> 或其子元素，就不要啟動拖曳，讓點擊正常觸發
+      if (e.target.closest("a")) return;
+
       isDown = true;
       startX = e.pageX - el.offsetLeft;
       scrollStart = el.scrollLeft;
-      el.setPointerCapture?.(e.pointerId);
       el.style.cursor = "grabbing";
       pauseAutoplay();
     };
@@ -127,12 +129,11 @@ export default function ProjectsRoll({
       const x = e.pageX - el.offsetLeft;
       const walk = (x - startX) * 1.2;
       el.scrollLeft = scrollStart - walk;
-      e.preventDefault();
+      // 不再 e.preventDefault()，避免阻止 click 行為
     };
 
-    const onUp = (e) => {
+    const onUp = () => {
       isDown = false;
-      el.releasePointerCapture?.(e.pointerId);
       el.style.cursor = "";
     };
 
@@ -203,7 +204,7 @@ export default function ProjectsRoll({
   return (
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 版面配置改成跟 NewsRoll / MembersRoll 一樣：左箭頭 / 內容 / 右箭頭 */}
+        {/* 版面配置：左箭頭 / 內容 / 右箭頭 */}
         <div className={styles["mr-stage"]}>
           {/* 左箭頭 */}
           <button

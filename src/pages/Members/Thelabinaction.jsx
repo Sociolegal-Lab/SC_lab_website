@@ -4,7 +4,7 @@ import thelabinactionImg from "../../data/carousel/2.jpg";
 
 export default function Thelabinaction() {
   return (
-    <div className={`rufina-bold ${styles["members-section"]}`}>
+    <div className={`rufina-bold ${styles["thelabinaction"]}`}>
       <h2>The Lab In Action</h2>
       <br />
       <img
