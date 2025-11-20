@@ -6,12 +6,14 @@ import InternationalConferenceCollapse from "./InternationalConferenceCollapse"
 import PastSpeakingEngagementsCollapse from "./PastSpeakingEngagementsCollapse.jsx"
 import UpcomingSpeakingEngagementsCollapse from "./UpcomingSpeakingEngagementsCollapse.jsx"
 import OngoingProjectsCollapse from "./OngoingProjectsCollapse.jsx"
+import Blank from "./Blank.jsx"
 
 
 function Leader(){
     return (
         <div>
         <Leaderarea1 />
+        <Blank />
         <EducationCollapse />
         <FellowshipsAndAwardsCollapse />
         <PublicationCollapse />
@@ -19,6 +21,7 @@ function Leader(){
         <PastSpeakingEngagementsCollapse />
         <UpcomingSpeakingEngagementsCollapse />
         <OngoingProjectsCollapse />
+        <Blank />
         </div>
     )
 }

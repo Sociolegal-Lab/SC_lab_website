@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
-import avatar from "../../data/members/1.jpeg";
+import styles from "./Leader.module.css"; 
+import avatar from "../../data/members/IMG_9548.PNG";/*更換老師頭貼請更改此處連結*/ 
 
 export default function Leaderarea() {
   return (
@@ -54,8 +54,8 @@ export default function Leaderarea() {
         <div className={styles["info-col"]}>
           <h1 className={`rufina-bold ${styles["name"]}`}>Shao-Man Lee</h1>
           <p className={styles["subtitle"]}>
-            AI and Law; Legal Text Mining; <br />
-            Cultural Study of Law;<br />
+            AI and Law; Legal Text Mining;
+            Cultural Study of Law;
             Constitutional Law
           </p>
           <p className={styles["affil"]}>
