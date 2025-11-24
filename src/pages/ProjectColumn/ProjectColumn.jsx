@@ -4,6 +4,7 @@ import style from "./ProjectColumn.module.css";
 import ReactMarkdown from "react-markdown";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
 import title_size from "./title_size";
+import getMarkdownWordCount from "../../utils/getMarkdownWordCount";
 
 const projects_json = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const projects_md = import.meta.glob("../../data/projects/project_[0-9]*.md", {eager: true, as: 'raw'});
@@ -34,6 +35,12 @@ function ProjectColumn() {
     const { id:n_of_ids, type } = extractIdFromFilePath(path) || {};
     id_array.push(n_of_ids);
     });
+
+    id_array.sort((a, b) =>{
+      const countA = getMarkdownWordCount(a, projects_md);
+      const countB = getMarkdownWordCount(b, projects_md);
+    return countB - countA;
+    })
 
     const index_of_id_array = id_array.indexOf(parseInt(id, 10));
     
