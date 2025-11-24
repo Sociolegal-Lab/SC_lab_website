@@ -5,7 +5,7 @@
   "contributors": [
     "Shao-Man Lee", "Mu-Ko Chou", "Yu-Chiao Chen", "Chun-Che Huang", "Chun-Chieh Niu", "Chin-You Hou"
   ],
-  "link": "",
+  "link": "https://site.smu.edu.sg/cls-2025",
   "brief_introduction": "This paper was presented at CLS 2025 (Computational Legal Studies Workshop 2025), the 4th annual workshop hosted by Singapore Management University's Yong Pung How School of Law.",
   "introduction": "This paper was presented at CLS 2025 (Computational Legal Studies Workshop 2025), the 4th annual workshop hosted by Singapore Management University's Yong Pung How School of Law. The presentation showcased TAESS—an innovative multi-agent LLM system designed to address severe information overload in constitutional adjudication by extracting, organizing, and summarizing arguments from massive case filings.",
   "photo": "project_7.jpeg"

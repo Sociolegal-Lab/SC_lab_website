@@ -1,12 +1,10 @@
 {
     "id":1,
-    "name": "Evaluation of Large Language Models",
-    "duration": "2020-2040",
+    "name": "Intersectional Moral Biases in Large Language Models",
+    "duration": "2024-2025",
     "contributors":[
-        "Han-Ting Yu",
-        "Mu-Ke Chou"
     ],
     "link": "https://sociolegal-lab.github.io/leaderBoard.html",
-    "brief_introduction": "This study investigates cultural biases in Large Language Models (LLMs) and their impact on cross-cultural representation.",
-    "introduction": "This study investigates cultural biases in Large Language Models (LLMs) and their impact on cross-cultural representation. Focusing on autonomous vehicle ethics and health decision-making, it examines LLMs' handling of culturally-sensitive scenarios. The research aims to develop strategies for enhancing cultural diversity in LLMs, improving fairness, and informing global governance frameworks."
+    "brief_introduction": "This study reveals that LLMs exhibit intersectional moral biases in trolley dilemmas, with two-way demographic interactions (especially Religion×Political) significantly improving model fit. Three-way interactions identify \"hotspots\" of divergence from human preferences, suggesting single-axis audits undercount harm. Findings support intersectional auditing and targeted data remediation for fairer AI governance.",
+    "introduction": "This study investigates intersectional moral bias in five large language models using 59 trolley-style dilemmas across 1,769 personas representing culture clusters and seven demographics. Analyzing 38,350 decisions via AMCEs and hierarchical models, we find: (1) all LLMs diverge from human moral preferences (mean distance 1.83–2.24); (2) two-way demographic interactions, particularly Religion×Political, significantly improve explanatory power (ΔR²=0.025–0.048); (3) three-way interactions reveal critical hotspots, notably Female×No-College×Religious personas in West and South Asia (divergence up to 3.09). Results demonstrate that single-axis audits miss intersectional harm concentrations. We recommend intersectional performance reporting, divergence thresholds for review, and targeted data remediation to address representational gaps underlying these architectural patterns."
 }

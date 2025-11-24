@@ -52,11 +52,10 @@
 
 }
 
-.github_button{
+.icon_outside{
   width:75px;
   height: 75px;
 }
-
 .circle_icon_wrapper {
     display: flex;
     justify-content: center;

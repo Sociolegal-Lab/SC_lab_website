@@ -1,0 +1,12 @@
+{
+  "id": 5, 
+  "name": "CrowdEyes:AI Editor",
+  "duration": "2025",
+  "contributors": [
+    "Niu,Chun Chieh"
+  ],
+  "link": "",
+  "brief_introduction": "The AI Social Media Editor is an intelligent system that integrates computer vision and large language models to automatically analyze volleyball images, extract key information, and generate natural, context-aware social media captions. It streamlines content production and enhances efficiency for sports-related media.",
+  "introduction": "The AI Social Media Editor combines visual recognition, semantic understanding, and generative AI to automatically interpret volleyball game footage and produce narrative-driven social media posts. By identifying players, actions, and in-game context through multimodal analysis, the system transforms raw visual data into coherent and engaging captions. This reduces manual workload, improves content consistency, and enables rapid production of sports highlights and event summaries. Designed for sports media, team marketing, and automated event coverage, the system provides a scalable and efficient solution for next-generation smart sports content creation.",
+  "photo": "project_5.jpeg"
+}

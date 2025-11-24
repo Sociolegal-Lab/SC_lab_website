@@ -14,9 +14,7 @@ function Projects() {
       </div>
 
       <div className={`${style.subtitle} ${style.marginLR} inter-medium`}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis augue sed dolor euismod pulvinar. Morbi placerat nunc ac massa auctor, at tempus ex viverra. 
-        Integer ut dolor dictum, tincidunt tortor at, euismod mauris. Donec egestas leo a venenatis pellentesque. Vestibulum hendrerit tortor sapien, et fermentum turpis lacinia eu. 
-        Nulla facilisi. Proin elementum porta est, at sollicitudin justo fermentum at. Mauris ligula sapien, vestibulum, enim a sodales hendrerit, est libero sagittis ante, sed venenatis dui nunc eget tellus.
+        This portfolio showcases research projects conducted by lab members, exploring AI applications in legal technology, public health communication, and multimodal systems. From few-shot learning for legal NER to cultural bias auditing in LLMs, our work bridges machine learning methodologies with real-world social science challenges through collaborative, empirical investigation.
       </div>
 
       {/* MAYBE TODO: search bar */}
