@@ -54,16 +54,17 @@ export default function Leaderarea() {
         <div className={styles["info-col"]}>
           <h1 className={`rufina-bold ${styles["name"]}`}>Shao-Man Lee</h1>
           <p className={styles["subtitle"]}>
-            AI and Law; Legal Text Mining;
-            Cultural Study of Law;
-            Constitutional Law
+            AI and Law;
+            Legal Natural Language Processing;
+            Empirical Legal Studies;
+            AI Governance; Constitutional Law
           </p>
           <p className={styles["affil"]}>
             NCKU Miin Wu School of Computing Assistant Professor
           </p>
 
           <blockquote className={`inter-bold ${styles["motto"]}`}>
-            Trained as a lawyer with advanced law degrees from Yale and UC Berkeley, Shao-Man Lee employs her legal expertise to apply natural language processing to scrutinize judicial language and social discourses. Trained as a lawyer with advanced law degrees from Yale and UC Berkeley, Shao-Man Lee employs her legal expertise to apply natural language processing to scrutinize judicial language and social discourses. Trained as a lawyer with advanced law degrees from Yale and UC Berkeley, Shao-Man Lee employs her legal expertise to apply natural language processing to scrutinize judicial language and social discourses.
+            Shao-Man Lee is Assistant Professor at the Miin Wu School of Computing at National Cheng Kung University (NCKU), with a joint appointment in the Department of Psychology. Shao-Man’s research focuses on developing culturally fair legal AI systems, computational approaches to legal analysis, and governance frameworks for responsible AI development. Shao-Man serves as Executive Secretary of the International Society of Public Law Taiwan Chapter and as an advisor to the Taiwan Bar Association’s AI Development and Response Committee. She recently led the Ministry of Justice’s Prosecutorial AI Assistance System project. Shao-Man graduated from National Taiwan University College of Law and obtained her LL.M. from Yale Law School and her J.S.D. from the University of California, Berkeley.
           </blockquote>
         </div>
       </div>

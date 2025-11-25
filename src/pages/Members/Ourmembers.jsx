@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Members.module.css"; // ← 用物件匯入
-import membersData from "./Ourmembers.json";
+import membersData from "../../data/members/members.json";
 
 export default function Members() {
   return (

@@ -53,7 +53,35 @@
         null,
         null
     ],
-    "short_bio": "I am from Taipei and studied in the Department of Engineering Science at National Cheng Kung University. My hobbies include going out on my motorcycle, and my dream is to sleep every day. I am also the CTO of TechNSport Technology. My research interests include robotics, the Internet of Things (IoT), large language models (LLMs), and sports science."
+    "short_bio": "Chun-Chieh Niu is currently a master’s student in the Intelligent Technology Systems Program at the Miin Wu School of Computing, National Cheng Kung University (NCKU). He received his B.S. degree from the Department of Engineering Science at NCKU and now serves as the Chief Technology Officer (CTO) of TechNSport Technology. His research interests include robotics, the Internet of Things (IoT), large language models (LLMs), and sports science, with a focus on integrating AI and sensing technologies into smart sports applications and human–machine collaboration."
+    },
+    {"id":"5",
+    "Chinese_name":"陳靖則", 
+    "English_name":"Jing-Ze Chen", 
+    "title": "Jerry Jing-Ze Chen", 
+    "research_interests": "Multi-Agent Systems(MAS), platform interfaces, and quantitative finance.  ",
+    "academic_background": "Fifth-year Industrial & Information Management",
+    "email": "jcicku@gmail.com",
+    "links":[
+        "https://www.linkedin.com/in/jingzec",
+        null,
+        null
+    ],
+    "short_bio": "Hi, I’m Jerry. I major in Industrial & Information Management and work part-time as a quantitative research consultant. I’m deeply interested in value investing, strategic history, and visual design, and I have a knack for strategy games. I believe that developing AI for regulatory domains—finance, law, defense, and medicine—is an inevitable trend. I’m pursuing both ends of the smile curve and believe that coherent communication and collaboration can boost our sync rate and lead us toward a better future."
+    },{
+    "id":"6", 
+    "Chinese_name":"林淑真",
+    "English_name":"Amy Lin",
+    "title": "Laboratory Administrative Coordinator",
+    "research_interests": "",
+    "academic_background": "M.A. in Advertising, National Chengchi University",
+    "email": "amylin0301@gs.ncku.edu.tw",
+    "links":[
+        null,
+        null,
+        null
+    ],
+    "short_bio": "I hold a Master’s degree in Advertising from National Chengchi University and currently serve as an Administrative Coordinator in our laboratory, supporting the team’s research activities and project operations."
     }
 ]
   

@@ -55,7 +55,9 @@ export default function Leaderarea() {
         <div className={styles["info-col"]}>
           <h1 className={`rufina-bold ${styles["name"]}`}>Shao-Man Lee</h1>
           <p className={styles["subtitle"]}>
-            AI and Law; Legal Text Mining; Cultural Study of Law;<br />
+            AI and Law;
+            Legal Text Mining;
+            Cultural Study of Law;
             Constitutional Law
           </p>
           <p className={styles["affil"]}>

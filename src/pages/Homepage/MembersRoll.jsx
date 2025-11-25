@@ -3,7 +3,6 @@ import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 import membersData from "../../data/members/members.json";
-
 import "../../styles/font.css";
 
 /** 將 members.json 欄位轉成渲染用格式 */
