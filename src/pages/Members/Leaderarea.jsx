@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Members.module.css";
 import { Link } from "react-router-dom";
-import avatar from "../../data/members/1.jpeg";
+import avatar from "../../data/members/Leaderprofile.PNG";/*更換老師頭貼請更改此處連結*/ 
 
 export default function Leaderarea() {
   return (
@@ -55,7 +55,9 @@ export default function Leaderarea() {
         <div className={styles["info-col"]}>
           <h1 className={`rufina-bold ${styles["name"]}`}>Shao-Man Lee</h1>
           <p className={styles["subtitle"]}>
-            AI and Law; Legal Text Mining; Cultural Study of Law;<br />
+            AI and Law;
+            Legal Text Mining;
+            Cultural Study of Law;
             Constitutional Law
           </p>
           <p className={styles["affil"]}>
@@ -67,7 +69,7 @@ export default function Leaderarea() {
           </blockquote>
 
           <div className={styles["cta-row"]}>
-            <Link to="/SC_lab_website/leader" className={styles["button"]}>
+            <Link to="/leader" className={styles["button"]}>
               <span className={styles["inter-bold"]}>View Profile</span>
             </Link>
           </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
-import data from "./internationalConferenceData.json";
-
+import data from "../../data/leader/leader.json"; // 匯入 JSON 資料
 export default function InternationalConferenceCollapse() {
   // 依年份自動排序（降序）
   const sortedConferences = [...data["International Conference"]].sort(

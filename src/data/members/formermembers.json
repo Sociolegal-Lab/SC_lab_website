@@ -1,24 +1,4 @@
-[
-    {"id":"1", 
-    "Chinese_name":"黃鈞喆", 
-    "English_name":"Chun-Che Huang", 
-    "title": "HarryHuang", 
-    "research_interests": "Applying AI to legal texts through NLP, RAG, and knowledge modeling, enhancing legal information accessibility.",
-    "academic_background": "First-year Master’s student",
-    "email": "harryhuang1101@gmail.com",
-    "bio": [
-      "Post-Doc",
-      "Developing sports tech with LLMs",
-      "AI systems integration specialist"
-    ],
-    "socials": {
-      "linkedin": null,
-      "github": null,
-      "facebook": null,
-      "instagram": null
-    },
-    "short_bio": "I am a Mathematics graduate from National Cheng Kung University with a strong focus on applying AI to legal text analysis. My research combines NLP, retrieval-augmented generation (RAG), and hierarchical knowledge modeling to enhance entity extraction, constitutional issue identification, and legal knowledge graph construction"
-    },
+    [
     {"id":"2", 
     "Chinese_name":"周穆可", 
     "English_name":"Mu-Ko Chou", 

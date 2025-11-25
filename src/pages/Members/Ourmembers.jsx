@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Members.module.css"; // ← 用物件匯入
-import membersData from "./Ourmembers.json";
+import membersData from "../../data/members/members.json";
 
 export default function Members() {
   return (
@@ -16,9 +16,8 @@ export default function Members() {
           return (
             <div className={styles["member-card"]} key={member.id ?? index}>
               <div className={styles["member-avatar"]} aria-hidden="true" />
-              <div className={styles["member-name"]}>{member.name}</div>
+              <div className={styles["member-name"]}>{member.English_name}</div>
               <div className={styles["member-title"]}>{member.title}</div>
-
               <ul className={styles["member-bio"]}>
                 {bio.map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -30,6 +29,7 @@ export default function Members() {
               )}
 
               <div className={styles["socials"]}>
+                {/*若是新增社群網頁類別，請同時於此更新 */}
                 {socials.linkedin && (
                   <a
                     href={socials.linkedin}
@@ -48,6 +48,26 @@ export default function Members() {
                     aria-label="GitHub"
                   >
                     GH
+                  </a>
+                )}
+                {socials.facebook && (
+                  <a
+                    href={socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
+                    FB
+                  </a>
+                )}
+                {socials.instagram && (
+                  <a
+                    href={socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    IG
                   </a>
                 )}
               </div>

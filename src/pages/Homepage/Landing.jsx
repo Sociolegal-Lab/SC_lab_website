@@ -14,9 +14,9 @@ export default function Landing() {
         {/* 左側：三行小字 → 保持 IBM Plex Mono 700 */}
         <div className={styles["landing__left"]}>
           <ul className={`${styles["mini-list"]} inter-bold`}>
-            <li>Data</li>
-            <li>Law</li>
-            <li>Society</li>
+            <li>Information</li>
+            <li>Knowledge</li>
+            <li>Communication</li>
           </ul>
         </div>
 
