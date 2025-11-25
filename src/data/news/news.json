@@ -1,3 +1,14 @@
 [
-    {"id": "1", "headline": "We attended Computational Legal Studies Workshop 2025 (CLS2025)", "content": "This workshop took place in Singapore.", "date": "2025-09-09"}
+    {"id": "1",
+     "headline": "Computational Legal Studies Workshop 2025 (CLS 2025) ", 
+     "content": "Our lab presented a paper at CLS 2025", 
+     "date": "2025-09-09"},
+    {"id": "2",
+     "headline": "Environmental Law & Governance Seminar", 
+     "content": "Our lab hosted the Miin Wu School Seminar on Environmental Law and Sustainability Governance, featuring a keynote lecture by Prof. Jiunn-Rong Yeh, with Prof. Hsiao-Wen Wang serving as the discussant and Prof. Shao-Man Lee as the moderator.", 
+     "date": "2025-11-21"},
+     {"id": "3",
+     "headline": "International Conference on Emerging Infectious Diseases 2025 (ICEID 2025)", 
+     "content": "Our lab presented a poster at ICEID 2025.", 
+     "date": "2025-11-22"}
 ]
