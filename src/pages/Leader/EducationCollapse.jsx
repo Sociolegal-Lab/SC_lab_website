@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
-import educationData from "./educationData.json"; // 匯入 JSON 資料
+import styles from "./Leader.module.css";
+import educationData from "../../data/leader/leader.json";
 
 export default function EducationCollapse() {
   return (

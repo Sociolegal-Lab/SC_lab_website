@@ -7,6 +7,8 @@ import PastSpeakingEngagementsCollapse from "./PastSpeakingEngagementsCollapse.j
 import UpcomingSpeakingEngagementsCollapse from "./UpcomingSpeakingEngagementsCollapse.jsx"
 import OngoingProjectsCollapse from "./OngoingProjectsCollapse.jsx"
 import Blank from "./Blank.jsx"
+import CoursesCollapse from "./CourseCollapse.jsx"
+import ProjectsCollapse from "./ProjectsCollapse.jsx"
 
 
 function Leader(){
@@ -17,6 +19,8 @@ function Leader(){
         <EducationCollapse />
         <FellowshipsAndAwardsCollapse />
         <PublicationCollapse />
+        <ProjectsCollapse />
+        <CoursesCollapse />
         <InternationalConferenceCollapse />
         <PastSpeakingEngagementsCollapse />
         <UpcomingSpeakingEngagementsCollapse />

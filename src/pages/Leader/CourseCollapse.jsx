@@ -1,20 +1,22 @@
 import React from "react";
 import styles from "./Leader.module.css";
-import publicationData from "../../data/leader/leader.json";
+import coursesData from "../../data/leader/leader.json";
 
-export default function PublicationCollapse() {
+export default function CoursesCollapse() {
   const extractYear = (text) => {
-    const match = text?.match?.(/(19|20)\d{2}/);
-    return match ? parseInt(match[0], 10) : 0;
+    if (!text) return 0;
+    const matches = text.match(/(19|20)\d{2}/g);
+    if (!matches) return 0;
+    // 有些是 (2023 Fall, 2024 Fall)，取最大那個年份
+    return Math.max(...matches.map((y) => parseInt(y, 10)));
   };
 
-  // 只取出版類別
-  const publicationCategories = ["Journal Articles", "Book Chapters", "Selected Conference Papers"];
+  const courseCategories = ["Courses"];
 
-  const sortedData = publicationCategories.map((category) => {
-    const items = publicationData[category] || [];
+  const sortedData = courseCategories.map((category) => {
+    const items = coursesData[category] || [];
     const sortedItems = [...items].sort(
-      (a, b) => extractYear(b.publication) - extractYear(a.publication)
+      (a, b) => extractYear(b.semester) - extractYear(a.semester)
     );
     return [category, sortedItems];
   });
@@ -23,7 +25,7 @@ export default function PublicationCollapse() {
     <div className={styles["collapse-wrap"]}>
       <details className={styles["collapse"]}>
         <summary className={styles["collapse-sum"]}>
-          <span className={styles["collapse-title"]}>Publication</span>
+          <span className={styles["collapse-title"]}>Courses</span>
           <span className={styles["collapse-plus"]} aria-hidden="true" />
         </summary>
 
@@ -32,8 +34,11 @@ export default function PublicationCollapse() {
             <div key={category} className={styles["collapse-section"]}>
               <p className={styles["collapse-text-title"]}>{category}</p>
               {items.map((item, index) => (
-                <p className={styles["collapse-text"]} key={`${category}-${index}`}>
-                  {item.title}, {item.publication}
+                <p
+                  className={styles["collapse-text"]}
+                  key={`${category}-${index}`}
+                >
+                  {item.title}, {item.semester}
                 </p>
               ))}
             </div>

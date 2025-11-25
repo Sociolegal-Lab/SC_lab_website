@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
-import data from "./upcomingSpeakingEngagementsData.json";
-
+import data from "../../data/leader/leader.json"; // 匯入 JSON 資料
 export default function UpcomingSpeakingEngagementsCollapse() {
   // 依日期排序（由近到遠）
   const sortedEngagements = [...data["Upcoming Speaking Engagements"]].sort(
