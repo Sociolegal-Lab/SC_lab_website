@@ -120,7 +120,7 @@ body{margin:0}
   padding: 60px 20px;
   text-align: center;
   color: var(--fg);
-  height: 100vh;
+  height: fit-content;
 }
 
 .members-section h2 {

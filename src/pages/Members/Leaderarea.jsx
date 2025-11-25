@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Members.module.css";
 import { Link } from "react-router-dom";
-import avatar from "../../data/members/IMG_9548.PNG";/*更換老師頭貼請更改此處連結*/ 
+import avatar from "../../data/members/Leaderprofile.PNG";/*更換老師頭貼請更改此處連結*/ 
 
 export default function Leaderarea() {
   return (
