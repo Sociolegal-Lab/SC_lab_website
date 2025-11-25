@@ -7,9 +7,7 @@
     "academic_background": "First-year Master’s student",
     "email": "harryhuang1101@gmail.com",
     "bio": [
-      "Post-Doc",
-      "Developing sports tech with LLMs",
-      "AI systems integration specialist"
+        null
     ],
     "socials": {
       "linkedin": null,
@@ -27,10 +25,10 @@
     "academic_background": "First-year Master’s student",
     "email": "nm6144012@gs.ncku.edu.tw",
     "bio": [
-      "",
-      "",
-      ""
-    ],
+    "Class of 2027",
+    "AI × Social Science",
+    "LLM bias & health communication"
+],
     "socials": {
       "linkedin": "https://www.linkedin.com/in/mu-ko-chou",
       "github": "https://github.com/claire891018",
@@ -47,10 +45,11 @@
     "academic_background": "Senior undergraduate student",
     "email": "b34111135@gs.ncku.edu.tw",
     "bio": [
-      "",
-      "",
-      ""
-    ],
+    "Class of 2028",
+    "Digital Humanities × AI",
+    "Exploring LLMs and retrieval methods",
+    "AI applications in the humanities"
+],
     "socials": {
       "linkedin": null,
       "github": null,
@@ -107,9 +106,7 @@
     "academic_background": "M.A. in Advertising, National Chengchi University",
     "email": "amylin0301@gs.ncku.edu.tw",
     "bio": [
-      "000",
-      "111",
-      "222"
+        
     ],
     "socials": {
       "linkedin": null,
