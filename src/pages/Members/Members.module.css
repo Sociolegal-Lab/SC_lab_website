@@ -1,9 +1,11 @@
 :root{
-  --bg:#1b235a;           /* deep navy */
+  --bg:#ffffff;           /* white */
   --bg-dark:#0f153a;      /* 新增：hover 反差色用 */
-  --fg:#e9edf7;           /* light text */
+  --fg:#9ba6fd;           /* light text */
   --muted:#cfd2d6;        /* avatar gray */
   --gold:#eac35b;         /* subtitle gold */
+  --purple:#b786ff;
+  --blue:#364dfa;
   --card-max:1120px;
 }
 
@@ -92,32 +94,78 @@ body{margin:0}
   border-radius:50%;
   background:var(--muted);
   box-shadow: inset 0 2px 8px rgba(0,0,0,.2);
+  overflow:hidden; /* 確保若有 img 在裡面也被裁成圓形 */
 }
 
-.contact{display:flex;flex-direction:column;gap:12px;}
-.contact-item{display:flex;align-items:center;gap:10px;opacity:.95;font-size: 24px}
-.contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
+.contact{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  color:var(--fg);
+}
+
+.contact-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  opacity:.95;
+  font-size: 24px;
+  color: var(--fg);
+}
+
+.contact-item a,
+.contact-item span{
+  color:var(--fg);
+  text-decoration:none;
+}
+
 .contact-item a:hover{text-decoration:underline}
 
 .info-col{min-width:0}
-.name{font-size: clamp(40px, 6vw, 72px);line-height:1.05;margin:0 0 8px}
+
+.name{
+  font-size: clamp(40px, 6vw, 72px);
+  line-height:1.05;
+  margin:0 0 8px;
+  color: var(--blue);
+}
+
 .subtitle{
-  color:var(--gold);
+  color:var(--fg);
   margin:0 0 8px;
   letter-spacing:.2px;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 26px
 }
-.affil{color:var(--gold);margin:0 0 28px;font-family: "Roboto Condensed", sans-serif;  font-size: 26px;}
-.motto{font-size: clamp(26px, 4vw, 48px);margin: 0 0 48px;font-weight:800}
 
-.cta-row{display:flex;align-items:center;gap:18px;position:relative;height: fit-content;}
+.affil{
+  color:var(--fg);
+  margin:0 0 28px;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 26px;
+}
+
+.motto{
+  color: var(--purple);
+  font-size: clamp(26px, 4vw, 48px);
+  margin: 0 0 48px;
+  font-weight:800;
+}
+
+.cta-row{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  position:relative;
+  height: fit-content;
+}
 
 .members-section {
-  background: #2d2d2d; /* 可考慮改為 var(--bg-dark) 或新增 --panel 變數 */
+  background: var(--bg); 
   padding: 60px 20px;
   text-align: center;
-  color: white;
+  color: var(--fg);
+  height: fit-content;
 }
 
 .members-section h2 {
@@ -142,7 +190,7 @@ body{margin:0}
 }
 
 .member-card {
-  background: #2d2d2d;  /* 同上：可抽變數 */
+  background: var(--bg);
   padding: 28px 20px;
   border-radius: 12px;
   max-width: 320px;
@@ -154,12 +202,13 @@ body{margin:0}
   border-radius: 50%;
   background: #ccc;     /* 可抽變數為 --muted */
   margin: 0 auto 20px;
+  overflow:hidden;      /* 讓圖片確實被裁在圓形內 */
 }
 
 .member-name {
   font-size: 22px;
   font-weight: 800;
-  color: var(--gold);
+  color: var(--blue);
 }
 
 .member-title {
@@ -182,11 +231,11 @@ body{margin:0}
   display: block;
 }
 
-.members-picture {
-  display: block;       /* ← 單一圖片置中改為 block + margin:auto */
-  width: 50%;
-  border-radius: 12px;
-  margin: auto;
+.member-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .socials {
@@ -211,6 +260,25 @@ body{margin:0}
 .socials a:hover {
   background: var(--gold);
   color: var(--bg-dark); /* ← 現在變數已定義 */
+}
+
+.thelabinaction{
+  background: #CDD3FE; 
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--bg);
+}
+
+.thelabinaction h2 {
+  font-size: clamp(32px, 6vw, 64px);
+  margin: 0;
+}
+
+.members-picture {
+  display: block;       /* ← 單一圖片置中改為 block + margin:auto */
+  width: 50%;
+  border-radius: 12px;
+  margin: auto;
 }
 
 /* Responsive */

@@ -6,8 +6,10 @@
     - leader
 - 資料更新
 - All pages: 圖片矩形邊角圓化
+- project column: dynamic icon depending on hyperlink
 
-## 調整完網址後
+
+## 已解決
 - 更改所有的 Link to= (包含手機頁面的header隱藏選單)
 - 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
 

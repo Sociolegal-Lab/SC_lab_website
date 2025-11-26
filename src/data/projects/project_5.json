@@ -1,14 +1,12 @@
 {
-    "id":5,
-    "name": "Template",
-    "duration": "2020-2040",
-    "contributors":[
-        "Zack",
-        "David",
-        "Yu"
-    ],
-    "link": "https://github.com/Sociolegal-Lab/",
-    "brief_introduction": "Labore aliqua ut ex eu reprehenderit voluptate aute deserunt fugiat ullamco mollit voluptate deserunt veniam.",
-    "introduction": "Adipisicing officia sit cupidatat fugiat proident pariatur et dolore aliquip. Tempor proident consequat est dolore commodo labore proident. Minim velit id nulla nisi mollit ea officia. Incididunt quis in magna voluptate mollit labore occaecat reprehenderit id ut. Do pariatur est velit nulla officia nulla Lorem velit ex.",
-    "photo":"project_5.png"
+  "id": 5, 
+  "name": "CrowdEyes:AI Editor",
+  "duration": "2025",
+  "contributors": [
+    "Niu,Chun Chieh"
+  ],
+  "link": "",
+  "brief_introduction": "The AI Social Media Editor is an intelligent system that integrates computer vision and large language models to automatically analyze volleyball images, extract key information, and generate natural, context-aware social media captions. It streamlines content production and enhances efficiency for sports-related media.",
+  "introduction": "The AI Social Media Editor combines visual recognition, semantic understanding, and generative AI to automatically interpret volleyball game footage and produce narrative-driven social media posts. By identifying players, actions, and in-game context through multimodal analysis, the system transforms raw visual data into coherent and engaging captions. This reduces manual workload, improves content consistency, and enables rapid production of sports highlights and event summaries. Designed for sports media, team marketing, and automated event coverage, the system provides a scalable and efficient solution for next-generation smart sports content creation.",
+  "photo": "project_5.jpeg"
 }

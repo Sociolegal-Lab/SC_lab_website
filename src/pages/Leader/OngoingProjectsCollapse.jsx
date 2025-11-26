@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Leader.module.css"; // ✅ 正確導入 CSS Modules
-import data from "./ongoingProjectsData.json";
+import data from "../../data/leader/leader.json"; // 匯入 JSON 資料
 
 export default function OngoingProjectsCollapse() {
   // 自動依年份排序（降序：最新計畫在上）

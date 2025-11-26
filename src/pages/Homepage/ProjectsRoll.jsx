@@ -9,7 +9,7 @@ import "../../styles/font.css";
 const resolvePhoto = (photo) => {
   if (!photo) return "";
 
-  // 若是 URL 或絕對路徑
+  // 若是 URL 或 絕對路徑
   if (photo.startsWith("/") || /^https?:\/\//i.test(photo)) return photo;
 
   // 其餘視為相對於 data/projects
@@ -104,7 +104,7 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳橫向滑動
+  // 拖曳橫向滑動（作法一：避開 <a>，不攔截點擊）
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -114,10 +114,12 @@ export default function ProjectsRoll({
     let scrollStart = 0;
 
     const onDown = (e) => {
+      // 如果按到的是 <a> 或其子元素，就不要啟動拖曳，讓點擊正常觸發
+      if (e.target.closest("a")) return;
+
       isDown = true;
       startX = e.pageX - el.offsetLeft;
       scrollStart = el.scrollLeft;
-      el.setPointerCapture?.(e.pointerId);
       el.style.cursor = "grabbing";
       pauseAutoplay();
     };
@@ -127,12 +129,11 @@ export default function ProjectsRoll({
       const x = e.pageX - el.offsetLeft;
       const walk = (x - startX) * 1.2;
       el.scrollLeft = scrollStart - walk;
-      e.preventDefault();
+      // 不再 e.preventDefault()，避免阻止 click 行為
     };
 
-    const onUp = (e) => {
+    const onUp = () => {
       isDown = false;
-      el.releasePointerCapture?.(e.pointerId);
       el.style.cursor = "";
     };
 
@@ -194,46 +195,57 @@ export default function ProjectsRoll({
 
   useEffect(() => {
     startAutoplay();
-    return () => stopAutoplay();
+    return () => {
+      stopAutoplay();
+      if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
+    };
   }, [items.length, interval]);
 
   return (
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 左右箭頭 */}
-        <button
-          aria-label="上一張"
-          className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
-          onClick={() => {
-            go(-1);
-            pauseAutoplay();
-          }}
-        >
-          <img src={left_arrow} alt="" />
-        </button>
-        <button
-          aria-label="下一張"
-          className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
-          onClick={() => {
-            go(1);
-            pauseAutoplay();
-          }}
-        >
-          <img src={right_arrow} alt="" />
-        </button>
+        {/* 版面配置：左箭頭 / 內容 / 右箭頭 */}
+        <div className={styles["mr-stage"]}>
+          {/* 左箭頭 */}
+          <button
+            aria-label="上一張"
+            className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
+            onClick={() => {
+              go(-1);
+              pauseAutoplay();
+            }}
+          >
+            <img src={left_arrow} alt="" />
+          </button>
 
-        {/* 專案卡片輪播 */}
-        <div
-          ref={scrollerRef}
-          className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
-        >
-          {items.map((m, i) => (
-            <section key={m.id || i} className={styles["mr-section"]}>
-              <article className={styles["mr-profile"]}>
-                {/* 照片 + 連結 */}
-                <div className={styles["mr-photo-wrap"]}>
-                  {m.link ? (
-                    <a href={m.link} target="_blank" rel="noopener noreferrer">
+          {/* 專案卡片輪播（中間可橫向捲動） */}
+          <div
+            ref={scrollerRef}
+            className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}
+          >
+            {items.map((m, i) => (
+              <section key={m.id || i} className={styles["mr-section"]}>
+                <article className={styles["mr-profile"]}>
+                  {/* 照片 + 連結 */}
+                  <div className={styles["mr-photo-wrap"]}>
+                    {m.link ? (
+                      <a
+                        href={m.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className={styles["mr-project-photo"]}
+                          src={m.photo}
+                          alt={m.name}
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) =>
+                            (e.currentTarget.style.display = "none")
+                          }
+                        />
+                      </a>
+                    ) : (
                       <img
                         className={styles["mr-project-photo"]}
                         src={m.photo}
@@ -244,31 +256,32 @@ export default function ProjectsRoll({
                           (e.currentTarget.style.display = "none")
                         }
                       />
-                    </a>
-                  ) : (
-                    <img
-                      className={styles["mr-project-photo"]}
-                      src={m.photo}
-                      alt={m.name}
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) =>
-                        (e.currentTarget.style.display = "none")
-                      }
-                    />
-                  )}
-                </div>
-
-                {/* 文字內容（bio 超出時捲動） */}
-                <div className={styles["mr-text"]}>
-                  <h2 className={styles["mr-name"]}>{m.name}</h2>
-                  <div className={styles["scroll-box"]} tabIndex={0}>
-                    <p className={styles["mr-bio"]}>{m.bio}</p>
+                    )}
                   </div>
-                </div>
-              </article>
-            </section>
-          ))}
+
+                  {/* 文字內容（bio 超出時捲動） */}
+                  <div className={styles["mr-text"]}>
+                    <h2 className={styles["mr-name"]}>{m.name}</h2>
+                    <div className={styles["scroll-box"]} tabIndex={0}>
+                      <p className={styles["mr-bio"]}>{m.bio}</p>
+                    </div>
+                  </div>
+                </article>
+              </section>
+            ))}
+          </div>
+
+          {/* 右箭頭 */}
+          <button
+            aria-label="下一張"
+            className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
+            onClick={() => {
+              go(1);
+              pauseAutoplay();
+            }}
+          >
+            <img src={right_arrow} alt="" />
+          </button>
         </div>
 
         {/* 點點導航 */}

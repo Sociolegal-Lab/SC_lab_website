@@ -1,12 +1,34 @@
 import style from "./Projects.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
+import getMarkdownWordCount from "../../utils/getMarkdownWordCount";
 
 const project_data = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg|jpeg|png|gif)", {eager: true, as: 'url'});
-
+// Add markdown imports (raw) to count words
+const project_markdowns = import.meta.glob("../../data/projects/project_[0-9]*.md", { eager: true, as: 'raw' });
 
 function Projects() {
+  const AMOUNT_OF_PROJECTS = 12;
+  const [projectLimit, setProjectLimit] = useState(AMOUNT_OF_PROJECTS);
+
+  // Prepare entries and slice according to projectLimit
+  const projectEntries = Object.entries(project_data);
+
+
+
+  // Sort entries in-place by markdown word count (descending). Missing .md yield -1 and go last.
+  projectEntries.sort(([pathA], [pathB]) => {
+    const { id: idA } = extractIdFromFilePath(pathA) || {};
+    const { id: idB } = extractIdFromFilePath(pathB) || {};
+    const countA = getMarkdownWordCount(idA, project_markdowns);
+    const countB = getMarkdownWordCount(idB, project_markdowns);
+    return countB - countA;
+  });
+
+  const displayedEntries = projectEntries.slice(0, projectLimit);
+
   return (
     <div className={style.back}>
       <div className={`${style.title} ${style.marginLR} inter-bold`}>
@@ -14,9 +36,7 @@ function Projects() {
       </div>
 
       <div className={`${style.subtitle} ${style.marginLR} inter-medium`}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis augue sed dolor euismod pulvinar. Morbi placerat nunc ac massa auctor, at tempus ex viverra. 
-        Integer ut dolor dictum, tincidunt tortor at, euismod mauris. Donec egestas leo a venenatis pellentesque. Vestibulum hendrerit tortor sapien, et fermentum turpis lacinia eu. 
-        Nulla facilisi. Proin elementum porta est, at sollicitudin justo fermentum at. Mauris ligula sapien, vestibulum, enim a sodales hendrerit, est libero sagittis ante, sed venenatis dui nunc eget tellus.
+        This portfolio showcases research projects conducted by lab members, exploring AI applications in legal technology, public health communication, and multimodal systems. From few-shot learning for legal NER to cultural bias auditing in LLMs, our work bridges machine learning methodologies with real-world social science challenges through collaborative, empirical investigation.
       </div>
 
       {/* MAYBE TODO: search bar */}
@@ -24,7 +44,7 @@ function Projects() {
       <ul
         className={`${style.shelf} ${style.marginLR}`}
       >
-        {Object.entries(project_data).map(([path, mod]) => {
+        {displayedEntries.map(([path, mod]) => {
           // path = "../../data/projects/project_1.json"
           // mod  = { default: { name: "...", brief_introduction: "..." } }
 
@@ -51,6 +71,21 @@ function Projects() {
           );
         })}
       </ul>
+
+      {/* More Projects (same logic as News.jsx lines 193-200) */}
+      {projectLimit < projectEntries.length && (
+        <div className={style.tag}>
+          <div
+            className={`${style.switch_page} ${style.marginLR} ${style.switch_wrapper} roboto-condensed-bold`}
+            onClick={() => setProjectLimit((prev) => prev + 6)}
+          >
+            More Projects <span className="inter-bold">---&gt;</span>
+          </div>
+          <div className={style.space}>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </div>
+
+      )}
+
     </div>
   );
 }

@@ -1,11 +1,9 @@
 :root{
-  --bg:#1b235a;           /* deep navy */
-  --fg:#e9edf7;           /* light text */
-  --muted:#cfd2d6;        /* avatar gray */
+  --bg1:#364DFA;           /* deep navy */
+  --fg1:#ffffff;           /* light text */
   --accent:#8ea6ff;       /* button/outline */
-  --gold:#eac35b;         /* subtitle gold */
-  --card-max:1120px;
-  --collapse-bg:#1b235a;                /* 深藍底 */
+  --card-max:1400px;
+  --collapse-bg:#9BA6FD;                /* 深藍底 */
   --collapse-border:rgba(255,255,255,.55); /* 上下細線 */
   --collapse-text:#ffffff;
   --collapse-muted:rgba(255,255,255,.9);
@@ -19,27 +17,31 @@ body{margin:0}
 .profile-wrap{
   min-height:100vh;
   height: fit-content;
-  background: var(--bg);
+  width: 100%;
+  background: var(--bg1);
   display:grid;
   place-items:center;
   padding:32px 0 150px;
-  color:var(--fg);
+  color:var(--fg1);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 .profile-card{
   width:100%;
-  max-width:var(--card-max);
   display:grid;
   grid-template-columns: 1fr 1.2fr;
   gap:48px;
   align-items:center;
   position:relative;
   margin-top: 100px;
-  padding: 0 16px; /* 內縮，避免窄螢幕貼邊 */
+  padding: 0 25px; /* 內縮，避免窄螢幕貼邊 */
 }
 
-.avatar-col{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+.avatar-col{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px}
 
 /* 流體尺寸＋圓形頭像 */
 .avatar{
@@ -55,7 +57,7 @@ body{margin:0}
 
 .contact{display:flex;flex-direction:column;gap:12px;}
 .contact-item{display:flex;align-items:center;gap:10px;opacity:.95;font-size: clamp(16px, 1.3vw, 24px)}
-.contact-item a, .contact-item span{color:var(--fg);text-decoration:none}
+.contact-item a, .contact-item span{color:var(--fg1);text-decoration:none}
 .contact-item a:hover{text-decoration:underline}
 
 .info-col{min-width:0}
@@ -64,17 +66,19 @@ body{margin:0}
   line-height:1.05;margin:0 0 8px
 }
 .subtitle{
-  color:var(--gold);
+  color:var(--fg1);
   margin:0 0 8px;
   letter-spacing:.2px;
   font-family: "Roboto Condensed", sans-serif;
   font-size: clamp(18px, 2.2vw, 26px);
+  text-decoration: underline;
 }
 .affil{
-  color:var(--gold);
+  color:var(--fg1);
   margin:0 0 28px;
   font-family: "Roboto Condensed", sans-serif;
   font-size: clamp(18px, 2.2vw, 26px);
+  text-decoration: underline;
 }
 .motto{font-size: clamp(16px, 2vw, 24px); margin: 0 0 32px}
 
@@ -98,7 +102,6 @@ body{margin:0}
   color: var(--collapse-text);
   border-top: 1px solid var(--collapse-border);
   border-bottom: 1px solid var(--collapse-border);
-
 }
 
 /* 移除預設 marker */
@@ -159,6 +162,8 @@ body{margin:0}
   padding: 0;
   margin: 0;
   color: var(--collapse-muted);
+  margin-bottom: 14px;
+  line-height: 1.6;
   font-family: "Roboto Condensed", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 .collapse-text-title{ font-weight: bold; text-decoration: underline; }
@@ -185,6 +190,10 @@ body{margin:0}
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
+.blank{
+  height: 100px;
+  background: var(--collapse-bg);
+}
 /* =========================
    RWD 斷點
    ========================= */

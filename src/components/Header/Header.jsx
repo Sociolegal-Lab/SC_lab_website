@@ -9,11 +9,11 @@ function Header() {
   // Change background color depending on different pages
   const {pathname} = useLocation();
   // Edit regex depending on final url: https://sociolegal-lab.github.io/
-  const project_column_regex = /\/project-column\/.*/
-  const news_regex = /\/news/
-  const projects_regex = /\/projects/
-  const leader_regex = /\/leader/
-  const members_regex = /\/members/
+  const project_column_regex = /\/project-column\/.*/i
+  const news_regex = /\/news/i
+  const projects_regex = /\/projects/i
+  const leader_regex = /\/leader/i
+  const members_regex = /\/members/i
 
 
   // Give different logo and className base on class_name_location
@@ -82,7 +82,7 @@ function Header() {
       <Link to="/" >
         <img src={logo_src} alt= {logo_alt}/>
       </Link>
-      {/* <div className={style.desktop_links}>
+      <div className={style.desktop_links}>
         <Link to="/projects" >
           <div className="inter-bold">Projects</div>
         </Link>
@@ -92,9 +92,9 @@ function Header() {
         <Link to="/news" >
           <div className="inter-bold">News</div>
         </Link>
-      </div> */}
+      </div>
       {/* 為 menu 系列的 dom 貼上標籤，限制 handle_click_outside 觸發範圍 */}
-      {/* <div ref={menu_ref}>
+      <div ref={menu_ref}>
         <button className={style.menu_icon} onClick={() => setMenuOpen(!menuOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
@@ -113,7 +113,7 @@ function Header() {
             </Link>
           </div>
         )}
-      </div> */}
+      </div>
 
     </div>
 
