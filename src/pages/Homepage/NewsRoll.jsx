@@ -153,7 +153,7 @@ export default function NewsRoll({
   return (
     <div className={styles["events-container"]}>
         {/* 主標題 → Inter 800 */}
-        <h1 className={`rufina-bold ${styles["title"]}`}>Latest News from our Lab</h1>
+        <h1 className={`rufina-bold ${styles["title"]}`}>Latest News</h1>
 
       <div className={styles["mr-stage-wrap"]}>
         <div className={styles["mr-stage"]}>

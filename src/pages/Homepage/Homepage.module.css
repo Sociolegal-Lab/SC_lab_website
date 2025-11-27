@@ -31,10 +31,9 @@
 /* 內容卡：左右兩欄（左圖／右文） */
 .mr-profile {
   display: grid;
-  grid-template-columns: 1fr 1.05fr; /* 接近截圖比例 */
+  grid-template-columns: 1fr 2fr; 
   align-items: center;
-  gap: 3rem;
-  min-height: 68vh;
+  gap: 15px;
   padding: 2rem 2.5rem;
   background: transparent;
 }
@@ -61,9 +60,10 @@
 }
 
 .mr-project-photo {
-  width: clamp(280px, 38vw, 540px);
-  border-radius: 2px;
-  object-fit: cover;
+  width: 230px;
+  height: 170px;
+  border-radius: 30px;
+  object-fit:fill;
 }
 
 /* 右側文字 */
@@ -73,7 +73,7 @@
 
 .mr-name {
   font-family: "Inter", sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: 32px;
   font-weight: 600;
   font-style: normal;
   line-height: 1.1;
@@ -228,6 +228,7 @@
   column-gap: 1rem;
   align-items: center;                   /* 垂直置中關鍵 */
   min-height: clamp(260px, 36vh, 520px); /* 給容器高度，才看得出置中效果 */
+  margin: auto 30px;
 }
 
 /* 覆蓋舊的絕對定位，讓箭頭在 grid 中自然排列 */
@@ -305,12 +306,12 @@
 
 .landing__left {
   text-align: left;   /* 確保內容靠左 */
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .landing__right {
   text-align: right;  /* 確保內容靠右 */
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .brand-img {
@@ -533,4 +534,11 @@
     align-items: center;
     text-align: center;
   }
+
+  .mini-list {
+    text-align: center;
+  }
+  .landing__right {
+  text-align: center
+}
 }
