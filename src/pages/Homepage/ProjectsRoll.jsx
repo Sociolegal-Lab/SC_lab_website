@@ -204,7 +204,7 @@ export default function ProjectsRoll({
   return (
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 版面配置：左箭頭 / 內容 / 右箭頭 */}
+        <div className={`rufina-bold ${styles["section-title"]} `}>Projects</div>
         <div className={styles["mr-stage"]}>
           {/* 左箭頭 */}
           <button
@@ -215,7 +215,7 @@ export default function ProjectsRoll({
               pauseAutoplay();
             }}
           >
-            <img src={left_arrow} alt="" />
+            <div className={styles["arrow-circle-left"]}></div>
           </button>
 
           {/* 專案卡片輪播（中間可橫向捲動） */}
@@ -280,7 +280,7 @@ export default function ProjectsRoll({
               pauseAutoplay();
             }}
           >
-            <img src={right_arrow} alt="" />
+            <div className={styles["arrow-circle-right"]}></div>
           </button>
         </div>
 

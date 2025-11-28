@@ -1,3 +1,5 @@
+/* ========== Members / News 共用外層 ========== */
+
 .mr-root { 
   margin: 0;                 /* 確保背景佔滿整個視窗 */
   min-height: 100vh;         /* 保證全螢幕高度 */
@@ -26,49 +28,69 @@
 .mr-section { 
   scroll-snap-align: start; 
   flex: 0 0 100%; 
+  display: flex;              /* 讓每張卡片可在垂直方向置中 */
+  align-items: center;
 }
 
-/* 內容卡：左右兩欄（左圖／右文） */
+/* ========== Members 卡片：圖片 + 文字 ========== */
+
+/* 內容卡：左右兩欄（左圖／右文）→ 用 flex 讓圖與文字整塊對齊 */
 .mr-profile {
-  display: grid;
-  grid-template-columns: 1fr 2fr; 
-  align-items: center;
-  gap: 15px;
-  padding: 2rem 2.5rem;
+  display: flex;               /* 左：.mr-photo-wrap / 右：.mr-text */
+  align-items: center;         /* 圖片與整塊文字垂直置中對齊 */
+  gap: 24px;
+  padding: 0 30px;
   background: transparent;
 }
 
+/* 較小寬度螢幕：改為上下排列 */
 @media (max-width: 1000px) {
   .mr-profile { 
-    grid-template-columns: 1fr; 
+    flex-direction: column;
+    align-items: center;
     gap: 1.75rem; 
     padding: 1.5rem; 
   }
 }
 
+/* 左側圖片區 */
 .mr-photo-wrap { 
   display: flex; 
   justify-content: center; 
+  align-items: center;
+  flex: 0 0 auto;             /* ⛔ 不要讓整個圖片區被 flex 壓縮 */
 }
 
+/* 統一圖片尺寸為 200x200 */
 .mr-photo,
 .mr-photo.placeholder {
-  width: clamp(280px, 38vw, 540px);
-  height: clamp(280px, 38vw, 540px);
-  border-radius: 2px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
+  border-radius: 10px;       /* 可依喜好調整 */
+  flex-shrink: 0;
+  min-width: 200px;
+  min-height: 200px;
 }
 
 .mr-project-photo {
-  width: 230px;
-  height: 170px;
-  border-radius: 30px;
-  object-fit:fill;
+  width: 200px;
+  height: 200px;
+  min-width: 200px;          /* 🚫 不允許被縮小 */
+  min-height: 200px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 30px;       /* 保留較大的圓角風格 */
+  background: #ffffff;
 }
 
-/* 右側文字 */
-.mr-text { 
-  max-width: 700px; 
+/* 右側文字整塊（mr-name + mr-bio） */
+.mr-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;      /* 這一整塊與圖片等高時垂直置中 */
+  align-items: flex-start;
+  max-width: 100%;
 }
 
 .mr-name {
@@ -77,10 +99,11 @@
   font-weight: 600;
   font-style: normal;
   line-height: 1.1;
+  margin: 0 0 8px 0;
 }
 
 .mr-bio {
-  margin: 10px;
+  margin: 10px 0 0 0;
   font-size: clamp(1rem, 1.1vw + 0.8rem, 1.75rem);
   line-height: 1.25;
   color: rgba(255, 255, 255, 0.92);
@@ -88,9 +111,41 @@
   text-align: justify;             /* 兩端對齊（左右對齊） */
   text-justify: inter-ideograph;   /* 讓中文兩端對齊效果更自然 */
   padding-right: 5px;
+  width: 100%;
 }
 
-/* 圓形箭頭（對齊截圖） */
+/* 內文可捲動區（長 bio 用） */
+.scroll-box {
+  max-height: 20rem;              /* 上限高度，超過就捲動 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  margin-top: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 4px;
+  transition: max-height 0.3s ease;
+}
+
+/* 捲軸樣式：低調白透明風格 */
+.scroll-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+
+.scroll-box:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* ========== 左右箭頭 ========== */
+
 .mr-nav {
   position: absolute;
   top: 50%;
@@ -131,7 +186,7 @@
   scrollbar-width: none; 
 }
 
-/* === NewsRoll: screenshot look & feel ====================== */
+/* ========== NewsRoll 視覺設定 ========== */
 
 /* Heading（巨型襯線字） */
 .mr-heading {
@@ -226,7 +281,7 @@
   display: grid;
   grid-template-columns: 64px 1fr 64px;  /* 左箭頭 / 內容 / 右箭頭 */
   column-gap: 1rem;
-  align-items: center;                   /* 垂直置中關鍵 */
+  align-items: center;                   /* 中間內容與左右箭頭垂直置中 */
   min-height: clamp(260px, 36vh, 520px); /* 給容器高度，才看得出置中效果 */
   margin: auto 30px;
 }
@@ -260,7 +315,7 @@
   width: 100%; 
 }
 
-/* === Events Section =============================== */
+/* ========== Events Section =============================== */
 
 .events-container {
   display: flex;
@@ -434,38 +489,6 @@
   }
 }
 
-/* === MembersRoll 內文方塊可滾動 (RWD 自適應) =============================== */
-
-.scroll-box {
-  /* 預設桌機高度 */
-  height: 20rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 6px;
-  margin-top: 0.5rem;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 4px;
-  transition: max-height 0.3s ease;
-}
-
-/* 捲軸樣式：低調白透明風格 */
-.scroll-box::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scroll-box::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scroll-box::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 3px;
-}
-
-.scroll-box:hover::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.45);
-}
-
 /* ===================== 手機版統一 RWD ===================== */
 
 @media (max-width: 768px) {
@@ -477,12 +500,10 @@
 
   /* profile：圖片 + 文字 一上一下 */
   .mr-profile {
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
-    min-height: auto;
   }
 
   .mr-photo-wrap {
@@ -493,6 +514,7 @@
   .mr-text {
     max-width: 100%;
     text-align: center;
+    align-items: center;
   }
 
   /* 取消 .mr-stage 三分割 grid，改為單欄 */
@@ -538,7 +560,84 @@
   .mini-list {
     text-align: center;
   }
+
   .landing__right {
-  text-align: center
+    text-align: center;
+  }
+
+  /* 手機上 bio 不強制 max-height，避免卡片太小 */
+  .scroll-box {
+    max-height: none;
+  }
 }
+
+.section-title{
+    font-size: 36px;
+    padding-left: 100px;
+}
+
+/* ================= Right Arrow ================= */
+.arrow-circle-right {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #CDD3FE;
+  position: relative;
+}
+
+/* 中線 */
+.arrow-circle-right::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  right: 25%;
+  border-top: 5px solid #CDD3FE;
+  transform: translateY(-50%);
+}
+
+/* 尖端 */
+.arrow-circle-right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18%;
+  width: 24px;
+  height: 24px;
+  border-top: 5px solid #CDD3FE;
+  border-right: 5px solid #CDD3FE;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* ================= Left Arrow ================= */
+.arrow-circle-left {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #CDD3FE;
+  position: relative;
+}
+
+/* 中線 */
+.arrow-circle-left::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  right: 20%;
+  border-top: 5px solid #CDD3FE;
+  transform: translateY(-50%);
+}
+
+/* 尖端 */
+.arrow-circle-left::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 18%;
+  width: 24px;
+  height: 24px;
+  border-top: 5px solid #CDD3FE;
+  border-left: 5px solid #CDD3FE;
+  transform: translateY(-50%) rotate(-45deg);
 }
