@@ -28,7 +28,7 @@ export default function Members() {
       <p className="rufina-bold">
         <h2>OUR MEMBERS</h2>
       </p>
-      <div className={styles["subtitle"]}>LAB TEAM</div>
+      <div className={styles["subtitle"]}>CURRENT MEMBERS</div>
       <div className={styles["member-grid"]}>
         {membersData.map((member, index) => {
           const bio = Array.isArray(member.bio) ? member.bio : [];
