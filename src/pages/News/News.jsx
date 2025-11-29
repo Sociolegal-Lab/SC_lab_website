@@ -88,7 +88,7 @@ function News() {
   return (
     <>
       <div className={`${style.title} ${style.marginLR} inter-bold`}>
-        Latest News from Our Lab
+        Latest News
       </div>
       <div className={style.marginLR}>
         {/* <Search

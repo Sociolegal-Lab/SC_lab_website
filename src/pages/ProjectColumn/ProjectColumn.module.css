@@ -52,10 +52,7 @@
 
 }
 
-.icon_outside{
-  width:75px;
-  height: 75px;
-}
+
 .circle_icon_wrapper {
     display: flex;
     justify-content: center;
@@ -65,12 +62,15 @@
     background-color: #ffffff;
     border-radius: 50%; /* Makes the box a circle */
 }
-.circle_icon_wrapper .icon {
-    /* Ensure the SVG stays its original size */
-    width: 55px;
-    height: 55px;
-    color: #0e133f
+@media (max-width: 420px)
+{
+    .circle_icon_wrapper {
+        width: 65px;
+        height: 65px;
+    }
 }
+
+
 
 
 .title{
@@ -176,19 +176,26 @@
 } 
 
 /* image */
-.img43 {
-  width: 65%;
-  background: #eee;
-  overflow: hidden;
-  margin: 0px auto;
-  margin-bottom: 5vw;
 
+.img43 {
+  max-width: 36rem;
+  background: #ffffff;
+  overflow: hidden;
+  margin: 5vw auto;
+  cursor: pointer;
+
+  /* new: smooth shadow + subtle lift on hover */
+  border-radius: 8px; /* ensure wrapper matches image radius */
+  box-shadow: 0 8px 20px rgba(11,18,54,0.12), 0 3px 6px rgba(11,18,54,0.06);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform, box-shadow;
 }
 .img43 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 8px;
 }
 
 

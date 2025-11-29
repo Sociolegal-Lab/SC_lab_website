@@ -8,8 +8,24 @@
 - All pages: 圖片矩形邊角圓化
 - project column: dynamic icon depending on hyperlink
 
+# 老師建議
+- 圖片壓縮，設定檔案上限，同時請大家注意圖片解析度不要太差
+- projects brief: 字體限制嚴格，字體少一點
+- 圖片開4X3的設計規格
+- croudeyes 請老師寫內容
+
+
+- 整體字體縮小
+- 在手機上，怎麼增加feature project可點擊感覺?
+
 
 ## 已解決
+- footer: 集中一些，subtitle 縮小一點
+- news title 太大，盡量簡潔
+- feature project title 太大
+- news 圖片可以再更小一點
+- 幫俊傑調整名字
+- projectcolumn.jsx 圖片小一點，跟著字縮放
 - 更改所有的 Link to= (包含手機頁面的header隱藏選單)
 - 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
 
