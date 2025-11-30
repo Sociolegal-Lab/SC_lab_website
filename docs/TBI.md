@@ -1,19 +1,9 @@
 # TODO
-- 資料更新
 - All pages: 圖片矩形邊角圓化
 - Projectcolumn 右箭頭沒對齊(只有手機上無法對齊，為什麼？？)
-
-
-- reload deployed page 的status code: 404 Why?
-
+- 轉換舊版網站的 https://sociolegal-lab.github.io/leaderBoard.html（project_1: Intersectional Moral Biases in Large Language Models）為 React 架構（轉換的負擔有點大，暫時擱置）
 
 - 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
-
-## Tutorial
-- 圖片壓縮，設定檔案上限，同時請大家注意圖片解析度不要太差
-- projects brief: 字體限制嚴格，字體少一點
-- 圖片開4X3的設計規格
-- croudeyes 請老師寫內容
 
 
 
