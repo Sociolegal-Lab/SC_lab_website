@@ -159,6 +159,7 @@ body{margin:0}
 }
 
 .collapse-text{
+  font-size: 24px;
   padding: 0;
   margin: 0;
   color: var(--collapse-muted);
@@ -166,7 +167,7 @@ body{margin:0}
   line-height: 1.6;
   font-family: "Roboto Condensed", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
-.collapse-text-title{ font-weight: bold; text-decoration: underline; }
+.collapse-text-title{ font-weight: bold; text-decoration: underline;font-size: 24px; }
 .collapse-list{ margin: 0; padding-left: 18px; }
 .collapse-list li{ margin: 6px 0; }
 

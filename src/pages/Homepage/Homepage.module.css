@@ -1,11 +1,13 @@
-/* ========== Members / News 共用外層 ========== */
+/* =========================================================
+   Global Layout: Members / News 共用外層
+   ========================================================= */
 
 .mr-root { 
-  margin: 0;                 /* 確保背景佔滿整個視窗 */
-  min-height: 100vh;         /* 保證全螢幕高度 */
-  background: #364DFA; 
-  color: #fff; 
-  --fg:#9ba6fd;
+  margin: 0;
+  min-height: 100vh;
+  background: #364DFA;
+  color: #fff;
+  --fg: #9ba6fd;
 }
 
 .mr-container { 
@@ -16,7 +18,7 @@
   max-width: 2000px;
 }
 
-/* 橫向滑動容器與每頁（共用定義） */
+/* 橫向滑動容器與每頁（共用） */
 .mr-scroller { 
   display: flex; 
   gap: 1.5rem; 
@@ -29,29 +31,31 @@
 .mr-section { 
   scroll-snap-align: start; 
   flex: 0 0 100%; 
-  display: flex;              /* 讓每張卡片可在垂直方向置中 */
+  display: flex;
   align-items: center;
 }
 
-/* ========== Members 卡片：圖片 + 文字 ========== */
+/* 隱藏橫向卷軸 */
+.mr-no-scrollbar::-webkit-scrollbar { 
+  display: none; 
+}
+.mr-no-scrollbar { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
 
-/* 內容卡：左右兩欄（左圖／右文）→ 用 flex 讓圖與文字整塊對齊 */
+
+/* =========================================================
+   Members Card：圖片 + 文字
+   ========================================================= */
+
+/* 內容卡：左右兩欄（左圖／右文） */
 .mr-profile {
-  display: flex;               /* 左：.mr-photo-wrap / 右：.mr-text */
-  align-items: center;         /* 圖片與整塊文字垂直置中對齊 */
+  display: flex;
+  align-items: center;
   gap: 24px;
   padding: 0 30px;
   background: transparent;
-}
-
-/* 較小寬度螢幕：改為上下排列 */
-@media (max-width: 1000px) {
-  .mr-profile { 
-    flex-direction: column;
-    align-items: center;
-    gap: 1.75rem; 
-    padding: 1.5rem; 
-  }
 }
 
 /* 左側圖片區 */
@@ -59,7 +63,7 @@
   display: flex; 
   justify-content: center; 
   align-items: center;
-  flex: 0 0 auto;             /* ⛔ 不要讓整個圖片區被 flex 壓縮 */
+  flex: 0 0 auto;
 }
 
 /* 統一圖片尺寸為 200x200 */
@@ -67,38 +71,40 @@
 .mr-photo.placeholder {
   width: 200px;
   height: 200px;
-  object-fit: cover;
-  border-radius: 10px;       /* 可依喜好調整 */
-  flex-shrink: 0;
   min-width: 200px;
   min-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
 }
 
+/* Project 用的圖片（較大圓角） */
 .mr-project-photo {
   width: 200px;
   height: 200px;
-  min-width: 200px;          /* 🚫 不允許被縮小 */
+  min-width: 200px;
   min-height: 200px;
   flex-shrink: 0;
   object-fit: cover;
-  border-radius: 30px;       /* 保留較大的圓角風格 */
+  border-radius: 30px;
   background: #ffffff;
 }
 
-/* 右側文字整塊（mr-name + mr-bio） */
+/* 右側文字整塊 */
 .mr-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;      /* 這一整塊與圖片等高時垂直置中 */
+  justify-content: center;
   align-items: flex-start;
+  align-self: flex-start;
   max-width: 100%;
+  text-align: left;
 }
 
 .mr-name {
   font-family: "Inter", sans-serif;
   font-size: 32px;
   font-weight: 600;
-  font-style: normal;
   line-height: 1.1;
   margin: 0 0 8px 0;
 }
@@ -109,15 +115,15 @@
   line-height: 1.25;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
-  text-align: justify;             /* 兩端對齊（左右對齊） */
-  text-justify: inter-ideograph;   /* 讓中文兩端對齊效果更自然 */
+  text-align: justify;
+  text-justify: inter-ideograph;
   padding-right: 5px;
   width: 100%;
 }
 
 /* 內文可捲動區（長 bio 用） */
 .scroll-box {
-  max-height: 20rem;              /* 上限高度，超過就捲動 */
+  max-height: 20rem;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 6px;
@@ -127,25 +133,43 @@
   transition: max-height 0.3s ease;
 }
 
-/* 捲軸樣式：低調白透明風格 */
+/* 捲軸樣式 */
 .scroll-box::-webkit-scrollbar {
   width: 6px;
 }
-
 .scroll-box::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .scroll-box::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 3px;
 }
-
 .scroll-box:hover::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.45);
 }
 
-/* ========== 左右箭頭 ========== */
+/* See More 連結（放在 mr-text 右下） */
+.mr-profile-link {
+  text-decoration: underline;
+  color: inherit;
+  display: block;
+  margin-left: auto;   /* 推到最右側 */
+  text-align: right;
+}
+
+/* See More 獨立樣式（Principle Investigator 用） */
+.seemore {
+  font-size: 24px;
+  margin-top: 25px;
+  align-self: flex-end;
+  text-align: right;
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   左右箭頭（共用）
+   ========================================================= */
 
 .mr-nav {
   position: absolute;
@@ -160,13 +184,8 @@
   z-index: 10;
 }
 
-.mr-nav-left { 
-  left: -6px; 
-}
-
-.mr-nav-right { 
-  right: -6px; 
-}
+.mr-nav-left { left: -6px; }
+.mr-nav-right { right: -6px; }
 
 .mr-nav:hover { 
   background: rgba(255, 255, 255, 0.06); 
@@ -177,17 +196,10 @@
   transform: translateY(-50%) scale(0.98); 
 }
 
-/* 隱藏卷軸 */
-.mr-no-scrollbar::-webkit-scrollbar { 
-  display: none; 
-}
 
-.mr-no-scrollbar { 
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
-}
-
-/* ========== NewsRoll 視覺設定 ========== */
+/* =========================================================
+   NewsRoll 視覺樣式
+   ========================================================= */
 
 /* Heading（巨型襯線字） */
 .mr-heading {
@@ -196,7 +208,7 @@
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: 0.2px;
-  font-size: clamp(2.2rem, 6.2vw, 5.2rem); /* Latest News from our Lab */
+  font-size: clamp(2.2rem, 6.2vw, 5.2rem);
   color: #fff;
 }
 
@@ -204,7 +216,7 @@
 .mr-card {
   max-width: 920px;
   margin: 1rem auto 0;
-  border: 3px solid #c7ab3a;       /* 金色描邊 */
+  border: 3px solid #c7ab3a;
   background: transparent;
   border-radius: 4px;
   padding: 2rem 2.25rem;
@@ -235,7 +247,7 @@
   font-weight: 700;
 }
 
-/* 指示點（截圖隱藏，用到再開） */
+/* 指示點（目前隱藏） */
 .mr-dots { 
   display: none; 
 }
@@ -254,14 +266,10 @@
   background: #fff; 
 }
 
-/* NewsRoll RWD */
-@media (max-width: 1024px) {
-  .mr-nav-left { left: 2px; }
-  .mr-nav-right { right: 2px; }
-  .mr-card { padding: 1.6rem 1.5rem; }
-}
 
-/* === 版面寬度：讓兩個獨立 div 都與內容寬度一致 =========================== */
+/* =========================================================
+   NewsRoll 外框 / Stage layout
+   ========================================================= */
 
 .mr-title {
   max-width: 1100px;
@@ -276,37 +284,28 @@
   padding: 1rem 1rem 2rem;
 }
 
-/* === 讓「箭頭＋框框」在 div 中垂直置中 ================================ */
-
+/* 中間：內容 + 左右箭頭 */
 .mr-stage {
   display: grid;
-  grid-template-columns: 64px 1fr 64px;  /* 左箭頭 / 內容 / 右箭頭 */
+  grid-template-columns: 64px 1fr 64px;
   column-gap: 1rem;
-  align-items: center;                   /* 中間內容與左右箭頭垂直置中 */
-  min-height: clamp(260px, 36vh, 520px); /* 給容器高度，才看得出置中效果 */
+  align-items: center;
+  min-height: clamp(260px, 36vh, 520px);
   margin: auto 30px;
 }
 
-/* 覆蓋舊的絕對定位，讓箭頭在 grid 中自然排列 */
+/* 在 stage 中，箭頭改為跟 grid 對齊 */
 .mr-stage .mr-nav {
   position: static;
   top: auto;
   transform: none;
-  justify-self: center;                  /* 置中每個箭頭所在欄位 */
+  justify-self: center;
 }
 
-.news-title {
-  font-size: 50pt;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-/* hover/active 的微縮放仍保留手感 */
+/* hover/active 的微縮放保留手感 */
 .mr-stage .mr-nav:hover { 
   transform: scale(1.04); 
 }
-
 .mr-stage .mr-nav:active { 
   transform: scale(0.97); 
 }
@@ -316,7 +315,17 @@
   width: 100%; 
 }
 
-/* ========== Events Section =============================== */
+.news-title {
+  font-size: 50pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   Events Section
+   ========================================================= */
 
 .events-container {
   display: flex;
@@ -325,14 +334,14 @@
   padding-top: 60px;
   padding-bottom: 20px;
   font-family: Arial, sans-serif;
-  margin: 0;                 /* 確保背景佔滿整個視窗 */
-  min-height: 100vh;         /* 保證全螢幕高度 */
+  margin: 0;
+  min-height: 100vh;
   background: #fff;
 }
 
 .title {
   width: 60%;
-  max-width: 100%;               /* 再怎麼寬都不超過容器/螢幕 */
+  max-width: 100%;
   font-family: "inter";
   text-align: center;
   font-size: 36px;
@@ -340,11 +349,14 @@
   margin-bottom: 10px;
   color: #364DFA;
   padding-top: 10px;
-  overflow-wrap: break-word;     /* 英文太長就自動斷行 */
+  overflow-wrap: break-word;
   word-wrap: break-word;
 }
 
-/* ===================== Landing Section ===================== */
+
+/* =========================================================
+   Landing Section
+   ========================================================= */
 
 .landing {
   color: #fff;
@@ -355,24 +367,24 @@
 .landing__inner {
   max-width: 1100px;
   margin: 0 auto;
-  display: flex;                  /* 使用 flexbox */
-  justify-content: space-between; /* 左靠左、右靠右 */
-  align-items: flex-start;        /* 上方對齊 */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .landing__left {
-  text-align: left;   /* 確保內容靠左 */
+  text-align: left;
   font-size: 20px;
 }
 
 .landing__right {
-  text-align: right;  /* 確保內容靠右 */
+  text-align: right;
   font-size: 20px;
 }
 
 .brand-img {
   display: block;
-  margin: 170px auto 50px auto; /* 上 170px、下 50px，自動水平置中 */
+  margin: 170px auto 50px auto;
   max-width: 80%;
   height: auto;
 }
@@ -426,7 +438,10 @@
   line-height: 1.1;
 }
 
-/* === About Us Section (with image shapes) =============================== */
+
+/* =========================================================
+   About Us Section (with image shapes)
+   ========================================================= */
 
 .mr-about {
   color: #fff;
@@ -478,106 +493,47 @@
   line-height: 1.15;
 }
 
-@media (max-width: 900px) {
-  .mr-about__grid { 
-    grid-template-columns: 1fr; 
-  }
+
+/* =========================================================
+   Principle Investigator 區塊
+   ========================================================= */
+
+.section-title {
+  font-size: 36px;
+  padding-left: 100px;
 }
 
-@media (min-width: 640px) and (max-width: 900px) {
-  .mr-about__grid { 
-    grid-template-columns: repeat(2, 1fr); 
-  }
+.principleinvestigator {
+  display: grid;
+  margin: 20px auto 0;
+  padding: 50px 20px;
+  width: 500px;
+  max-width: 100%;
+  border-radius: 20px;
+  border: 3px solid #ffffff;
 }
 
-/* ===================== 手機版統一 RWD ===================== */
-
-@media (max-width: 768px) {
-  /* 隱藏箭頭 */
-  .mr-nav,
-  .mr-stage .mr-nav {
-    display: none !important;
-  }
-
-  /* profile：圖片 + 文字 一上一下 */
-  .mr-profile {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-
-  .mr-photo-wrap {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .mr-text {
-    max-width: 100%;
-    text-align: center;
-    align-items: center;
-  }
-
-  /* 取消 .mr-stage 三分割 grid，改為單欄 */
-  .mr-stage {
-    display: block;
-    min-height: auto;
-  }
-
-  .mr-stage .mr-scroller {
-    width: 100%;
-  }
-
-  /* News 區塊寬度不超過螢幕 */
-  .mr-stage-wrap,
-  .mr-card,
-  .mr-heading {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Upcoming / Events 標題 */
-  .title {
-    width: 100%;
-    max-width: 100%;
-    font-size: clamp(32px, 8vw, 48px);
-  }
-
-  /* Landing：取消外距、貼滿寬度 */
-  .landing {
-    padding: 16px 0;
-    margin: 0 !important;
-  }
-
-  .landing__inner {
-    margin: 0 !important;
-    padding: 0 12px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .mini-list {
-    text-align: center;
-  }
-
-  .landing__right {
-    text-align: center;
-  }
-
-  /* 手機上 bio 不強制 max-height，避免卡片太小 */
-  .scroll-box {
-    max-height: none;
-  }
+.principleinvestigator-photo {
+  height: 300px;
+  width: 300px;
+  min-height: 300px;
+  min-width: 300px;
+  border-radius: 50px;
+  margin: 0 auto;
+  object-fit: cover;
 }
 
-.section-title{
-    font-size: 36px;
-    padding-left: 100px;
+.principleinvestigator-title {
+  font-size: 32px;
+  text-align: center;
 }
 
-/* ================= Right Arrow ================= */
+
+/* =========================================================
+   Arrow Icons (Circle Arrows)
+   ========================================================= */
+
+/* Right Arrow */
 .arrow-circle-right {
   width: 50px;
   height: 50px;
@@ -610,7 +566,7 @@
   transform: translateY(-50%) rotate(45deg);
 }
 
-/* ================= Left Arrow ================= */
+/* Left Arrow */
 .arrow-circle-left {
   width: 50px;
   height: 50px;
@@ -643,53 +599,152 @@
   transform: translateY(-50%) rotate(-45deg);
 }
 
-.mr-text {
-  align-self: flex-start;
-  text-align: left;
+
+/* =========================================================
+   Breakpoints / RWD
+   ========================================================= */
+
+/* --- Members profile 中等寬度以下：改為上下排 --- */
+@media (max-width: 1000px) {
+  .mr-profile { 
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem; 
+    padding: 1.5rem; 
+  }
 }
 
-.mr-profile-link {
-  text-decoration: underline;
-  color: inherit;
-  display: block;
-
-  margin-left: auto;   /* ★ 把 See More 推到 mr-text 最右側 */
-  text-align: right;
+/* --- News Card / Nav 調整 --- */
+@media (max-width: 1024px) {
+  .mr-nav-left { left: 2px; }
+  .mr-nav-right { right: 2px; }
+  .mr-card { padding: 1.6rem 1.5rem; }
 }
 
-.seemore {
-  font-size: 24px;
-  margin-top: 25px;
-  align-self: flex-end;
-  text-align: right;
-  text-decoration: underline;
+/* --- About Us grid：小螢幕 → 單欄，中等螢幕 → 雙欄 --- */
+@media (max-width: 900px) {
+  .mr-about__grid { 
+    grid-template-columns: 1fr; 
+  }
 }
 
-.principleinvestigator{
-    display: grid;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 500px;
-    border-radius: 20px;
-    border: 3px solid #ffffff;
+@media (min-width: 640px) and (max-width: 900px) {
+  .mr-about__grid { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
 }
 
-.principleinvestigator-photo{
-    height: 300px;
-    width: 300px;
-    min-height: 300px;
-    min-width: 300px;
-    border-radius: 50px;
-    margin: 0 auto;
+/* --- 手機版：統一 RWD --- */
+@media (max-width: 768px) {
+  /* 隱藏左右箭頭（改用滑動） */
+  .mr-nav,
+  .mr-stage .mr-nav {
+    display: none !important;
+  }
 
-}
+  /* profile：圖片 + 文字 一上一下 */
+  .mr-profile {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
 
-.principleinvestigator-title{
-    font-size: 32px;
+  .mr-photo-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mr-text {
+    max-width: 100%;
     text-align: center;
-}
+    align-items: center;
+  }
 
+  /* Stage 改為單欄 */
+  .mr-stage {
+    display: block;
+    min-height: auto;
+    margin: 0 12px;
+  }
+
+  .mr-stage .mr-scroller {
+    width: 100%;
+  }
+
+  /* News 區塊寬度不超過螢幕 */
+  .mr-stage-wrap,
+  .mr-card,
+  .mr-heading {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Upcoming / Events 標題 */
+  .title {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(32px, 8vw, 48px);
+  }
+
+  /* Landing：貼滿螢幕，改為上下排列 */
+  .landing {
+    padding: 16px 0;
+    margin: 0 !important;
+  }
+
+  .landing__inner {
+    margin: 0 !important;
+    padding: 0 12px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mini-list {
+    text-align: center;
+  }
+
+  .landing__right {
+    text-align: center;
+  }
+
+  .brand-img {
+    margin: 100px auto 30px auto;
+    max-width: 85%;
+  }
+
+  /* 手機上 bio 不限制高度，避免卡片太小 */
+  .scroll-box {
+    max-height: none;
+  }
+
+  /* Principle Investigator：手機放大寬度、置中 */
+  .section-title {
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .principleinvestigator {
+    width: 90%;
+    padding: 32px 16px;
+  }
+
+  .principleinvestigator-photo {
+    width: 220px;
+    height: 220px;
+    min-width: 220px;
+    min-height: 220px;
+  }
+
+  .principleinvestigator-title {
+    font-size: 28px;
+  }
+
+  .seemore {
+    align-self: center;
+    text-align: center;
+  }
+}
