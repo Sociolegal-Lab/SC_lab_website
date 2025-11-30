@@ -1,7 +1,7 @@
 # TODO
 - All pages: 圖片矩形邊角圓化
 - Projectcolumn 右箭頭沒對齊(只有手機上無法對齊，為什麼？？)
-- 轉換舊版網站的 https://sociolegal-lab.github.io/leaderBoard.html（project_1: Intersectional Moral Biases in Large Language Models）為 React 架構（轉換的負擔有點大，暫時擱置）
+- 轉換舊版網站的 https://sociolegal-lab.github.io/leaderBoard.html(https://github.com/Sociolegal-Lab/SClab-website/blob/a495c0d74bb46933c4d9d3c1fa616f997f8a6312/frontend/pages/leaderBoard.html#L3)（project_1: Intersectional Moral Biases in Large Language Models）為 React 架構（轉換的負擔有點大，暫時擱置）
 
 - 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
 
