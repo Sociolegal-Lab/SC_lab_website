@@ -24,10 +24,6 @@ export default function FellowshipsAndAwardsCollapse() {
               <p className={styles["collapse-text-title"]}>
                 {item.title} ({item.year})
               </p>
-              <p className={styles["collapse-text"]}>{item.organization}</p>
-              {item.description && (
-                <p className={styles["collapse-text"]}>{item.description}</p>
-              )}
             </div>
           ))}
         </div>

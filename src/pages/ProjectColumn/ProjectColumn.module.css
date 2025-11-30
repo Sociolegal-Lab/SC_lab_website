@@ -52,10 +52,7 @@
 
 }
 
-.icon_outside{
-  width:75px;
-  height: 75px;
-}
+
 .circle_icon_wrapper {
     display: flex;
     justify-content: center;
@@ -64,31 +61,36 @@
     height: 75px;
     background-color: #ffffff;
     border-radius: 50%; /* Makes the box a circle */
+    margin: 3px 0px;
 }
-.circle_icon_wrapper .icon {
-    /* Ensure the SVG stays its original size */
-    width: 55px;
-    height: 55px;
-    color: #0e133f
+@media (max-width: 420px)
+{
+    .circle_icon_wrapper {
+        width: 65px;
+        height: 65px;
+    }
 }
+
+
 
 
 .title{
   color: white;
   width: 100%;
 }
-.XL { font-size:5rem }
-.L { font-size: 4.5rem} 
-.M { font-size: 4rem }
-.S { font-size: 3rem}
-.XS { font-size:2.5rem}
+.XL { font-size:4.8rem }
+.L { font-size: 4.3rem} 
+.M { font-size: 3.8rem }
+.S { font-size: 2.8rem}
+.XS { font-size:2.3rem}
 
 
 .subtitle{
   color:#ffffff;
-  font-size:1.4rem;
+  font-size:1.3rem;
   width: 95%;
   overflow-wrap: break-word;
+  margin: 3px 0px;
   
 }
 
@@ -96,16 +98,17 @@
 
 .icon{
   color: #000;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.2rem;
+  height: 3.2rem;
 }
 
 /* Right side */
 .introduction{
   max-width: auto;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-top: 2rem; /* Lower than the name of project at its right side. */
   color: #9BA6FD;
+  text-align: left;
 }
 
 /* introduction wrapping automatically */
@@ -132,24 +135,20 @@
   .head{
     gap: 0px;
   }
-  .introduction{
-    margin-top: 12rem;
-  }
 
-  .XL { font-size:3.5rem }
-  .L { font-size: 3rem} 
-  .M { font-size: 2.5rem }
-  .S { font-size: 1.6rem}
-  .XS { font-size:1.6rem}
+  .XL { font-size:3.3rem }
+  .L { font-size: 2.8rem} 
+  .M { font-size: 2.3rem }
+  .S { font-size: 1.4rem}
+  .XS { font-size:1.4rem}
 
   .subtitle{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     width: 90%;
     
   }
-
   .introduction{
-    margin-top: 20rem;
+    margin-top: 25rem;
   }
 
 
@@ -163,32 +162,39 @@
     transform: translate(-61%, -33%);
   } 
 
-  .XL { font-size:2.5rem }
-  .L { font-size: 2rem} 
-  .M { font-size: 1.5rem }
-  .S { font-size: 1.4rem}
-  .XS { font-size:1.4rem}
+  .XL { font-size:2.3rem }
+  .L { font-size: 1.8rem} 
+  .M { font-size: 1.3rem }
+  .S { font-size: 1.3rem}
+  .XS { font-size:1.3rem}
 
   .subtitle{
-    font-size: 1rem;
+    font-size: 1.1rem;
     width: 60%;
   }
 } 
 
 /* image */
-.img43 {
-  width: 65%;
-  background: #eee;
-  overflow: hidden;
-  margin: 0px auto;
-  margin-bottom: 5vw;
 
+.img43 {
+  max-width: 36rem;
+  background: #ffffff;
+  overflow: hidden;
+  margin: 5vw auto;
+  cursor: pointer;
+
+  /* new: smooth shadow + subtle lift on hover */
+  border-radius: 8px; /* ensure wrapper matches image radius */
+  box-shadow: 0 8px 20px rgba(11,18,54,0.12), 0 3px 6px rgba(11,18,54,0.06);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform, box-shadow;
 }
 .img43 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 8px;
 }
 
 
@@ -198,7 +204,8 @@
   color: #9BA6FD;
   line-height: 1.6;
   word-break: break-word;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  text-align: justify;
   font-weight: bold;
 }
 
@@ -288,7 +295,7 @@
   margin: 3rem 0px;
   word-wrap: break-word;
   hyphens: auto;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 
@@ -313,6 +320,6 @@
 
 @media (max-width:700px){
   .switch{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }

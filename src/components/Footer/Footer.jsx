@@ -16,7 +16,7 @@ function Footer(){
             {/* Width of this block depends on the width of long logo */}
             <div className={style.sec1_L}>
                 <img src={scl_logo_full_white} alt="scl_logo" className={style.logo}/>
-                <p className={`inter-medium ${style.slogan} ${style.p}`}>Our interdisciplinary research leverages natural language processing to critically assess the impacts of AI on legal and societal frameworks.</p>
+                <p className={`inter-medium ${style.p}`}>Our interdisciplinary research leverages natural language processing to critically assess the impacts of AI on legal and societal frameworks.</p>
             </div>
  
             {/* Right side */}

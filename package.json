@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://Sociolegal-Lab.github.io/SC_lab/SC_lab_website",
+    "homepage": "https://Sociolegal-Lab.github.io/",
     "scripts": {
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist",
