@@ -1,0 +1,37 @@
+# .github/workflows/deploy.yml
+name: Deploy new site to org Pages
+
+on:
+  push:
+    branches: [ deploy ]   # 依你的預設分支調整
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.12.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build   # 依你的專案調整打包指令
+
+      # 🔥 關鍵：為 SPA 建立 404.html，讓 GitHub Pages 404 也回到你的 React/Vite App
+      - name: Create 404.html for SPA routing
+        run: cp dist/index.html dist/404.html
+
+      - name: Deploy to Sociolegal-Lab.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          external_repository: Sociolegal-Lab/Sociolegal-Lab.github.io
+          publish_dir: ./dist            # 你的打包輸出資料夾
+          publish_branch: main           # 目標 repo 的發佈分支
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}

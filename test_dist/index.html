@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>網站維護中｜Maintenance</title>
+    <style>
+         :root {
+            --fg: #0f172a;
+            --muted: #64748b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --ring: #e2e8f0;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+             :root {
+                --fg: #e2e8f0;
+                --muted: #94a3b8;
+                --bg: #0b1020;
+                --card: #111827;
+                --ring: #1f2937;
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+        }
+        
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 800px at 50% -20%, var(--ring), transparent 60%), var(--bg);
+            color: var(--fg);
+            font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+        
+        .card {
+            width: min(720px, 92vw);
+            background: var(--card);
+            border: 1px solid var(--ring);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 48px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        
+        h1 {
+            margin: 8px 0 6px;
+            font-size: clamp(22px, 3.5vw, 28px);
+        }
+        
+        p {
+            margin: 6px 0;
+            color: var(--muted);
+        }
+        
+        .divider {
+            height: 1px;
+            background: var(--ring);
+            margin: 18px auto;
+            width: 80%;
+            border-radius: 1px;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--ring);
+            text-decoration: none;
+            color: var(--fg);
+        }
+        
+        .sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card" role="main" aria-live="polite">
+        <div class="icon" aria-hidden="true">🛠️</div>
+        <h1>網站維護中</h1>
+        <p>我們正在更新內容與系統，稍後回來看看吧。</p>
+        <div class="divider" aria-hidden="true"></div>
+        <p lang="en"><strong class="sr">English:</strong> We’re doing some maintenance and will be back soon.</p>
+    </main>
+</body>
+
+</html>
