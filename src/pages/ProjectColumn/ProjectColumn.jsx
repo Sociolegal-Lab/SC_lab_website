@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import style from "./ProjectColumn.module.css";
 import ReactMarkdown from "react-markdown";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
@@ -66,6 +66,37 @@ function ProjectColumn() {
     const img_key = Object.keys(projects_image).find(k => k.includes(`project_${id}.`));
     const image_src = img_key ? projects_image[img_key] : null;
 
+  // --- NEW: popup state + ref + handler (same behavior as in News) ---
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupSrc, setPopupSrc] = useState('');
+  const popupRef = useRef(null);
+
+  const openCoverPopup = (src) => {
+    setPopupSrc(src);
+    setPopupOpen(true);
+  };
+
+  useEffect(() => {
+    if (!popupOpen) return;
+
+    const handleOutside = (e) => {
+      if (popupRef.current && !popupRef.current.contains(e.target)) {
+        setPopupOpen(false);
+      }
+    };
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setPopupOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleOutside);
+    document.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [popupOpen]);
+  // --- end new ---
+
   return (<>
   <div className={`${style.background}`} lang="eng">
     <div className={`${style.marginLR}`}>
@@ -85,7 +116,7 @@ function ProjectColumn() {
             ))}
           </div>
           { link &&
-            (<button className={style.icon_outside}
+            (<button
             type="button"
             onClick={() =>
                 window.open(link, '_blank', 'noopener,noreferrer')
@@ -121,12 +152,22 @@ function ProjectColumn() {
       
 
       {/* image */}
-
-      {image_src && (
-        <div className={`${style.img43}`}>
+      <div className={style.img_wrapper}>
+        {image_src && (
+        // make the image clickable/keyboard accessible to open popup
+        <div
+          className={`${style.img43}`}
+          onClick={() => openCoverPopup(image_src ?? '')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter") openCoverPopup(image_src ?? ''); }}
+        >
           <img src={image_src} alt="Project image" />
         </div>
-      )}
+        )}
+
+      </div>
+
 
       
 
@@ -152,6 +193,53 @@ function ProjectColumn() {
       </div>
     </div>
   </div>
+
+  {/* popup overlay + centered image (same pattern as News) */}
+  {popupOpen && (
+    <>
+      <div
+        // overlay
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.45)',
+          zIndex: 999,
+        }}
+        onClick={() => setPopupOpen(false)}
+      />
+      <div
+        ref={popupRef}
+        role="dialog"
+        aria-modal="true"
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 1000,
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          boxShadow: '0 6px 24px rgba(0,0,0,0.3)',
+          borderRadius: 12,
+          background: '#fff',
+          padding: 8,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={popupSrc}
+          alt="project cover"
+          style={{
+            display: 'block',
+            maxWidth: 'calc(90vw - 16px)',
+            maxHeight: 'calc(90vh - 16px)',
+            borderRadius: 8,
+          }}
+        />
+      </div>
+    </>
+  )}
+
   <div style={{background: "#CDD3FE", height: "6px", width:"100%"}}> </div>
   </>);
 }
