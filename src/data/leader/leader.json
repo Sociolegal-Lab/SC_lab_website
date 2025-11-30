@@ -2,29 +2,21 @@
     "Education": [
     {
       "degree": "J.S.D.",
-      "institution": "School of Law, University of California, Berkeley",
-      "period": "2020",
-      "description": null
+      "institution": "School of Law, University of California, Berkeley"
     },
     {
       "degree": "LL.M.",
-      "institution": "Yale Law School",
-      "period": "2012",
-      "description": null
+      "institution": "Yale Law School"
     },
     {
       "degree": "LL.B., LL.M.",
-      "institution": "National Taiwan University College of Law",
-      "period": "2007-2010",
-      "description": null
+      "institution": "National Taiwan University College of Law"
     }
   ],
   "Fellowships and Awards": [
     {
       "title": "司法院第五屆法律Ｘ法遵科技黑客松 銀獎、AIGC特別獎第一名",
-      "year": 2023,
-      "organization": "Judical Yuan of the Republic of China",
-      "description": "與臺灣大學語言所謝舒凱教授團隊共同參賽"
+      "year": 2023
     }
   ],
       "Journal Articles": [
