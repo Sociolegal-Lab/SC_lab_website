@@ -5,6 +5,7 @@
   min-height: 100vh;         /* 保證全螢幕高度 */
   background: #364DFA; 
   color: #fff; 
+  --fg:#9ba6fd;
 }
 
 .mr-container { 
@@ -641,3 +642,54 @@
   border-left: 5px solid #CDD3FE;
   transform: translateY(-50%) rotate(-45deg);
 }
+
+.mr-text {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.mr-profile-link {
+  text-decoration: underline;
+  color: inherit;
+  display: block;
+
+  margin-left: auto;   /* ★ 把 See More 推到 mr-text 最右側 */
+  text-align: right;
+}
+
+.seemore {
+  font-size: 24px;
+  margin-top: 25px;
+  align-self: flex-end;
+  text-align: right;
+  text-decoration: underline;
+}
+
+.principleinvestigator{
+    display: grid;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 500px;
+    border-radius: 20px;
+    border: 3px solid #ffffff;
+}
+
+.principleinvestigator-photo{
+    height: 300px;
+    width: 300px;
+    min-height: 300px;
+    min-width: 300px;
+    border-radius: 50px;
+    margin: 0 auto;
+
+}
+
+.principleinvestigator-title{
+    font-size: 32px;
+    text-align: center;
+}
+

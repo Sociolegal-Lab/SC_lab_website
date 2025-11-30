@@ -121,7 +121,7 @@ body{margin:0}
 
 /* 標題字體大小與字重 */
 .collapse-title{
-  font-size: clamp(28px, 5vw, 56px);
+  font-size: clamp(28px, 5vw, 42px);
   font-weight: 700;
   letter-spacing: .2px;
   padding: 10px 0;

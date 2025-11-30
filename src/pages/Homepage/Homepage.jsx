@@ -4,6 +4,7 @@ import ProjectsRoll from "./ProjectsRoll";
 import UpcomingEvents from "./UpcomingEvents";
 import Landing from "./Landing";
 import AboutUs from "./AboutUs";
+import PrincipleInvestigator from "./PrincipleInvestigator";
 
 
 export default function HomePage(){
@@ -11,6 +12,7 @@ export default function HomePage(){
     <div className="body">
         <Landing />
         <ProjectsRoll />
+        <PrincipleInvestigator />
         <MembersRoll />
         <NewsRoll />
         <UpcomingEvents/>

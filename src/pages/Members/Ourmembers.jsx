@@ -26,7 +26,7 @@ export default function Members() {
   return (
     <section className={styles["members-section"]}>
       <p className="rufina-bold">
-        <h2>OUR MEMBERS</h2>
+        <h2>Our Members</h2>
       </p>
       <div className={styles["subtitle"]}>CURRENT MEMBERS</div>
       <div className={styles["member-grid"]}>
