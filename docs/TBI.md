@@ -7,6 +7,7 @@
 - reload deployed page 的status code: 404 Why?
 
 
+- 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
 
 ## Tutorial
 - 圖片壓縮，設定檔案上限，同時請大家注意圖片解析度不要太差
@@ -26,7 +27,7 @@
 - 幫俊傑調整名字
 - projectcolumn.jsx 圖片小一點，跟著字縮放
 - 更改所有的 Link to= (包含手機頁面的header隱藏選單)
-- 處理 browser 發送瀏覽子頁面之請求，gh-page找不到子資料夾的問題 [解決方法參見](https://gemini.google.com/share/9ac9c41d9796)
+
 - project column: dynamic icon depending on hyperlink
 - 在手機上，怎麼增加feature project可點擊感覺?
     - 在段落前加上一個+號
