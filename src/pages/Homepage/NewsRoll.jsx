@@ -158,12 +158,16 @@ export default function NewsRoll({
       <div className={styles["mr-stage-wrap"]}>
         <div className={styles["mr-stage"]}>
           <button
-            aria-label="Previous"
+            aria-label="上一張"
             className={`${styles["mr-nav"]} ${styles["mr-nav-left"]}`}
-            onClick={() => { go(-1); pauseAutoplay(); }}
+            onClick={() => {
+              go(-1);
+              pauseAutoplay();
+            }}
           >
-            <img src={left_arrow} alt="" />
+            <div className={styles["arrow-circle-left-gold"]}></div>
           </button>
+
 
           <div ref={scrollerRef} className={`${styles["mr-scroller"]} ${styles["mr-no-scrollbar"]}`}>
             {items.map((m, i) => (
@@ -181,11 +185,13 @@ export default function NewsRoll({
           </div>
 
           <button
-            aria-label="Next"
-            className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}
-            onClick={() => { go(1); pauseAutoplay(); }}
+              aria-label="下一張"
+              className={`${styles["mr-nav"]} ${styles["mr-nav-right"]}`}                  onClick={() => {
+                go(1);
+                pauseAutoplay();
+              }}
           >
-            <img src={right_arrow} alt="" />
+            <div className={styles["arrow-circle-right-gold"]}></div>
           </button>
         </div>
 
