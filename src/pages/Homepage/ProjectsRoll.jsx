@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
@@ -26,7 +27,7 @@ const normalize = (p = {}) => ({
   name: p.name || "",
   bio: p.brief_introduction || p.introduction || "",
   photo: resolvePhoto(p.photo),
-  link: p.link || "", // 把 link 帶進來，給圖片點擊用
+  link: p.link || "", // 目前已不使用外部 link，但保留欄位不影響
 });
 
 export default function ProjectsRoll({
@@ -104,7 +105,7 @@ export default function ProjectsRoll({
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 拖曳橫向滑動（作法一：避開 <a>，不攔截點擊）
+  // 拖曳橫向滑動
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -114,9 +115,7 @@ export default function ProjectsRoll({
     let scrollStart = 0;
 
     const onDown = (e) => {
-      // 如果按到的是 <a> 或其子元素，就不要啟動拖曳，讓點擊正常觸發
-      if (e.target.closest("a")) return;
-
+      // 原本有避免 <a> 被拖曳，改成整張卡片可點擊，所以此處不再排除
       isDown = true;
       startX = e.pageX - el.offsetLeft;
       scrollStart = el.scrollLeft;
@@ -204,7 +203,9 @@ export default function ProjectsRoll({
   return (
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 版面配置：左箭頭 / 內容 / 右箭頭 */}
+        <div className={`rufina-bold ${styles["section-title"]} `}>
+          Projects
+        </div>
         <div className={styles["mr-stage"]}>
           {/* 左箭頭 */}
           <button
@@ -215,7 +216,7 @@ export default function ProjectsRoll({
               pauseAutoplay();
             }}
           >
-            <img src={left_arrow} alt="" />
+            <div className={styles["arrow-circle-left"]}></div>
           </button>
 
           {/* 專案卡片輪播（中間可橫向捲動） */}
@@ -225,27 +226,9 @@ export default function ProjectsRoll({
           >
             {items.map((m, i) => (
               <section key={m.id || i} className={styles["mr-section"]}>
-                <article className={styles["mr-profile"]}>
-                  {/* 照片 + 連結 */}
-                  <div className={styles["mr-photo-wrap"]}>
-                    {m.link ? (
-                      <a
-                        href={m.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className={styles["mr-project-photo"]}
-                          src={m.photo}
-                          alt={m.name}
-                          loading="lazy"
-                          decoding="async"
-                          onError={(e) =>
-                            (e.currentTarget.style.display = "none")
-                          }
-                        />
-                      </a>
-                    ) : (
+                  <article className={styles["mr-profile"]}>
+                    {/* 照片 */}
+                    <div className={styles["mr-photo-wrap"]}>
                       <img
                         className={styles["mr-project-photo"]}
                         src={m.photo}
@@ -256,17 +239,22 @@ export default function ProjectsRoll({
                           (e.currentTarget.style.display = "none")
                         }
                       />
-                    )}
-                  </div>
-
-                  {/* 文字內容（bio 超出時捲動） */}
-                  <div className={styles["mr-text"]}>
-                    <h2 className={styles["mr-name"]}>{m.name}</h2>
-                    <div className={styles["scroll-box"]} tabIndex={0}>
-                      <p className={styles["mr-bio"]}>{m.bio}</p>
                     </div>
-                  </div>
-                </article>
+                    {/* 文字內容（bio 超出時捲動） */}
+                    <div className={styles["mr-text"]}>
+                      <h2 className={styles["mr-name"]}>{m.name}</h2>
+                      <div className={styles["scroll-box"]} tabIndex={0}>
+                        <p className={styles["mr-bio"]}>{m.bio}</p>
+                      </div>
+                      <div className={styles["seemore"]}>
+                        <Link
+                        to={`/project-column/project_${m.id}`}
+                        className={styles["mr-profile-link"]}
+                        >See More
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
               </section>
             ))}
           </div>
@@ -280,7 +268,7 @@ export default function ProjectsRoll({
               pauseAutoplay();
             }}
           >
-            <img src={right_arrow} alt="" />
+            <div className={styles["arrow-circle-right"]}></div>
           </button>
         </div>
 

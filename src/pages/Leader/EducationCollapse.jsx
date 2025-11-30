@@ -16,7 +16,7 @@ export default function EducationCollapse() {
             <div key={index} className={styles["collapse-section"]}>
               <p className={styles["collapse-text-title"]}>{edu.degree}</p>
               <p className={styles["collapse-text"]}>
-                {edu.institution} ({edu.period})
+                {edu.institution} 
               </p>
               {edu.description && (
                 <p className={styles["collapse-text"]}>{edu.description}</p>

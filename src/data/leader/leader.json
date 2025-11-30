@@ -85,42 +85,6 @@
       "publication": " ICAIL’23 Proceedings of the 19th International Conference on Artificial Intelligence and Law (2023) (Coauthored with Yu-Hsiang Tan and Han-Ting Yu, first author)"
     }
   ],
-  "International Conference": [
-    {
-      "title": "待補充",
-      "conference": "待補充",
-      "location": "待補充",
-      "year": 2023,
-      "description": "待補充"
-    }
-  ],
-    "Past Speaking Engagements": [
-    {
-      "title": "待補充",
-      "event": "待補充",
-      "location": "待補充",
-      "year": 2024,
-      "description": "待補充"
-    }
-  ],
-    "Upcoming Speaking Engagements": [
-    {
-      "title": "待補充",
-      "event": "待補充",
-      "location": "待補充",
-      "date": "待補充",
-      "description": "待補充"
-    }
-  ],
-  "Ongoing Projects": [
-    {
-      "title": "待補充",
-      "period": "待補充",
-      "organization": "待補充",
-      "role": "待補充",
-      "description": "待補充"
-    }
-  ],
   "Projects": [
     {
       "title": "《AI時代下數位社會的人文課題與法治反思》",
@@ -199,6 +163,14 @@
     },{
       "title": "文本分析與資料探勘 ",
       "semester": "(2020 Fall)"
+    }
+  ],
+  "Invited Talks": [
+    {
+      "title": "演講標題",
+      "event": "出席活動之名稱",
+      "location": "地點",
+      "year": 2024
     }
   ]
 }

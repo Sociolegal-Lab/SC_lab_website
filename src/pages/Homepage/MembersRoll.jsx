@@ -173,9 +173,10 @@ export default function MembersRoll({
   }, [items.length, interval]);
 
   return (
+    
     <div className={`${styles["mr-root"]} ${className || ""}`}>
       <div className={styles["mr-container"]}>
-        {/* 版面配置改成跟 NewsRoll 一樣：左箭頭 / 內容 / 右箭頭 */}
+        <div className={`rufina-bold ${styles["section-title"]} `}>Members</div>
         <div className={styles["mr-stage"]}>
           {/* 左箭頭 */}
           <button
@@ -186,7 +187,7 @@ export default function MembersRoll({
               pauseAutoplay();
             }}
           >
-            <img src={left_arrow} alt="" />
+            <div className={styles["arrow-circle-left"]}></div>
           </button>
 
           {/* 成員區塊（中間可橫向捲動） */}
@@ -244,7 +245,7 @@ export default function MembersRoll({
               pauseAutoplay();
             }}
           >
-            <img src={right_arrow} alt="" />
+            <div className={styles["arrow-circle-right"]}></div>
           </button>
         </div>
 
