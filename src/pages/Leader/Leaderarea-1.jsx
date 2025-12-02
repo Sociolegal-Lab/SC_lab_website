@@ -106,10 +106,10 @@ export default function Leaderarea() {
           </h1>
 
           <p className={styles["subtitle"]}>
-            {professor.region.join("; ")}
+            || {professor.region.join("; ")}
           </p>
 
-          <p className={styles["affil"]}>{professor.position}</p>
+          <p className={styles["affil"]}>|| {professor.position}</p>
 
           <blockquote className={`inter-bold ${styles["motto"]}`}>
             {professor.bio}

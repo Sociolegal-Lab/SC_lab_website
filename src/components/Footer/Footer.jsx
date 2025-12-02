@@ -2,7 +2,7 @@ import {Link} from "react-router-dom"
 import style from "./Footer.module.css"
 import scl_logo_full_white from "../../assets/logo/4_scl_logo_full_white.png"
 import openNewTab from "../../utils/openNewTab";
-import useClipboard from "../../hooks/useClipBoard"
+import useClipboard from "../../hooks/useClipboard"
 
 
 function Footer(){
