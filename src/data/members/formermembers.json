@@ -1,21 +1,20 @@
     [
     {"id":"0", 
     "Chinese_name":"陳宥橋", 
-    "English_name":"", 
-    "title": "", 
-    "email": "",
+    "English_name":"Yu-Chiao Chen", 
+    "title": "Research Assistant", 
+    "email": "f74091093@gs.ncku.edu.tw",
     "bio": [
-      "",
-      "",
-      ""
-    ],
+    "Have a smile!"
+        ],
     "socials": {
-      "linkedin": "",
-      "github": "",
+      "linkedin": null,
+      "github": null,
       "facebook": null,
       "instagram": null
     },
-    "short_bio": ""
+    "short_bio": "typing...",
+    "photo":"陳宥橋.jpg"
     }
 ]
   
