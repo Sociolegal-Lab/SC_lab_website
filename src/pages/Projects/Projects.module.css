@@ -14,7 +14,7 @@
  }
 } 
 
-@media (max-width: 430px) {
+@media (max-width: 600px) {
  .marginLR{
   margin: 0px 3rem;
  }
@@ -41,7 +41,7 @@
  }
 } 
 
-@media (max-width: 430px) {
+@media (max-width: 600px) {
  .title{
   font-size: 3rem;
  }
@@ -127,7 +127,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 430px) {
+@media (max-width: 600px) {
     .headline{
         font-size:1.4rem;
     }

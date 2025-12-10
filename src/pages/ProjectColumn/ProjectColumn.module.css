@@ -8,7 +8,7 @@
   margin: 0px 6rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
  .marginLR{
   margin: 0px 3rem;
  }
@@ -112,7 +112,7 @@
 }
 
 /* introduction wrapping automatically */
-@media (max-width: 1050px) {
+@media (max-width: 1200px) {
   .head{
     flex-wrap: wrap;
     margin-bottom: 4rem; 
@@ -120,7 +120,9 @@
   }
   .introduction{
     margin-top: 25rem;
+    text-align: justify;
   }
+
 } 
   /* Circle shrink!! Following setting follow the size of circle. (manually)*/
   @media (max-width: 700px) {
@@ -149,6 +151,8 @@
   }
   .introduction{
     margin-top: 25rem;
+    font-size: 1rem;
+    text-align: left;
   }
 
 
@@ -209,6 +213,13 @@
   font-weight: bold;
 }
 
+@media (max-width: 700px){
+    .markdown {
+      font-size: 1rem;
+      text-align: left;
+  }
+}
+
 /* headings */
 .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
   margin: 1.2rem 0 0.6rem;
@@ -260,7 +271,7 @@
   padding: 0.15rem 0.35rem;
   border-radius: 4px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
 }
 
 /* images & tables */
