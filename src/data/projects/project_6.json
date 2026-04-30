@@ -3,7 +3,7 @@
   "name": "Legal News Agent for Taiwanese Judicial Reporting",
   "duration": "2024–ongoing",
   "contributors": [
-    "CHIN-YU HOU"
+    "Chin-You Hou"
   ],
   "link": "https://sociolegal-lab.github.io/legal-news-website/",
   "brief_introduction": "This subproject is part of the Empirical Legal Data Portal and focuses on automated classification of judicial news in Taiwan. Using Large Language Models (LLMs), it identifies the procedural stage represented in each article and stores the results as structured JSON. An interactive web interface allows users to filter and analyze news by source and stage, bridging empirical legal studies with AI-driven media analysis.",
