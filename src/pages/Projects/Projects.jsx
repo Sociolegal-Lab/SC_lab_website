@@ -2,30 +2,22 @@ import style from "./Projects.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
-import getMarkdownWordCount from "../../utils/getMarkdownWordCount";
+import projectIndex from "../../data/projects/projects_index.json";
 
 const project_data = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg|jpeg|png|gif)", {eager: true, as: 'url'});
-// Add markdown imports (raw) to count words
-const project_markdowns = import.meta.glob("../../data/projects/project_[0-9]*.md", { eager: true, as: 'raw' });
 
 function Projects() {
   const AMOUNT_OF_PROJECTS = 12;
   const [projectLimit, setProjectLimit] = useState(AMOUNT_OF_PROJECTS);
 
-  // Prepare entries and slice according to projectLimit
-  const projectEntries = Object.entries(project_data);
-
-
-
-  // Sort entries in-place by markdown word count (descending). Missing .md yield -1 and go last.
-  projectEntries.sort(([pathA], [pathB]) => {
-    const { id: idA } = extractIdFromFilePath(pathA) || {};
-    const { id: idB } = extractIdFromFilePath(pathB) || {};
-    const countA = getMarkdownWordCount(idA, project_markdowns);
-    const countB = getMarkdownWordCount(idB, project_markdowns);
-    return countB - countA;
-  });
+  const projectEntries = projectIndex
+    .map((filename) => {
+      const path = `../../data/projects/${filename}`;
+      const mod = project_data[path];
+      return mod ? [path, mod] : null;
+    })
+    .filter(Boolean);
 
   const displayedEntries = projectEntries.slice(0, projectLimit);
 
