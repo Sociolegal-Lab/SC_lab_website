@@ -5,7 +5,7 @@
     "contributors":[
         "Shao-Man Lee", "Mu-Ko Chou", "Chun-Che Huang", "Chin-You Hou"
     ],
-    "link": "https://e0d9-2001-b400-e67f-c33e-5cad-335a-45f0-2fd2.ngrok-free.app/chat",
+    "link": "https://8241-2001-b400-e67d-982a-806-24d5-a0d9-99ed.ngrok-free.app/chat",
     "brief_introduction": "This study develops a Retrieval-Augmented Generation (RAG) question-answering system for the Legal Document Database under the Taiwan Database for Empirical Legal Studies (TaDELS). It enables users to query legal documents in natural language and evaluates whether generated answers faithfully capture key legal information from the original texts.",
     "introduction": "TaDELS preserves and provides empirical legal data for research, teaching, and policy analysis. Its Legal Document Database contains various legal documents that support the analysis of case facts, applicable laws, judicial reasoning, and legal outcomes.\n\nSince these documents are mainly stored as original texts, users must often read and summarize them manually. To improve accessibility, this study builds a RAG-based question-answering system that retrieves relevant legal passages and generates grounded answers. It also introduces a legal QA dataset and an entity-based evaluation method to assess answer faithfulness.",
     "photo":"project_9.gif"
