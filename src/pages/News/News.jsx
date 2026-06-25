@@ -139,6 +139,13 @@ function News() {
             <div className={`${style.content} inter-medium`}>
               {n.content}
             </div>
+            {n.url && (
+              <div className={style.readmore}>
+                <a href={n.url} target="_blank" rel="noopener noreferrer">
+                  閱讀全文
+                </a>
+              </div>
+            )}
           </li>
         ))}
       </ul>

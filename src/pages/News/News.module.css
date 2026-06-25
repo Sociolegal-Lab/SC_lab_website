@@ -88,6 +88,26 @@
     hyphens: auto;
 }
 
+.readmore {
+    margin-top: 0.6rem;
+}
+
+.readmore a {
+    display: inline-block;
+    font-size: 1.1rem;
+    color: #364DFA;
+    border: 1.5px solid #364DFA;
+    border-radius: 6px;
+    padding: 0.25rem 0.8rem;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.readmore a:hover {
+    background: #364DFA;
+    color: #fff;
+}
+
 .switch_page{
     color: #FFC23A;
     margin-top: 2rem;
