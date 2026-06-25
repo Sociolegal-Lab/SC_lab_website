@@ -46,6 +46,10 @@
     margin: 0.5rem 0px;
 }
 
+.piece {
+    scroll-margin-top: 100px;
+}
+
 @media (max-width: 800px) {
     .shelf {
         grid-template-columns: 1fr;
