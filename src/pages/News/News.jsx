@@ -51,6 +51,7 @@ function News() {
   const displayNews = selectedNews.slice(0, newslimit);
 
   useEffect(()=>{
+    if (window.location.hash) return;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedYear]);
 
