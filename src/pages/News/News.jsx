@@ -54,6 +54,14 @@ function News() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedYear]);
 
+  // Scroll to a specific news item if hash is present on mount
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, []);
+
   // --- NEW: popup state + refs + handlers (behaves like header menuOpen) ---
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupSrc, setPopupSrc] = useState('');
@@ -113,7 +121,7 @@ function News() {
         className={` ${style.shelf} ${style.marginLR}`}
       >
         {displayNews.map((n) => (
-          <li key={n.id} className={style.piece} >
+          <li key={n.id} id={`news-${n.id}`} className={style.piece} >
             <div
               className={style.img43}
               onClick={() => openCoverPopup(cover_filename[n.id] ?? cover_filename['0'] ?? '')}
