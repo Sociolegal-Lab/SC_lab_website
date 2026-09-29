@@ -22,6 +22,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # 內容檢查放在建置之前：格式有問題就直接中止，不會把壞掉的內容部署上線。
+      # 後台是直接寫入 main（不走 PR），因此這裡是內容的最後一道把關。
+      - name: Validate content
+        run: |
+          npm run validate-json
+          npm run lint:md
+          npm run verify_project_data_filename
+
       - name: Build site
         run: npm run build   # 依你的專案調整打包指令
 

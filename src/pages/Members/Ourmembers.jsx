@@ -1,29 +1,10 @@
 import React from "react";
 import styles from "./Members.module.css"; // ← 用物件匯入
 import membersData from "../../data/members/members.json";
+import getMemberPhotoUrl from "../../utils/getMemberPhotoUrl";
 
 /** 現任成員＝status 不是 "former" 的人（沒填 status 的舊資料視為現任） */
 const currentMembers = membersData.filter((m) => m?.status !== "former");
-
-/** 跟 MembersRoll 一樣的抓圖片邏輯 */
-const toSrc = (m = {}) => {
-  const p = m.photo;
-  if (p) {
-    // 若 JSON 內 photo 有值，優先用它
-    if (p.startsWith("/") || /^https?:\/\//i.test(p)) return p;
-    try {
-      return new URL(`../../data/members/${p}`, import.meta.url).href;
-    } catch {
-      return p;
-    }
-  }
-  // 若 photo 為 null，就依 id 對應成 src/data/members/{id}.jpeg
-  try {
-    return new URL(`../../data/members/${m.id}.jpeg`, import.meta.url).href;
-  } catch {
-    return "";
-  }
-};
 
 export default function Members() {
   return (
@@ -36,7 +17,7 @@ export default function Members() {
         {currentMembers.map((member, index) => {
           const bio = Array.isArray(member.bio) ? member.bio : [];
           const socials = member.socials ?? {};
-          const imgSrc = toSrc(member);
+          const imgSrc = getMemberPhotoUrl(member.photo);
 
           return (
             <div className={styles["member-card"]} key={member.id ?? index}>

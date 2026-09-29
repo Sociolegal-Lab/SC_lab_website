@@ -1,0 +1,140 @@
+# 內容管理後台（Pages CMS）設定檔
+#
+# 這個檔案決定後台會出現哪些編輯畫面、每個畫面有哪些欄位。
+# 後台的網址是 https://app.pagescms.org（用 GitHub 帳號登入）。
+#
+# 重要：照片欄位存進 JSON 的值會帶路徑（例如 /members/3.jpeg），
+# 前端的 getMemberPhotoUrl() 只取檔名再組出實際路徑，
+# 因此手動填「3.jpeg」或後台填「/members/3.jpeg」兩種寫法都能正常顯示。
+
+media:
+  - name: member_photos
+    input: src/data/members      # 檔案實際上傳到這個資料夾
+    output: /members             # 寫進 JSON 的路徑前綴（前端只取檔名，故僅作標記）
+    categories: [image]
+
+  - name: news_images
+    input: src/data/news
+    output: /news
+    categories: [image]
+
+content:
+  - name: members
+    label: 成員名單
+    type: file
+    path: src/data/members/members.json
+    format: json
+    list: true
+    description: >
+      現任與畢業成員共用這一份名單。成員畢業或離開時，只要把「目前狀態」
+      改成「已離開」即可，不需要搬動資料。編號不可重複。
+    fields:
+      - name: status
+        label: 目前狀態
+        type: select
+        required: true
+        description: 決定這個人顯示在網頁的「CURRENT MEMBERS」還是「FORMER MEMBERS」。
+        options:
+          values:
+            - name: current
+              label: 現任成員
+            - name: former
+              label: 已離開（畢業／離職）
+
+      - name: Chinese_name
+        label: 中文姓名
+        type: string
+        required: true
+
+      - name: English_name
+        label: 英文姓名
+        type: string
+        required: true
+        description: 網頁卡片上顯示的是這個欄位。
+
+      - name: title
+        label: 頭銜
+        type: string
+        required: true
+        description: 顯示在姓名下方的一行字，例如 Master's student。
+
+      - name: photo
+        label: 照片
+        type: image
+        media: member_photos
+
+      - name: email
+        label: Email
+        type: string
+
+      - name: bio
+        label: 卡片列點
+        type: string
+        list: true
+        description: 卡片上的短列點，一行一個項目。沒有可以留空。
+
+      - name: short_bio
+        label: 自我介紹
+        type: text
+        description: 較長的介紹文字，首頁的成員輪播會使用。
+
+      - name: socials
+        label: 社群連結
+        type: object
+        fields:
+          - name: linkedin
+            label: LinkedIn
+            type: string
+          - name: github
+            label: GitHub
+            type: string
+          - name: facebook
+            label: Facebook
+            type: string
+          - name: instagram
+            label: Instagram
+            type: string
+
+      - name: id
+        label: 編號
+        type: string
+        required: true
+        description: >
+          全名單不可重複，請填目前最大號碼 +1。重複會導致資料對到錯的人，
+          送出後自動檢查會擋下來。
+
+  - name: news
+    label: 最新消息
+    type: file
+    path: src/data/news/news.json
+    format: json
+    list: true
+    description: >
+      注意：消息的封面圖是依「編號」對應檔名（例如編號 5 對應 src/data/news/5.jpg），
+      無法在這個畫面上傳，需要另外把圖片放進 src/data/news/ 並命名為編號。
+    fields:
+      - name: headline
+        label: 標題
+        type: string
+        required: true
+
+      - name: date
+        label: 日期
+        type: date
+        options:
+          format: yyyy-MM-dd
+
+      - name: content
+        label: 內容
+        type: text
+
+      - name: url
+        label: 相關連結
+        type: string
+        description: 沒有可以留空。
+
+      - name: id
+        label: 編號
+        type: string
+        required: true
+        description: 不可重複。封面圖需命名為「編號.jpg」放進 src/data/news/。
