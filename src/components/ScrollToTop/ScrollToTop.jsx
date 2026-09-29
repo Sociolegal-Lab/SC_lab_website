@@ -13,7 +13,9 @@ function ScrollToTop({ children }) {
     const currentMain = pageRef.current;
     if (!currentMain) return; // 安全性檢查
 
-    window.scrollTo({ top: 0, behavior: "instant" });
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
     
     // 2. 【關鍵：禁用淡出】
     // 在狀態變為 false (透明) 之前，強制禁用 transition

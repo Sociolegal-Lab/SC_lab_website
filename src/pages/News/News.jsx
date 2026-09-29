@@ -51,8 +51,17 @@ function News() {
   const displayNews = selectedNews.slice(0, newslimit);
 
   useEffect(()=>{
+    if (window.location.hash) return;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedYear]);
+
+  // Scroll to a specific news item if hash is present on mount
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
   // --- NEW: popup state + refs + handlers (behaves like header menuOpen) ---
   const [popupOpen, setPopupOpen] = useState(false);
@@ -113,7 +122,7 @@ function News() {
         className={` ${style.shelf} ${style.marginLR}`}
       >
         {displayNews.map((n) => (
-          <li key={n.id} className={style.piece} >
+          <li key={n.id} id={`news-${n.id}`} className={style.piece} >
             <div
               className={style.img43}
               onClick={() => openCoverPopup(cover_filename[n.id] ?? cover_filename['0'] ?? '')}
@@ -139,6 +148,13 @@ function News() {
             <div className={`${style.content} inter-medium`}>
               {n.content}
             </div>
+            {n.url && (
+              <div className={style.readmore}>
+                <a href={n.url} target="_blank" rel="noopener noreferrer">
+                  閱讀全文
+                </a>
+              </div>
+            )}
           </li>
         ))}
       </ul>

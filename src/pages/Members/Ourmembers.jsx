@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Members.module.css"; // ← 用物件匯入
 import membersData from "../../data/members/members.json";
 
+/** 現任成員＝status 不是 "former" 的人（沒填 status 的舊資料視為現任） */
+const currentMembers = membersData.filter((m) => m?.status !== "former");
+
 /** 跟 MembersRoll 一樣的抓圖片邏輯 */
 const toSrc = (m = {}) => {
   const p = m.photo;
@@ -30,7 +33,7 @@ export default function Members() {
       </p>
       <div className={styles["subtitle"]}>CURRENT MEMBERS</div>
       <div className={styles["member-grid"]}>
-        {membersData.map((member, index) => {
+        {currentMembers.map((member, index) => {
           const bio = Array.isArray(member.bio) ? member.bio : [];
           const socials = member.socials ?? {};
           const imgSrc = toSrc(member);
