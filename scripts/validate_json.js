@@ -16,6 +16,29 @@ const schemaMap = {
 };
 
 
+/**
+ * 成員編號重複會讓照片與連結對到錯的人（photo 未填時會依 id 推檔名），
+ * 因此除了 schema 之外另外檢查 id 是否唯一。
+ */
+function hasUniqueIds(file, data) {
+  if (!Array.isArray(data)) return true;
+  const seen = new Map();
+  const dupes = [];
+  for (const item of data) {
+    const id = item?.id;
+    if (id === undefined || id === null) continue;
+    const who = item.Chinese_name || item.English_name || '(無姓名)';
+    if (seen.has(id)) dupes.push(`id "${id}"：${seen.get(id)} 與 ${who}`);
+    else seen.set(id, who);
+  }
+  if (dupes.length) {
+    console.error(`✖ ${file} 有重複的 id，請改成不重複的編號：`);
+    dupes.forEach((d) => console.error(`   - ${d}`));
+    return false;
+  }
+  return true;
+}
+
 async function main() {
   // Add project_1.json to project_101.json mapping to project_0.schema.json
   for (let i = 1; i <= 101; i++) {
@@ -25,8 +48,8 @@ async function main() {
   const ajv = new Ajv({ allErrors: true, strict: false });
   let failed = false;
 
-  // find json under public/data
-  const files = await glob('public/data/**/*.json', { dot: false });
+  // 資料實際存放在 src/data；public/data 若存在（舊同步流程）也一併檢查
+  const files = await glob(['src/data/**/*.json', 'public/data/**/*.json'], { dot: false });
 
   for (const file of files) {
     const name = path.basename(file);
@@ -42,6 +65,8 @@ async function main() {
     if (!valid) {
       console.error(`✖ ${file} failed schema validation:`);
       console.error(validate.errors);
+      failed = true;
+    } else if (name === 'members.json' && !hasUniqueIds(file, data)) {
       failed = true;
     } else {
       console.log(`✔ ${file} ok`);

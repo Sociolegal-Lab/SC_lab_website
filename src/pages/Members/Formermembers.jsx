@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./Members.module.css";
-import membersData from "../../data/members/formermembers.json";
+import membersData from "../../data/members/members.json";
+
+/** 畢業／離開的成員＝status 是 "former" 的人 */
+const formerMembers = membersData.filter((m) => m?.status === "former");
 
 /** 與 Ourmembers.jsx 完全一致的抓圖片邏輯 */
 const toSrc = (m = {}) => {
@@ -26,7 +29,7 @@ export default function FormerMembers() {
       <div className={styles["subtitle"]}>FORMER MEMBERS</div>
 
       <div className={styles["member-grid"]}>
-        {membersData.map((member, index) => {
+        {formerMembers.map((member, index) => {
           const bio = Array.isArray(member.bio) ? member.bio : [];
           const socials = member.socials ?? {};
           const imgSrc = toSrc(member);     // ← 新增：抓圖片

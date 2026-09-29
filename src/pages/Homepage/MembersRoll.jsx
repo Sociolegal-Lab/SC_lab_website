@@ -3,6 +3,9 @@ import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 import membersData from "../../data/members/members.json";
+
+/** 首頁輪播只顯示現任成員 */
+const currentMembers = membersData.filter((m) => m?.status !== "former");
 import "../../styles/font.css";
 
 /** 將 members.json 欄位轉成渲染用格式 */
@@ -40,7 +43,7 @@ export default function MembersRoll({
   className = "",
   loop = true,
 }) {
-  const raw = (itemsProp && itemsProp.length ? itemsProp : membersData) ?? [];
+  const raw = (itemsProp && itemsProp.length ? itemsProp : currentMembers) ?? [];
   const list = Array.isArray(raw)
     ? raw
     : raw.members || raw.data || raw.items || [];

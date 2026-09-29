@@ -1,27 +1,93 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Leader",
+  "description": "教授個人頁資料。各區塊為陣列，陣列順序即網頁上的顯示順序。",
   "type": "object",
   "properties": {
-    "motto": { "type": ["string", "null"] },
-    "research_interests": { "type": ["string", "null"] },
-    "bio": { "type": ["string", "null"] },
-    "education": {
+    "Education": {
       "type": "array",
-      "items": { "type": ["string","null"]}
+      "items": {
+        "type": "object",
+        "properties": {
+          "degree": { "type": "string" },
+          "institution": { "type": "string" }
+        },
+        "required": ["degree", "institution"]
+      }
     },
-    "fellowships_and_awards": {
+    "Fellowships and Awards": {
       "type": "array",
-      "items": { "type": ["string", "null"] }
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "year": { "type": ["string", "number"] }
+        },
+        "required": ["title", "year"]
+      }
     },
-    "publication": {
+    "Journal Articles": { "$ref": "#/definitions/publicationList" },
+    "Book Chapters": { "$ref": "#/definitions/publicationList" },
+    "Selected Conference Papers": { "$ref": "#/definitions/publicationList" },
+    "Projects": {
       "type": "array",
-      "items": { "type": ["string", "null"] }
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "year": { "type": ["string", "number"] },
+          "organization": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["title", "year", "organization", "description"]
+      }
     },
-    "international_conference": {
+    "Courses": {
       "type": "array",
-      "items": { "type": ["string", "null"] }
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "semester": { "type": "string" }
+        },
+        "required": ["title", "semester"]
+      }
+    },
+    "Invited Talks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "event": { "type": "string" },
+          "location": { "type": "string" },
+          "year": { "type": ["string", "number"] }
+        },
+        "required": ["title", "event", "location", "year"]
+      }
     }
   },
-  "required": ["bio", "motto", "research_interests", "education", "fellowships_and_awards", "publication", "international_conference"]
+  "required": [
+    "Education",
+    "Fellowships and Awards",
+    "Journal Articles",
+    "Book Chapters",
+    "Selected Conference Papers",
+    "Projects",
+    "Courses",
+    "Invited Talks"
+  ],
+  "definitions": {
+    "publicationList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "publication": { "type": "string" }
+        },
+        "required": ["title", "publication"]
+      }
+    }
+  }
 }

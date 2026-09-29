@@ -3,7 +3,8 @@ name: Deploy new site to org Pages
 
 on:
   push:
-    branches: [ deploy ]   # 依你的預設分支調整
+    branches: [ main ]     # main 為唯一正本，推上去就自動建置並部署
+  workflow_dispatch:       # 也可以到 Actions 頁面手動觸發一次
 
 jobs:
   build-and-deploy:
