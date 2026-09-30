@@ -13,7 +13,7 @@ function generateProjectsIndex() {
 	const validPattern = /^project_\d+\.(json|md)$/i;
 	// 封面圖可用 png/jpg/jpeg/gif/webp，檔名允許 project_<number> 後帶後綴（例如 project_9_tmp.png）
 	const imagePattern = /^project_\d+[\w-]*\.(png|jpe?g|gif|webp)$/i;
-	const allowedOtherFiles = new Set(['projects_index.json', 'template.md']);
+	const allowedOtherFiles = new Set(['projects_index.json', 'template.md', 'README.md']);
 	const invalidFiles = files.filter(
 		f => !validPattern.test(f) && !imagePattern.test(f) && !allowedOtherFiles.has(f)
 	);
