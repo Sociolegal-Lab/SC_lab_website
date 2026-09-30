@@ -14,6 +14,10 @@ backend:
   # 程式碼來源：https://github.com/sveltia/sveltia-cms-auth
   # 維護方式與金鑰設定見 docs/content_admin_guide.md。
   base_url: https://sveltia-cms-auth.socialegalmoj.workers.dev
+  # 只要求「公開 repo」的權限。SC_lab_website 是公開的，這樣就夠用，
+  # 成員的登入憑證因此碰不到組織底下的私有 repo（預設的 repo 權限會全部涵蓋）。
+  # 註：若哪天本 repo 改為私有，這裡必須改回 repo，否則會失去存取權。
+  auth_scope: public_repo
 
 # 後台登入畫面與標題列顯示的名稱
 app_title: Sociolegal Lab 網站內容管理
