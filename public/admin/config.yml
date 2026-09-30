@@ -10,10 +10,10 @@ backend:
   name: github
   repo: Sociolegal-Lab/SC_lab_website
   branch: main
-  # ↓↓↓ 必填：改成你自己的 Cloudflare Worker 網址 ↓↓↓
-  # 這是 GitHub 登入用的中介服務，架設步驟見 docs/content_admin_guide.md。
-  # 還沒架好之前，後台會無法登入。
-  base_url: https://CHANGE-ME.workers.dev
+  # GitHub 登入用的中介服務（自架於 Cloudflare Workers）。
+  # 程式碼來源：https://github.com/sveltia/sveltia-cms-auth
+  # 維護方式與金鑰設定見 docs/content_admin_guide.md。
+  base_url: https://sveltia-cms-auth.socialegalmoj.workers.dev
 
 # 後台登入畫面與標題列顯示的名稱
 app_title: Sociolegal Lab 網站內容管理
