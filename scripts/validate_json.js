@@ -13,6 +13,7 @@ const schemaMap = {
   'news.json': path.join(__dirname, '..', 'schemas', 'news.schema.json'),
   'leader.json': path.join(__dirname, '..', 'schemas', 'leader.schema.json'),
   'members.json': path.join(__dirname, '..', 'schemas', 'member.schema.json'),
+  'thelabinaction.json': path.join(__dirname, '..', 'schemas', 'carousel.schema.json'),
 };
 
 
