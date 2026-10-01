@@ -2,9 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import style from "./ProjectColumn.module.css";
 import ReactMarkdown from "react-markdown";
-import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
 import title_size from "./title_size";
-import getMarkdownWordCount from "../../utils/getMarkdownWordCount";
+import projectIndex from "../../data/projects/projects_index.json";
 
 const projects_json = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const projects_md = import.meta.glob("../../data/projects/project_[0-9]*.md", {eager: true, as: 'raw'});
@@ -14,34 +13,34 @@ function ProjectColumn() {
   // Get id from path
   const { slug } = useParams(); // slug = project_x
 
-    // Extract x from slug
-    const match = slug.match(/^project_(\d+)$/);
-    const id = match[1];
-    
+    // Extract x from slug（slug 格式不符時 match 為 null，不能直接取 [1]）
+    const match = slug?.match(/^project_(\d+)$/);
+    const id = match?.[1] ?? null;
+
+    // 上一篇／下一篇的順序與專案列表一致，且只包含 projects_index.json 列出的專案。
+    // 沒列在清單裡的專案代表刻意不公開，因此導覽不會經過它，直接輸入網址也看不到。
+    const id_array = projectIndex
+      .map((filename) => {
+        const m = filename.match(/^project_(\d+)\.json$/);
+        return m ? parseInt(m[1], 10) : null;
+      })
+      .filter((n) => n !== null);
+
+    const is_listed = id !== null && id_array.includes(parseInt(id, 10));
+
     // Get json file with id
-    const mod_json = projects_json[`../../data/projects/project_${id}.json`];
+    const mod_json = is_listed
+      ? projects_json[`../../data/projects/project_${id}.json`]
+      : undefined;
     const content_json = mod_json?.default ?? mod_json;
-    const {name, duration, contributors, link, brief_introduction, introduction} = content_json;
+    // 用 ?? {} 避免 content_json 不存在時解構失敗（下方會改為顯示「找不到」）
+    const {name, duration, contributors, link, brief_introduction, introduction} = content_json ?? {};
 
     // Regex condition for link
     const github_regex = /^https?:\/\/(www\.)?github\.com\/.+$/i;
     const is_github_link = link && github_regex.test(link);
 
     // Get name of next and prev projects
-    const id_array = [];
-    Object.entries(projects_json).map(([path, mod]) => {
-      // path = "../../data/projects/project_1.json"
-      // mod  = { default: { name: "...", brief_introduction: "..." } }
-    const { id:n_of_ids, type } = extractIdFromFilePath(path) || {};
-    id_array.push(n_of_ids);
-    });
-
-    id_array.sort((a, b) =>{
-      const countA = getMarkdownWordCount(a, projects_md);
-      const countB = getMarkdownWordCount(b, projects_md);
-    return countB - countA;
-    })
-
     const index_of_id_array = id_array.indexOf(parseInt(id, 10));
     
     let prev_name = null;
@@ -96,6 +95,24 @@ function ProjectColumn() {
     };
   }, [popupOpen]);
   // --- end new ---
+
+  // 網址有誤，或該專案不在 projects_index.json 的展示清單裡（代表刻意不公開）。
+  // 此判斷必須放在所有 hooks 之後，否則會違反 React 的 hooks 規則。
+  if (!content_json) {
+    return (
+      <div className={`${style.background}`}>
+        <div className={`${style.marginLR}`}>
+          <div className={`${style.title} rufina-bold`}>Project not found</div>
+          <p className={`${style.subtitle} inter-bold`}>
+            這個專案不存在或目前未公開。
+          </p>
+          <Link to="/projects" className={`${style.subtitle} inter-bold`}>
+            ← Back to projects
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (<>
   <div className={`${style.background}`} lang="eng">
