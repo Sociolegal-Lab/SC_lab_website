@@ -12,6 +12,7 @@ const schemaMap = {
   // mapping: public file path (basename) -> schema file path
   'news.json': path.join(__dirname, '..', 'schemas', 'news.schema.json'),
   'leader.json': path.join(__dirname, '..', 'schemas', 'leader.schema.json'),
+  'professor.json': path.join(__dirname, '..', 'schemas', 'professor.schema.json'),
   'members.json': path.join(__dirname, '..', 'schemas', 'member.schema.json'),
   'thelabinaction.json': path.join(__dirname, '..', 'schemas', 'carousel.schema.json'),
 };

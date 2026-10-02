@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Professor",
+  "description": "教授的基本資料，用於首頁的 Principle Investigator 區塊與成員頁的教授區塊。",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "photo": {
+      "type": "string",
+      "description": "src/data/leader/ 底下的檔名，例如 Leaderprofile.PNG。"
+    },
+    "position": { "type": "string" },
+    "region": {
+      "type": "array",
+      "description": "研究領域，一個項目一行。",
+      "items": { "type": "string" }
+    },
+    "motto": { "type": ["string", "null"] },
+    "tel": { "type": ["string", "null"] },
+    "e-mail": { "type": ["string", "null"] },
+    "bio": { "type": "string" }
+  },
+  "required": ["name", "photo", "position", "region", "bio"]
+}
