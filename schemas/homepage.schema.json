@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Homepage",
+  "description": "首頁各區塊的內容。",
+  "type": "object",
+  "properties": {
+    "elements": {
+      "type": "array",
+      "description": "Landing 區塊左側的三行文字。",
+      "items": { "type": "string" }
+    },
+    "school": {
+      "type": "array",
+      "description": "Landing 區塊右側的學校名稱，一個項目一行。",
+      "items": { "type": "string" }
+    },
+    "about_us": {
+      "type": "object",
+      "description": "About Us 區塊的三張圖，值為 src/data/homepage/ 底下的檔名。",
+      "properties": {
+        "data_image": { "type": "string" },
+        "law_image": { "type": "string" },
+        "society_image": { "type": "string" }
+      },
+      "required": ["data_image", "law_image", "society_image"]
+    },
+    "events": {
+      "type": "object",
+      "description": "Events 區塊嵌入的日曆。",
+      "properties": {
+        "calendar_url": {
+          "type": "string",
+          "description": "Google 日曆的嵌入網址（embed 網址，不是分享連結）。留空則不顯示日曆。"
+        }
+      },
+      "required": ["calendar_url"]
+    }
+  },
+  "required": ["elements", "school", "about_us", "events"]
+}
