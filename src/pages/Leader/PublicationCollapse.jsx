@@ -8,15 +8,20 @@ export default function PublicationCollapse() {
     return match ? parseInt(match[0], 10) : 0;
   };
 
-  // 只取出版類別
-  const publicationCategories = ["Journal Articles", "Book Chapters", "Selected Conference Papers"];
+  // 只取出版類別。[資料鍵, 畫面上顯示的標題]：
+  // JSON 的 key 不能含空格（內容管理後台的欄位名稱限制），但顯示文字要保留原樣。
+  const publicationCategories = [
+    ["journal_articles", "Journal Articles"],
+    ["book_chapters", "Book Chapters"],
+    ["selected_conference_papers", "Selected Conference Papers"],
+  ];
 
-  const sortedData = publicationCategories.map((category) => {
-    const items = publicationData[category] || [];
+  const sortedData = publicationCategories.map(([key, label]) => {
+    const items = publicationData[key] || [];
     const sortedItems = [...items].sort(
       (a, b) => extractYear(b.publication) - extractYear(a.publication)
     );
-    return [category, sortedItems];
+    return [label, sortedItems];
   });
 
   return (

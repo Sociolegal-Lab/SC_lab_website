@@ -11,10 +11,11 @@ export default function ProjectsCollapse() {
     return Math.max(...matches.map((y) => parseInt(y, 10)));
   };
 
-  const projectsCategories = ["Projects"];
+  // [資料鍵, 畫面上顯示的標題]
+  const projectsCategories = [["projects", "Projects"]];
 
-  const sortedData = projectsCategories.map((category) => {
-    const items = projectsData[category] || [];
+  const sortedData = projectsCategories.map(([key, category]) => {
+    const items = projectsData[key] || [];
     const sortedItems = [...items].sort(
       (a, b) => extractYear(b.year) - extractYear(a.year)
     );

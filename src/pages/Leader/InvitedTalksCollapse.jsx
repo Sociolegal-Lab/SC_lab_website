@@ -4,7 +4,7 @@ import data from "../../data/leader/leader.json"; // 匯入 JSON 資料
 
 export default function InvitedTalksCollapse() {
   // 依年份自動排序（降序：最新講座在上）
-  const sortedInvitedTalks = [...data["Invited Talks"]].sort(
+  const sortedInvitedTalks = [...data.invited_talks].sort(
     (a, b) => b.year - a.year
   );
 

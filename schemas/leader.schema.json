@@ -4,7 +4,7 @@
   "description": "教授個人頁資料。各區塊為陣列，陣列順序即網頁上的顯示順序。",
   "type": "object",
   "properties": {
-    "Education": {
+    "education": {
       "type": "array",
       "items": {
         "type": "object",
@@ -15,7 +15,7 @@
         "required": ["degree", "institution"]
       }
     },
-    "Fellowships and Awards": {
+    "fellowships_and_awards": {
       "type": "array",
       "items": {
         "type": "object",
@@ -26,10 +26,10 @@
         "required": ["title", "year"]
       }
     },
-    "Journal Articles": { "$ref": "#/definitions/publicationList" },
-    "Book Chapters": { "$ref": "#/definitions/publicationList" },
-    "Selected Conference Papers": { "$ref": "#/definitions/publicationList" },
-    "Projects": {
+    "journal_articles": { "$ref": "#/definitions/publicationList" },
+    "book_chapters": { "$ref": "#/definitions/publicationList" },
+    "selected_conference_papers": { "$ref": "#/definitions/publicationList" },
+    "projects": {
       "type": "array",
       "items": {
         "type": "object",
@@ -42,7 +42,7 @@
         "required": ["title", "year", "organization", "description"]
       }
     },
-    "Courses": {
+    "courses": {
       "type": "array",
       "items": {
         "type": "object",
@@ -53,7 +53,7 @@
         "required": ["title", "semester"]
       }
     },
-    "Invited Talks": {
+    "invited_talks": {
       "type": "array",
       "items": {
         "type": "object",
@@ -68,14 +68,14 @@
     }
   },
   "required": [
-    "Education",
-    "Fellowships and Awards",
-    "Journal Articles",
-    "Book Chapters",
-    "Selected Conference Papers",
-    "Projects",
-    "Courses",
-    "Invited Talks"
+    "education",
+    "fellowships_and_awards",
+    "journal_articles",
+    "book_chapters",
+    "selected_conference_papers",
+    "projects",
+    "courses",
+    "invited_talks"
   ],
   "definitions": {
     "publicationList": {

@@ -11,10 +11,11 @@ export default function CoursesCollapse() {
     return Math.max(...matches.map((y) => parseInt(y, 10)));
   };
 
-  const courseCategories = ["Courses"];
+  // [資料鍵, 畫面上顯示的標題]
+  const courseCategories = [["courses", "Courses"]];
 
-  const sortedData = courseCategories.map((category) => {
-    const items = coursesData[category] || [];
+  const sortedData = courseCategories.map(([key, category]) => {
+    const items = coursesData[key] || [];
     const sortedItems = [...items].sort(
       (a, b) => extractYear(b.semester) - extractYear(a.semester)
     );

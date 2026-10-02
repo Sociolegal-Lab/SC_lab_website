@@ -12,7 +12,7 @@ export default function EducationCollapse() {
         </summary>
 
         <div className={styles["collapse-body"]}>
-          {educationData.Education.map((edu, index) => (
+          {educationData.education.map((edu, index) => (
             <div key={index} className={styles["collapse-section"]}>
               <p className={styles["collapse-text-title"]}>{edu.degree}</p>
               <p className={styles["collapse-text"]}>
