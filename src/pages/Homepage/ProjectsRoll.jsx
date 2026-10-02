@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
-import projectIndex from "../../data/projects/projects_index.json";
+import { sortProjects } from "../../utils/sortProjects";
 import "../../styles/font.css";
 
 /** 只依 JSON photo 來決定圖片路徑 */
@@ -49,18 +49,17 @@ export default function ProjectsRoll({
         return;
       }
 
-      // 否則從 data/projects/*.json 載入
-      const modules = import.meta.glob("../../data/projects/*.json", {
+      // 否則從 data/projects/project_*.json 載入，
+      // 篩掉未公開的並依規則排序（與專案列表頁同一套邏輯）
+      const modules = import.meta.glob("../../data/projects/project_[0-9]*.json", {
         eager: true,
       });
 
-      const loaded = projectIndex
-        .map((filename) => {
-          const key = `../../data/projects/${filename}`;
-          const mod = modules[key];
-          return mod && mod.default ? normalize(mod.default) : null;
-        })
+      const all = Object.values(modules)
+        .map((mod) => mod?.default ?? mod)
         .filter(Boolean);
+
+      const loaded = sortProjects(all).map(normalize);
 
       if (!cancelled) setItems(loaded);
     };

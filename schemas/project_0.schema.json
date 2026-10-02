@@ -3,6 +3,10 @@
   "title": "A Project",
   "type": "object",
   "properties": {
+    "published": {
+      "type": "boolean",
+      "description": "false 代表不在網站上顯示。展示順序由 duration 依規則自動計算，不需要人工清單。"
+    },
     "name": { "type": "string" },
     "duration": { "type": "string" },
     "contributors": {
@@ -14,6 +18,7 @@
     "introduction": { "type": "string" }
   },
   "required": [
+    "published",
     "name",
     "duration",
     "contributors",

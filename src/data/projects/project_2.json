@@ -1,5 +1,6 @@
 {
     "id":2,
+    "published": true,
     "name": "LeArNER: Few-shot Legal Argument Named Entity Recognition",
     "duration": "2023",
     "contributors":[

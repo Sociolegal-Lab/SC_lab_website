@@ -2,7 +2,7 @@ import style from "./Projects.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import extractIdFromFilePath from "../../utils/extractIdFromFilePath";
-import projectIndex from "../../data/projects/projects_index.json";
+import { compareProjects } from "../../utils/sortProjects";
 
 const project_data = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const project_covers = import.meta.glob("../../data/projects/project_[0-9]*.(jpg|jpeg|png|gif)", {eager: true, as: 'url'});
@@ -11,13 +11,13 @@ function Projects() {
   const AMOUNT_OF_PROJECTS = 12;
   const [projectLimit, setProjectLimit] = useState(AMOUNT_OF_PROJECTS);
 
-  const projectEntries = projectIndex
-    .map((filename) => {
-      const path = `../../data/projects/${filename}`;
-      const mod = project_data[path];
-      return mod ? [path, mod] : null;
-    })
-    .filter(Boolean);
+  // 展示順序依 duration 自動計算（規則見 utils/sortProjects.js），
+  // published 為 false 的專案不顯示。
+  const projectEntries = Object.entries(project_data)
+    .map(([path, mod]) => [path, mod, mod?.default ?? mod])
+    .filter(([, , data]) => data?.published !== false)
+    .sort(([, , a], [, , b]) => compareProjects(a, b))
+    .map(([path, mod]) => [path, mod]);
 
   const displayedEntries = projectEntries.slice(0, projectLimit);
 

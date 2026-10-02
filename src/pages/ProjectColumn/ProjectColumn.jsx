@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import style from "./ProjectColumn.module.css";
 import ReactMarkdown from "react-markdown";
 import title_size from "./title_size";
-import projectIndex from "../../data/projects/projects_index.json";
+import { sortProjects } from "../../utils/sortProjects";
 
 const projects_json = import.meta.glob("../../data/projects/project_[0-9]*.json", {eager: true});
 const projects_md = import.meta.glob("../../data/projects/project_[0-9]*.md", {eager: true, as: 'raw'});
@@ -17,14 +17,13 @@ function ProjectColumn() {
     const match = slug?.match(/^project_(\d+)$/);
     const id = match?.[1] ?? null;
 
-    // 上一篇／下一篇的順序與專案列表一致，且只包含 projects_index.json 列出的專案。
-    // 沒列在清單裡的專案代表刻意不公開，因此導覽不會經過它，直接輸入網址也看不到。
-    const id_array = projectIndex
-      .map((filename) => {
-        const m = filename.match(/^project_(\d+)\.json$/);
-        return m ? parseInt(m[1], 10) : null;
-      })
-      .filter((n) => n !== null);
+    // 上一篇／下一篇的順序與專案列表一致（同一套排序邏輯），
+    // 且不包含 published 為 false 的專案：導覽不會經過它，直接輸入網址也看不到。
+    const id_array = sortProjects(
+      Object.values(projects_json)
+        .map((mod) => mod?.default ?? mod)
+        .filter(Boolean)
+    ).map((p) => p.id);
 
     const is_listed = id !== null && id_array.includes(parseInt(id, 10));
 
