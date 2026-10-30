@@ -140,9 +140,11 @@
     "Chinese_name": "劉宇宸",
     "English_name": "YU-CHEN LIU",
     "title": "alive",
-    "photo": "/members/7.jpg",
+    "photo": "/members/7.jpeg",
     "email": "NM6151043@gs.ncku.edu.tw",
-    "bio": [],
+    "bio": [
+      "ㄣ"
+    ],
     "short_bio": "",
     "socials": null,
     "id": "7"
