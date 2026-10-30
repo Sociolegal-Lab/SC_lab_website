@@ -1,0 +1,510 @@
+# 網站內容管理後台設定（Sveltia CMS）
+#
+# 後台網址：https://sociolegal-lab.github.io/admin/
+# 使用者用自己的 GitHub 帳號登入，儲存時會直接 commit 到 main 分支，
+# 接著 GitHub Actions 會先檢查格式再重新建置並部署網站。
+#
+# 設定說明文件：https://sveltiacms.app/en/docs
+
+backend:
+  name: github
+  repo: Sociolegal-Lab/SC_lab_website
+  branch: main
+  # GitHub 登入用的中介服務（自架於 Cloudflare Workers）。
+  # 程式碼來源：https://github.com/sveltia/sveltia-cms-auth
+  # 維護方式與金鑰設定見 docs/content_admin_guide.md。
+  base_url: https://sveltia-cms-auth.socialegalmoj.workers.dev
+  # 只要求「公開 repo」的權限。SC_lab_website 是公開的，這樣就夠用，
+  # 成員的登入憑證因此碰不到組織底下的私有 repo（預設的 repo 權限會全部涵蓋）。
+  # 註：若哪天本 repo 改為私有，這裡必須改回 repo，否則會失去存取權。
+  auth_scope: public_repo
+
+# 後台登入畫面與標題列顯示的名稱
+app_title: Sociolegal Lab 網站內容管理
+
+# 後台裡連回網站的連結
+site_url: https://sociolegal-lab.github.io
+display_url: https://sociolegal-lab.github.io
+
+# 後台的圖示與登入畫面 logo，沿用主網站同一張（64x64 正方形）。
+# 不設定的話會顯示 Sveltia 自己的預設 logo。
+# 註：舊的 logo_url 選項已被官方標為棄用，請用 logo.src。
+logo:
+  src: /favicon_blue_background.png
+  show_in_header: true
+
+# 介面語言會依使用者的瀏覽器語言自動選擇（Sveltia 內建繁體中文 zh-TW），
+# 沒有頂層的 locale 設定可指定，因此這裡不設。
+
+# 預設的媒體資料夾（下面每個項目都會各自覆蓋這個設定）
+media_folder: /src/data
+public_folder: /data
+
+collections:
+  - name: content
+    label: 網站內容
+    files:
+      # ────────────────── 成員名單 ──────────────────
+      - name: members
+        label: 成員名單
+        file: /src/data/members/members.json
+        format: json
+        # 照片上傳到成員資料夾。前端的 getMemberPhotoUrl() 只取檔名，
+        # 因此 public_folder 的前綴是什麼都不影響顯示。
+        media_folder: /src/data/members
+        public_folder: /members
+        fields:
+          - name: members
+            label: 成員
+            label_singular: 成員
+            widget: list
+            # members.json 的根本身就是一個陣列，root: true 對應這個結構
+            root: true
+            summary: '{{fields.Chinese_name}}（{{fields.status}}）'
+            fields:
+              - name: status
+                label: 目前狀態
+                widget: select
+                default: current
+                hint: 決定這個人顯示在網頁的 CURRENT MEMBERS 還是 FORMER MEMBERS。畢業或離職只要改這一個欄位。
+                options:
+                  - { label: 現任成員, value: current }
+                  - { label: 已離開（畢業／離職）, value: former }
+
+              - name: Chinese_name
+                label: 中文姓名
+                widget: string
+
+              - name: English_name
+                label: 英文姓名
+                widget: string
+                hint: 網頁卡片上顯示的是這個欄位。
+
+              - name: title
+                label: 頭銜
+                widget: string
+                hint: 顯示在姓名下方的一行字，例如 Master's student。
+
+              - name: photo
+                label: 照片
+                widget: image
+                required: false
+                hint: 沒有照片可以留空。
+
+              - name: email
+                label: Email
+                widget: string
+                required: false
+
+              - name: bio
+                label: 卡片列點
+                widget: list
+                required: false
+                hint: 卡片上的短列點，一行一個項目。沒有可以留空。
+
+              - name: short_bio
+                label: 自我介紹
+                widget: text
+                required: false
+                hint: 較長的介紹文字，首頁的成員輪播會使用。
+
+              - name: socials
+                label: 社群連結
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: linkedin, label: LinkedIn, widget: string, required: false }
+                  - { name: github, label: GitHub, widget: string, required: false }
+                  - { name: facebook, label: Facebook, widget: string, required: false }
+                  - { name: instagram, label: Instagram, widget: string, required: false }
+
+              - name: id
+                label: 編號
+                widget: string
+                hint: 全名單不可重複，請填目前最大號碼 +1。重複會導致資料對到錯的人，送出後自動檢查會擋下來。
+
+      # ────────────────── 最新消息 ──────────────────
+      - name: news
+        label: 最新消息
+        file: /src/data/news/news.json
+        format: json
+        media_folder: /src/data/news
+        public_folder: /news
+        fields:
+          - name: news
+            label: 消息
+            label_singular: 消息
+            widget: list
+            root: true
+            summary: '{{fields.date}} {{fields.headline}}'
+            fields:
+              - name: headline
+                label: 標題
+                widget: string
+
+              - name: date
+                label: 日期
+                widget: datetime
+                # type: date 即為「只有日期、沒有時間」，會存成 2025-09-09 這種格式。
+                # 舊的 date_format / time_format / picker_utc 已被官方標為棄用，不要使用。
+                type: date
+
+              - name: content
+                label: 內容
+                widget: text
+                required: false
+
+              - name: url
+                label: 相關連結
+                widget: string
+                required: false
+                hint: 沒有可以留空。
+
+              - name: id
+                label: 編號
+                widget: string
+                hint: >
+                  不可重複。封面圖需另外命名為「編號.jpg」放進 src/data/news/ 資料夾，
+                  無法在這個畫面上傳。
+
+      # ────────────── The Lab In Action 照片輪播 ──────────────
+      - name: carousel
+        label: The Lab In Action 照片
+        file: /src/data/carousel/thelabinaction.json
+        format: json
+        media_folder: /src/data/carousel
+        public_folder: /carousel
+        fields:
+          - name: photos
+            label: 照片
+            label_singular: 照片
+            widget: list
+            root: true
+            summary: '{{fields.photo}}'
+            fields:
+              - name: photo
+                label: 照片檔
+                widget: image
+                hint: 上傳後會存進 src/data/carousel/ 資料夾。
+
+      # ────────────────── 首頁 ──────────────────
+      - name: homepage
+        label: 首頁
+        file: /src/data/homepage/landinginfo.json
+        format: json
+        media_folder: /src/data/homepage
+        public_folder: /homepage
+        fields:
+          - name: elements
+            label: 首頁大標的三個詞
+            widget: list
+            hint: 顯示在首頁最上方左側，一行一個詞。
+
+          - name: school
+            label: 學校名稱
+            widget: list
+            hint: 顯示在首頁最上方右側，一行一列。
+
+          - name: about_us
+            label: About Us 的三張圖
+            widget: object
+            fields:
+              - name: data_image
+                label: DATA 圖
+                widget: image
+              - name: law_image
+                label: LAW 圖
+                widget: image
+              - name: society_image
+                label: SOCIETY 圖
+                widget: image
+
+          - name: events
+            label: Events 日曆
+            widget: object
+            fields:
+              - name: calendar_url
+                label: Google 日曆嵌入網址
+                widget: string
+                required: false
+                hint: >
+                  要用 Google 日曆的「嵌入」網址（設定 → 整合日曆 → 嵌入程式碼裡的
+                  src 網址），不是分享連結。留空則首頁不顯示日曆。
+
+  # ══════════════════════════ 專案 ══════════════════════════
+  # 展示順序由 duration 依規則自動計算（src/utils/sortProjects.js），不需要人工清單。
+  # 要讓某個專案不出現在網站上，把「是否顯示」關掉即可。
+  #
+  # 新增／刪除專案仍需維護者處理：一個專案由 project_N.json、同編號的封面圖、
+  # 以及 project_N.md 內頁檔組成，後台一個畫面只對應一個檔案，無法保證三者編號一致。
+  - name: projects
+    label: 專案
+    files:
+      - name: project_9
+        label: "#9 TaDELS RAG"
+        file: /src/data/projects/project_9.json
+        format: json
+        fields: &project_fields
+          - name: published
+            label: 是否顯示
+            widget: boolean
+            default: true
+            hint: 關閉後這個專案就不會出現在網站上（列表、首頁輪播、上下篇導覽都不會有）。
+
+          - name: name
+            label: 專案名稱
+            widget: string
+
+          - name: duration
+            label: 時間
+            widget: string
+            hint: >
+              進行中的寫「開始年-ongoing」（例如 2025-ongoing），已結束的寫
+              「開始年-結束年」（例如 2024-2025）。這個欄位決定專案在列表上的
+              排序位置：進行中的排最前，其餘結束越晚越前，儲存後會自動重排。
+
+          - name: contributors
+            label: 貢獻者
+            widget: list
+            hint: 一行一個人名。
+
+          - name: photo
+            label: 封面圖
+            widget: image
+            required: false
+            media_folder: /src/data/projects
+            public_folder: /projects
+
+          - name: brief_introduction
+            label: 簡介
+            widget: text
+            hint: 顯示在專案列表上的短介紹。
+
+          - name: introduction
+            label: 詳細介紹
+            widget: text
+            hint: 顯示在專案內頁。段落之間請空一行。
+
+          - name: link
+            label: 外部連結
+            widget: string
+            required: false
+            hint: 沒有可以留空。
+
+          - name: id
+            label: 編號
+            widget: number
+            value_type: int
+            readonly: true
+            hint: 不可修改，它決定對應的 .md 內頁與封面圖檔名。
+
+      - name: project_5
+        label: "#5 CrowdEyes:AI Editor"
+        file: /src/data/projects/project_5.json
+        format: json
+        fields: *project_fields
+      - name: project_6
+        label: "#6 Legal News Agent for Taiwanese Judicial …"
+        file: /src/data/projects/project_6.json
+        format: json
+        fields: *project_fields
+      - name: project_7
+        label: "#7 Navigating Judicial Overload: A Multi-Ag…"
+        file: /src/data/projects/project_7.json
+        format: json
+        fields: *project_fields
+      - name: project_1
+        label: "#1 Intersectional Moral Biases in Large Lan…"
+        file: /src/data/projects/project_1.json
+        format: json
+        fields: *project_fields
+      - name: project_8
+        label: "#8 Cross-Cultural Assessment of Bias and He…"
+        file: /src/data/projects/project_8.json
+        format: json
+        fields: *project_fields
+      - name: project_2
+        label: "#2 LeArNER: Few-shot Legal Argument Named E…"
+        file: /src/data/projects/project_2.json
+        format: json
+        fields: *project_fields
+
+  # ══════════════════════════ 教授 ══════════════════════════
+  - name: leader
+    label: 教授
+    files:
+      - name: professor
+        label: 基本資料
+        file: /src/data/leader/professor.json
+        format: json
+        media_folder: /src/data/leader
+        public_folder: /leader
+        fields:
+          - name: name
+            label: 姓名
+            widget: string
+
+          - name: photo
+            label: 照片
+            widget: image
+
+          - name: position
+            label: 職稱
+            widget: string
+
+          - name: region
+            label: 研究領域
+            widget: list
+            hint: 一行一個領域。
+
+          - name: motto
+            label: 座右銘
+            widget: string
+            required: false
+
+          - name: tel
+            label: 電話
+            widget: string
+            required: false
+
+          - name: e-mail
+            label: Email
+            widget: string
+            required: false
+
+          - name: bio
+            label: 簡介
+            widget: text
+
+      - name: leader_cv
+        label: 學術資料
+        file: /src/data/leader/leader.json
+        format: json
+        fields:
+          - name: education
+            label: 學歷
+            label_singular: 學歷
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.degree}} — {{fields.institution}}'
+            fields:
+              - name: degree
+                label: 學位
+                widget: string
+              - name: institution
+                label: 學校
+                widget: string
+          - name: fellowships_and_awards
+            label: 獎項與榮譽
+            label_singular: 獎項
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.year}} {{fields.title}}'
+            fields:
+              - name: title
+                label: 名稱
+                widget: string
+              - name: year
+                label: 年份
+                widget: number
+                value_type: int
+          - name: journal_articles
+            label: 期刊論文
+            label_singular: 論文
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.title}}'
+            fields:
+              - name: title
+                label: 標題
+                widget: string
+              - name: publication
+                label: 出處
+                widget: string
+          - name: book_chapters
+            label: 專書章節
+            label_singular: 章節
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.title}}'
+            fields:
+              - name: title
+                label: 標題
+                widget: string
+              - name: publication
+                label: 出處
+                widget: string
+          - name: selected_conference_papers
+            label: 會議論文
+            label_singular: 論文
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.title}}'
+            fields:
+              - name: title
+                label: 標題
+                widget: string
+              - name: publication
+                label: 出處
+                widget: string
+          - name: projects
+            label: 研究計畫
+            label_singular: 計畫
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.year}} {{fields.title}}'
+            fields:
+              - name: title
+                label: 名稱
+                widget: string
+              - name: year
+                label: 年份
+                widget: string
+              - name: organization
+                label: 委託單位
+                widget: string
+              - name: description
+                label: 說明
+                widget: text
+          - name: courses
+            label: 授課
+            label_singular: 課程
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.semester}} {{fields.title}}'
+            fields:
+              - name: title
+                label: 課程名稱
+                widget: string
+              - name: semester
+                label: 學期
+                widget: string
+          - name: invited_talks
+            label: 演講
+            label_singular: 演講
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            summary: '{{fields.year}} {{fields.title}}'
+            fields:
+              - name: title
+                label: 主題
+                widget: string
+              - name: event
+                label: 場合
+                widget: string
+              - name: location
+                label: 地點
+                widget: string
+              - name: year
+                label: 年份
+                widget: number
+                value_type: int

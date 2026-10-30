@@ -4,7 +4,7 @@ import data from "../../data/leader/leader.json"; // 匯入 JSON 資料
 
 export default function FellowshipsAndAwardsCollapse() {
   // 自動依年份排序（降序：最新在上）
-  const sortedAwards = [...data["Fellowships and Awards"]].sort(
+  const sortedAwards = [...data.fellowships_and_awards].sort(
     (a, b) => b.year - a.year
   );
 

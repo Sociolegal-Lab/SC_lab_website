@@ -10,11 +10,15 @@ const imageModules = import.meta.glob("../../data/carousel/*", { eager: true });
 export default function Thelabinaction() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // 建立 JSON 檔名對應到實際匯入的圖片 URL
+  // 建立 JSON 檔名對應到實際匯入的圖片 URL。
+  // photo 可能是純檔名（1.jpg）或內容管理後台寫入的帶路徑格式（/carousel/1.jpg），
+  // 因此只取檔名來比對；比對時在檔名前加上 "/"，避免 1.jpg 誤配到 11.jpg。
   const images = jsonData
     .map((item) => {
+      const filename = String(item?.photo ?? "").split("/").pop();
+      if (!filename) return null;
       const key = Object.keys(imageModules).find((path) =>
-        path.endsWith(item.photo)
+        path.endsWith(`/${filename}`)
       );
       return key ? imageModules[key].default : null;
     })

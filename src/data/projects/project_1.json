@@ -1,5 +1,6 @@
 {
     "id":1,
+    "published": true,
     "name": "Intersectional Moral Biases in Large Language Models",
     "duration": "2024-2025",
     "contributors":[

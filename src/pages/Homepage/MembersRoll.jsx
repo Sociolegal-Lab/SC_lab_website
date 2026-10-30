@@ -3,6 +3,10 @@ import styles from "./Homepage.module.css";
 import left_arrow from "../../assets/left_arrow.png";
 import right_arrow from "../../assets/right_arrow.png";
 import membersData from "../../data/members/members.json";
+import getMemberPhotoUrl from "../../utils/getMemberPhotoUrl";
+
+/** 首頁輪播只顯示現任成員 */
+const currentMembers = membersData.filter((m) => m?.status !== "former");
 import "../../styles/font.css";
 
 /** 將 members.json 欄位轉成渲染用格式 */
@@ -13,26 +17,6 @@ const normalize = (m = {}) => ({
   photo: m.photo || null,
 });
 
-/** 根據 src/data/members 資料夾載入 .jpeg 照片 */
-const toSrc = (m) => {
-  const p = m.photo;
-  if (p) {
-    // 若 JSON 內 photo 有值，仍優先用它
-    if (p.startsWith("/") || /^https?:\/\//i.test(p)) return p;
-    try {
-      return new URL(`../../data/members/${p}`, import.meta.url).href;
-    } catch {
-      return p;
-    }
-  }
-  // 若 photo 為 null，就依 id 對應成 src/data/members/{id}.jpeg
-  try {
-    return new URL(`../../data/members/${m.id}.jpeg`, import.meta.url).href;
-  } catch {
-    return "";
-  }
-};
-
 export default function MembersRoll({
   items: itemsProp,
   interval = 4000,
@@ -40,7 +24,7 @@ export default function MembersRoll({
   className = "",
   loop = true,
 }) {
-  const raw = (itemsProp && itemsProp.length ? itemsProp : membersData) ?? [];
+  const raw = (itemsProp && itemsProp.length ? itemsProp : currentMembers) ?? [];
   const list = Array.isArray(raw)
     ? raw
     : raw.members || raw.data || raw.items || [];
@@ -205,10 +189,10 @@ export default function MembersRoll({
                   <article className={styles["mr-profile"]}>
                     {/* 照片 */}
                     <div className={styles["mr-photo-wrap"]}>
-                      {toSrc(m) ? (
+                      {getMemberPhotoUrl(m.photo) ? (
                         <img
                           className={styles["mr-photo"]}
-                          src={toSrc(m)}
+                          src={getMemberPhotoUrl(m.photo)}
                           alt={m.name || `member-${i}`}
                           onError={(e) =>
                             (e.currentTarget.style.display = "none")

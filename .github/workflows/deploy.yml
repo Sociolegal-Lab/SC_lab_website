@@ -3,7 +3,8 @@ name: Deploy new site to org Pages
 
 on:
   push:
-    branches: [ deploy ]   # 依你的預設分支調整
+    branches: [ main ]     # main 為唯一正本，推上去就自動建置並部署
+  workflow_dispatch:       # 也可以到 Actions 頁面手動觸發一次
 
 jobs:
   build-and-deploy:
@@ -20,6 +21,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      # 內容檢查放在建置之前：格式有問題就直接中止，不會把壞掉的內容部署上線。
+      # 後台是直接寫入 main（不走 PR），因此這裡是內容的最後一道把關。
+      - name: Validate content
+        run: |
+          npm run validate-json
+          npm run lint:md
+          npm run verify_project_data_filename
 
       - name: Build site
         run: npm run build   # 依你的專案調整打包指令

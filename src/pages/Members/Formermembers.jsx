@@ -1,24 +1,10 @@
 import React from "react";
 import styles from "./Members.module.css";
-import membersData from "../../data/members/formermembers.json";
+import membersData from "../../data/members/members.json";
+import getMemberPhotoUrl from "../../utils/getMemberPhotoUrl";
 
-/** 與 Ourmembers.jsx 完全一致的抓圖片邏輯 */
-const toSrc = (m = {}) => {
-  const p = m.photo;
-  if (p) {
-    if (p.startsWith("/") || /^https?:\/\//i.test(p)) return p;
-    try {
-      return new URL(`../../data/members/${p}`, import.meta.url).href;
-    } catch {
-      return p;
-    }
-  }
-  try {
-    return new URL(`../../data/members/${m.id}.jpeg`, import.meta.url).href;
-  } catch {
-    return "";
-  }
-};
+/** 畢業／離開的成員＝status 是 "former" 的人 */
+const formerMembers = membersData.filter((m) => m?.status === "former");
 
 export default function FormerMembers() {
   return (
@@ -26,10 +12,10 @@ export default function FormerMembers() {
       <div className={styles["subtitle"]}>FORMER MEMBERS</div>
 
       <div className={styles["member-grid"]}>
-        {membersData.map((member, index) => {
+        {formerMembers.map((member, index) => {
           const bio = Array.isArray(member.bio) ? member.bio : [];
           const socials = member.socials ?? {};
-          const imgSrc = toSrc(member);     // ← 新增：抓圖片
+          const imgSrc = getMemberPhotoUrl(member.photo);
 
           return (
             <div className={styles["member-card"]} key={member.id ?? index}>

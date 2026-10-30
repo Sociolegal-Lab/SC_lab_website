@@ -1,23 +1,47 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Members",
+  "description": "現任與畢業成員共用同一份名單，由 status 欄位區分顯示位置。",
   "type": "array",
   "items": {
     "type": "object",
     "properties": {
-      "id": { "type": "string" },
+      "id": {
+        "type": "string",
+        "description": "成員編號，全名單不可重複（新增成員時請沿用最大號碼 +1）。",
+        "minLength": 1
+      },
+      "status": {
+        "type": "string",
+        "description": "current = 顯示在 CURRENT MEMBERS；former = 顯示在 FORMER MEMBERS。",
+        "enum": ["current", "former"]
+      },
       "Chinese_name": { "type": "string" },
       "English_name": { "type": "string" },
       "title": { "type": "string" },
-      "research_interests": { "type": "string" },
-      "academic_background": { "type": "string" },
       "email": { "type": ["string", "null"] },
-      "links": {
+      "bio": {
         "type": "array",
+        "description": "卡片上的短列點，一行一個項目。",
         "items": { "type": ["string", "null"] }
       },
-      "short_bio": { "type": ["string", "null"]}
+      "socials": {
+        "type": "object",
+        "description": "沒有的平台請填 null。新增平台時需同步修改 Ourmembers.jsx 與 Formermembers.jsx。",
+        "properties": {
+          "linkedin": { "type": ["string", "null"] },
+          "github": { "type": ["string", "null"] },
+          "facebook": { "type": ["string", "null"] },
+          "instagram": { "type": ["string", "null"] }
+        },
+        "additionalProperties": { "type": ["string", "null"] }
+      },
+      "short_bio": { "type": ["string", "null"] },
+      "photo": {
+        "type": ["string", "null"],
+        "description": "src/data/members/ 底下的檔名，例如 3.jpeg。"
+      }
     },
-    "required": ["id", "Chinese_name", "English_name", "title", "research_interests", "academic_background", "email", "links", "short_bio"]
+    "required": ["id", "status", "Chinese_name", "English_name", "title"]
   }
 }

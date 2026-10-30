@@ -1,11 +1,19 @@
 {
-    "elements":[
+    "elements": [
         "Information",
         "Knowledge",
         "Communication"
     ],
-    "school":[
+    "school": [
         "National Cheng Kung University",
         "Min Wu School of Computing"
-    ]
+    ],
+    "about_us": {
+        "data_image": "DATA.png",
+        "law_image": "LAW.png",
+        "society_image": "SOCIETY.png"
+    },
+    "events": {
+        "calendar_url": "https://calendar.google.com/calendar/embed?src=c_3e13d39067d947aa054c9eb2dd572914c82f9eebcaffa46dd0a83a5ede44249b%40group.calendar.google.com&ctz=Asia%2FTaipei"
+    }
 }
